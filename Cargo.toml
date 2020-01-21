@@ -1,0 +1,41 @@
+[package]
+name = "paracon-node"
+version = "0.1.0"
+authors = ["Paracon"]
+build = "build.rs"
+edition = "2018"
+
+[[bin]]
+name = "paracon"
+path = "src/main.rs"
+
+[dependencies]
+futures = "0.3.1"
+ctrlc = { version = "3.1.3", features = ["termination"] }
+log = "0.4.8"
+tokio = { version = "0.2", features = ["rt-threaded"] }
+parking_lot = "0.9.0"
+codec = { package = "parity-scale-codec", version = "1.0.0" }
+trie-root = "0.15.2"
+sp-io = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
+sc-cli = { version = "0.8.0", git = "https://github.com/paritytech/substrate.git" }
+sp-core = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
+sc-executor = { version = "0.8", git = "https://github.com/paritytech/substrate.git" }
+sc-service = { version = "0.8", git = "https://github.com/paritytech/substrate.git" }
+sp-inherents = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
+sc-transaction-pool = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
+sp-transaction-pool = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
+sc-network = { version = "0.8", git = "https://github.com/paritytech/substrate.git" }
+sc-consensus-aura = { version = "0.8", git = "https://github.com/paritytech/substrate.git" }
+sp-consensus-aura = { version = "0.8", git = "https://github.com/paritytech/substrate.git" }
+sp-consensus = { version = "0.8", git = "https://github.com/paritytech/substrate.git" }
+grandpa = { version = "0.8", package = "sc-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
+grandpa-primitives = { version = "2.0.0", package = "sp-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
+sc-client = { version = "0.8", git = "https://github.com/paritytech/substrate.git" }
+paracon-runtime = { version = "0.1.0", path = "runtime" }
+sp-runtime = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
+sc-basic-authorship = { git = "https://github.com/paritytech/substrate.git" }
+
+[build-dependencies]
+vergen = "3.0.4"
+build-script-utils = { version = "2.0.0", package = "substrate-build-script-utils", git = "https://github.com/paritytech/substrate.git" }
