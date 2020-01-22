@@ -8,6 +8,7 @@ use sp_consensus_aura::sr25519::{AuthorityId as AuraId};
 use grandpa_primitives::{AuthorityId as GrandpaId};
 use sc_service;
 use sp_runtime::traits::{Verify, IdentifyAccount};
+use hex_literal::hex;
 
 // Note this is the URL for the telemetry server
 //const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
@@ -22,8 +23,8 @@ pub type ChainSpec = sc_service::ChainSpec<GenesisConfig>;
 pub enum Alternative {
 	/// Whatever the current runtime is, with just Alice as an auth.
 	Development,
-	/// Whatever the current runtime is, with simple Alice/Bob auths.
-	LocalTestnet,
+	/// Paracon Test net 1
+	TestNet1,
 }
 
 /// Helper function to generate a crypto pair from seed
@@ -50,6 +51,30 @@ pub fn get_authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
 	)
 }
 
+pub fn testnet_authorities() -> Vec<(AuraId, GrandpaId)> {
+	use sp_core::crypto::UncheckedInto;
+	vec![
+		/// This is subkey inspect ($root//1//aura, $root//1//gran)
+		(
+			// 5DAvQj61HsAJ5mTm6SGKt64dG3vboeBPGZxiYwueuR4uVgFR
+			hex!("30f9f64c0406e80be9ee39c5de3e8620f986b5ecfc0e2c19d065011fff768c0f").unchecked_into(),
+			// 5Gxhe16P2X7ckpxYRkgFFBTq8S5YMD3CjXzqGhvL5oV3LkjH
+			hex!("d898f5ae2cc29b9570560fa2c1e4001f01aad39a6e7225625dff94d68f83d30e").unchecked_into(),
+		),
+		/// This is subkey inspect ($root//1//aura, $root//1//gran)
+		(
+			// 5DAvQj61HsAJ5mTm6SGKt64dG3vboeBPGZxiYwueuR4uVgFR
+			hex!("caa112263ca51f6f8bf4134e44bf9558dbd29a54f7c804773f87ec9a9a814b64").unchecked_into(),
+			// 5Gxhe16P2X7ckpxYRkgFFBTq8S5YMD3CjXzqGhvL5oV3LkjH
+			hex!("97ee8ceef59b4b96885a892a6af398afae163ecfea3ff93ac70ef6178a0a5eed").unchecked_into(),
+		),
+	]
+}
+
+pub fn testnet_root() -> AccountId {
+	hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into()
+}
+
 impl Alternative {
 	/// Get an actual chain config from one of the alternatives.
 	pub(crate) fn load(self) -> Result<ChainSpec, String> {
@@ -74,32 +99,18 @@ impl Alternative {
 				None,
 				None
 			),
-			Alternative::LocalTestnet => ChainSpec::from_genesis(
-				"Local Testnet",
-				"local_testnet",
-				|| testnet_genesis(vec![
-					get_authority_keys_from_seed("Alice"),
-					get_authority_keys_from_seed("Bob"),
-				],
-				get_account_id_from_seed::<sr25519::Public>("Alice"),
-				vec![
-					get_account_id_from_seed::<sr25519::Public>("Alice"),
-					get_account_id_from_seed::<sr25519::Public>("Bob"),
-					get_account_id_from_seed::<sr25519::Public>("Charlie"),
-					get_account_id_from_seed::<sr25519::Public>("Dave"),
-					get_account_id_from_seed::<sr25519::Public>("Eve"),
-					get_account_id_from_seed::<sr25519::Public>("Ferdie"),
-					get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
-					get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
-					get_account_id_from_seed::<sr25519::Public>("Charlie//stash"),
-					get_account_id_from_seed::<sr25519::Public>("Dave//stash"),
-					get_account_id_from_seed::<sr25519::Public>("Eve//stash"),
-					get_account_id_from_seed::<sr25519::Public>("Ferdie//stash"),
-				],
-				true),
+			Alternative::TestNet1 => ChainSpec::from_genesis(
+				"Paracon Testnet 1",
+				"paracon_testnet1",
+				|| testnet_genesis(
+					testnet_authorities(),
+					testnet_root(),
+					vec![testnet_root()],
+					true,
+				),
 				vec![],
 				None,
-				None,
+				Some("prc"),
 				None,
 				None
 			),
@@ -109,17 +120,18 @@ impl Alternative {
 	pub(crate) fn from(s: &str) -> Option<Self> {
 		match s {
 			"dev" => Some(Alternative::Development),
-			"" | "local" => Some(Alternative::LocalTestnet),
+			"" | "local" => Some(Alternative::TestNet1),
 			_ => None,
 		}
 	}
 }
 
-fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
+fn testnet_genesis(
+	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
-	enable_println: bool) -> GenesisConfig
-{
+	enable_println: bool
+) -> GenesisConfig {
     let mut contracts_config = ContractsConfig {
         current_schedule: Default::default(),
         gas_price: 1 * MILLICENTS,
