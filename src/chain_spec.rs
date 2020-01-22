@@ -61,7 +61,7 @@ pub fn testnet_authorities() -> Vec<(AuraId, GrandpaId)> {
 			// 5Gxhe16P2X7ckpxYRkgFFBTq8S5YMD3CjXzqGhvL5oV3LkjH
 			hex!("d898f5ae2cc29b9570560fa2c1e4001f01aad39a6e7225625dff94d68f83d30e").unchecked_into(),
 		),
-		/// This is subkey inspect ($root//1//aura, $root//1//gran)
+		/// This is subkey inspect ($root//2//aura, $root//2//gran)
 		(
 			// 5DAvQj61HsAJ5mTm6SGKt64dG3vboeBPGZxiYwueuR4uVgFR
 			hex!("caa112263ca51f6f8bf4134e44bf9558dbd29a54f7c804773f87ec9a9a814b64").unchecked_into(),
