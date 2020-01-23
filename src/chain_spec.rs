@@ -54,17 +54,12 @@ pub fn get_authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
 pub fn testnet_authorities() -> Vec<(AuraId, GrandpaId)> {
 	use sp_core::crypto::UncheckedInto;
 	vec![
-		/// This is subkey inspect ($root//1//aura, $root//1//gran)
 		(
 			hex!("74608217b1709e1d3a4fe65b132db5c3f321e625026080833189661aa5e20712").unchecked_into(),
-			// 5Gxhe16P2X7ckpxYRkgFFBTq8S5YMD3CjXzqGhvL5oV3LkjH
 			hex!("a5abc21ac95ae63dd6e61e5bec263ab46d1efe16d3dcc085d0de297318cb662d").unchecked_into(),
 		),
-		/// This is subkey inspect ($root//2//aura, $root//2//gran)
 		(
-			// 5DAvQj61HsAJ5mTm6SGKt64dG3vboeBPGZxiYwueuR4uVgFR
 			hex!("44f3876fe4f653533c65e79461a476b8d6a107fb71b6ec0f3485bb53b4e7b842").unchecked_into(),
-			// 5Gxhe16P2X7ckpxYRkgFFBTq8S5YMD3CjXzqGhvL5oV3LkjH
 			hex!("281be34a71b661b257153e1145522fd0820cfff6a3601b40e7f85d3bc155240d").unchecked_into(),
 		),
 	]
