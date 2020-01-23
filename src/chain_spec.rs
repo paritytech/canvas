@@ -56,17 +56,16 @@ pub fn testnet_authorities() -> Vec<(AuraId, GrandpaId)> {
 	vec![
 		/// This is subkey inspect ($root//1//aura, $root//1//gran)
 		(
-			// 5DAvQj61HsAJ5mTm6SGKt64dG3vboeBPGZxiYwueuR4uVgFR
-			hex!("30f9f64c0406e80be9ee39c5de3e8620f986b5ecfc0e2c19d065011fff768c0f").unchecked_into(),
+			hex!("74608217b1709e1d3a4fe65b132db5c3f321e625026080833189661aa5e20712").unchecked_into(),
 			// 5Gxhe16P2X7ckpxYRkgFFBTq8S5YMD3CjXzqGhvL5oV3LkjH
-			hex!("d898f5ae2cc29b9570560fa2c1e4001f01aad39a6e7225625dff94d68f83d30e").unchecked_into(),
+			hex!("443fe43b3e5d76ddc7791eb0b1ae861ed9ca2a72bfd6f8acb9cbd3c63b54f2d4").unchecked_into(),
 		),
 		/// This is subkey inspect ($root//2//aura, $root//2//gran)
 		(
 			// 5DAvQj61HsAJ5mTm6SGKt64dG3vboeBPGZxiYwueuR4uVgFR
-			hex!("caa112263ca51f6f8bf4134e44bf9558dbd29a54f7c804773f87ec9a9a814b64").unchecked_into(),
+			hex!("44f3876fe4f653533c65e79461a476b8d6a107fb71b6ec0f3485bb53b4e7b842").unchecked_into(),
 			// 5Gxhe16P2X7ckpxYRkgFFBTq8S5YMD3CjXzqGhvL5oV3LkjH
-			hex!("97ee8ceef59b4b96885a892a6af398afae163ecfea3ff93ac70ef6178a0a5eed").unchecked_into(),
+			hex!("5ff60f1665239e6590f1e7f28686a7122f2a90785c0372231b911b5aba5e19ff").unchecked_into(),
 		),
 	]
 }
