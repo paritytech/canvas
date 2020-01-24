@@ -59,9 +59,6 @@ variables:
 build:
   stage:                           build
   <<:                              *docker-env
-  artifacts:
-    paths:
-      - target
   script:
     - cargo build --release
 
@@ -70,7 +67,7 @@ test:
   stage:                           test
   needs:
     - job:                         build
-      artifacts:                   true
+      artifacts:                   false
   <<:                              *docker-env
   script:
     - cargo test --all
