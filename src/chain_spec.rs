@@ -102,7 +102,10 @@ impl Alternative {
 					vec![testnet_root()],
 					true,
 				),
-				vec![],
+				vec![
+					"/ip4/35.233.19.96/tcp/30333/p2p/QmNvYhAZSBtahCqCXznYiq8e24Yes1GraPFYCc3DyA5f3z".to_string(),
+					"/ip4/35.205.110.21/tcp/30333/p2p/QmPKFc9B2oeQFc5oxbNsRENwSYibzzafKmcHs9wBZCJH4U".to_string(),
+				],
 				None,
 				Some("prc"),
 				None,

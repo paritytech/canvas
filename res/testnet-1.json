@@ -2,7 +2,8 @@
   "name": "Paracon Testnet 1",
   "id": "paracon_testnet1",
   "bootNodes": [
-    "/ip4/35.233.19.96/tcp/30333/p2p/QmNvYhAZSBtahCqCXznYiq8e24Yes1GraPFYCc3DyA5f3z"
+    "/ip4/35.233.19.96/tcp/30333/p2p/QmNvYhAZSBtahCqCXznYiq8e24Yes1GraPFYCc3DyA5f3z",
+    "/ip4/35.205.110.21/tcp/30333/p2p/QmPKFc9B2oeQFc5oxbNsRENwSYibzzafKmcHs9wBZCJH4U"
   ],
   "telemetryEndpoints": null,
   "protocolId": "prc",
