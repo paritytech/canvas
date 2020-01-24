@@ -53,7 +53,7 @@ variables:
 ### stage:                         test
 
 build-test:
-  stage:                           build
+  stage:                           test
   <<:                              *docker-env
   script:
     - cargo build --release
