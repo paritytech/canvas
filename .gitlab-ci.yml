@@ -6,9 +6,7 @@
 
 
 stages:
-    - build
     - test
-
   
 variables:
   GIT_STRATEGY:                    fetch
@@ -34,8 +32,6 @@ variables:
     - bash --version
     - mkdir -p ${CARGO_HOME}; touch ${CARGO_HOME}/config
     - mkdir -p ${CARGO_TARGET_DIR}
-    # global RUSTFLAGS overrides the linker args so this way is better to pass the flags
-    - printf '[build]\nrustflags = ["-C", "link-dead-code"]\n' | tee ${CARGO_HOME}/config
     - sccache -s
   only:
     - master
@@ -54,20 +50,11 @@ variables:
   tags:
     - linux-docker
 
-### stage:                         build
+### stage:                         test
 
-build:
+build-test:
   stage:                           build
   <<:                              *docker-env
   script:
     - cargo build --release
-
-### stage:                         test
-test:
-  stage:                           test
-  needs:
-    - job:                         build
-      artifacts:                   false
-  <<:                              *docker-env
-  script:
     - cargo test --all
