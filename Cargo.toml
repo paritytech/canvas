@@ -16,6 +16,7 @@ log = "0.4.8"
 tokio = { version = "0.2", features = ["rt-threaded"] }
 parking_lot = "0.9.0"
 hex-literal = "0.2.1"
+jsonrpc-core = "14.0.5"
 
 sp-io = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
 sc-cli = { version = "0.8.0", git = "https://github.com/paritytech/substrate.git" }
@@ -35,6 +36,9 @@ sc-client = { version = "0.8", git = "https://github.com/paritytech/substrate.gi
 paracon-runtime = { version = "0.1.0", path = "runtime" }
 sp-runtime = { version = "2.0.0", git = "https://github.com/paritytech/substrate.git" }
 sc-basic-authorship = { git = "https://github.com/paritytech/substrate.git" }
+sc-rpc = { package = "sc-rpc",  git = "https://github.com/paritytech/substrate.git" }
+
+contracts-rpc = { package = "pallet-contracts-rpc",  git = "https://github.com/paritytech/substrate.git" }
 
 [build-dependencies]
 vergen = "3.0.4"

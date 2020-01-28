@@ -30,6 +30,8 @@ construct_simple_protocol! {
 /// be able to perform chain operations.
 macro_rules! new_full_start {
 	($config:expr) => {{
+		use jsonrpc_core::IoHandler;
+
 		let mut import_setup = None;
 		let inherent_data_providers = sp_inherents::InherentDataProviders::new();
 
@@ -70,8 +72,15 @@ macro_rules! new_full_start {
 				import_setup = Some((grandpa_block_import, grandpa_link));
 
 				Ok(import_queue)
-			})?;
+			})?
+			.with_rpc_extensions(|client, _pool, _backend, _, _| -> Result<IoHandler<sc_rpc::Metadata>, _> {
+				let handler = contracts_rpc::Contracts::new(client.clone());
+				let delegate = contracts_rpc::ContractsApi::to_delegate(handler);
 
+				let mut io = IoHandler::default();
+				io.extend_with(delegate);
+				Ok(io)
+			})?;
 		(builder, import_setup, inherent_data_providers)
 	}}
 }
