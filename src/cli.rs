@@ -90,7 +90,7 @@ where
 
 	let _ = exit_send.send(());
 
-	runtime.block_on(handle).expect("will never happen");
+	runtime.block_on(handle).expect("this task should never produce error");
 
 	match service_res {
 		Either::Left((res, _)) => res.map_err(error::Error::Service),
