@@ -36,6 +36,7 @@ pub use frame_support::{
 	traits::Randomness,
 	weights::Weight,
 };
+use contracts_rpc::ContractExecResult;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -205,8 +206,6 @@ parameter_types! {
 impl balances::Trait for Runtime {
 	/// The type for recording an account's balance.
 	type Balance = Balance;
-	/// What to do if an account's free balance gets zeroed.
-	type OnFreeBalanceZero = ();
 	/// What to do if an account is fully reaped from the system.
 	type OnReapAccount = System;
 	/// What to do if a new account is created.
@@ -216,7 +215,6 @@ impl balances::Trait for Runtime {
 	type DustRemoval = ();
 	type TransferPayment = ();
 	type ExistentialDeposit = ExistentialDeposit;
-	type TransferFee = TransferFee;
 	type CreationFee = CreationFee;
 }
 
@@ -263,7 +261,6 @@ impl contracts::Trait for Runtime {
 	type RentByteFee = RentByteFee;
 	type RentDepositOffset = RentDepositOffset;
 	type SurchargeReward = SurchargeReward;
-	type TransferFee = ContractTransferFee;
 	type CreationFee = ContractCreationFee;
 	type TransactionBaseFee = ContractTransactionBaseFee;
 	type TransactionByteFee = ContractTransactionByteFee;
@@ -411,42 +408,36 @@ impl_runtime_apis! {
 		}
 	}
 
-	impl contracts_rpc::ContractsApi<Block, AccountId, Balance> for Runtime {
+	impl contracts_rpc::ContractsApi<Block, AccountId, Balance, BlockNumber> for Runtime {
 		fn call(
 			origin: AccountId,
 			dest: AccountId,
 			value: Balance,
 			gas_limit: u64,
 			input_data: Vec<u8>,
-		) -> contracts_rpc::ContractExecResult {
-			let exec_result = Contracts::bare_call(
-				origin,
-				dest.into(),
-				value,
-				gas_limit,
-				input_data,
-			);
+		) -> ContractExecResult {
+			let exec_result =
+				Contracts::bare_call(origin, dest.into(), value, gas_limit, input_data);
 			match exec_result {
-				Ok(v) => contracts_rpc::ContractExecResult::Success {
+				Ok(v) => ContractExecResult::Success {
 					status: v.status,
 					data: v.data,
 				},
-				Err(_) => contracts_rpc::ContractExecResult::Error,
+				Err(_) => ContractExecResult::Error,
 			}
 		}
 
 		fn get_storage(
 			address: AccountId,
 			key: [u8; 32],
-		) -> contracts_rpc::GetStorageResult {
-			Contracts::get_storage(address, key).map_err(|rpc_err| {
-				match rpc_err {
-					contracts::GetStorageError::ContractDoesntExist =>
-						contracts_rpc::GetStorageError::ContractDoesntExist,
-					contracts::GetStorageError::IsTombstone =>
-						contracts_rpc::GetStorageError::IsTombstone,
-				}
-			})
+		) -> pallet_contracts_primitives::GetStorageResult {
+			Contracts::get_storage(address, key)
+		}
+
+		fn rent_projection(
+			address: AccountId,
+		) -> pallet_contracts_primitives::RentProjectionResult<BlockNumber> {
+			Contracts::rent_projection(address)
 		}
 	}
 }
