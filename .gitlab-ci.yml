@@ -57,4 +57,4 @@ build-test:
   <<:                              *docker-env
   script:
     - cargo build --release
-    - cargo test --release --all
+    - cargo test --all
