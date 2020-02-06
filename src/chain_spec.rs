@@ -145,7 +145,6 @@ fn testnet_genesis(
 		}),
 		balances: Some(BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
-			vesting: vec![],
 		}),
 		sudo: Some(SudoConfig {
 			key: root_key,
@@ -158,4 +157,11 @@ fn testnet_genesis(
 		}),
 		contracts: Some(contracts_config),
 	}
+}
+
+pub fn load_spec(id: &str) -> Result<Option<ChainSpec>, String> {
+	Ok(match Alternative::from(id) {
+		Some(spec) => Some(spec.load()?),
+		None => None,
+	})
 }
