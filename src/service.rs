@@ -30,8 +30,6 @@ construct_simple_protocol! {
 /// be able to perform chain operations.
 macro_rules! new_full_start {
 	($config:expr) => {{
-		use jsonrpc_core::IoHandler;
-
 		let mut import_setup = None;
 		let inherent_data_providers = sp_inherents::InherentDataProviders::new();
 
@@ -43,7 +41,7 @@ macro_rules! new_full_start {
 			})?
 			.with_transaction_pool(|config, client, _fetcher| {
 				let pool_api = sc_transaction_pool::FullChainApi::new(client.clone());
-				let pool = sc_transaction_pool::BasicPool::new(config, pool_api);
+				let pool = sc_transaction_pool::BasicPool::new(config, std::sync::Arc::new(pool_api));
 				Ok(pool)
 			})?
 			.with_import_queue(|_config, client, mut select_chain, transaction_pool| {
@@ -72,21 +70,14 @@ macro_rules! new_full_start {
 				import_setup = Some((grandpa_block_import, grandpa_link));
 
 				Ok(import_queue)
-			})?
-			.with_rpc_extensions(|client, _pool, _backend, _, _| -> Result<IoHandler<sc_rpc::Metadata>, _> {
-				let handler = contracts_rpc::Contracts::new(client.clone());
-				let delegate = contracts_rpc::ContractsApi::to_delegate(handler);
-
-				let mut io = IoHandler::default();
-				io.extend_with(delegate);
-				Ok(io)
 			})?;
+
 		(builder, import_setup, inherent_data_providers)
 	}}
 }
 
 /// Builds a new service for a full client.
-pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisConfig>)
+pub fn new_full(config: Configuration<GenesisConfig>)
 	-> Result<impl AbstractService, ServiceError>
 {
 	let is_authority = config.roles.is_authority();
@@ -139,7 +130,7 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
 
 		// the AURA authoring task is considered essential, i.e. if it
 		// fails we take down the service with it.
-		service.spawn_essential_task(aura);
+		service.spawn_essential_task("aura", aura);
 	}
 
 	// if the node isn't actively participating in consensus then it doesn't
@@ -163,7 +154,7 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
 	match (is_authority, disable_grandpa) {
 		(false, false) => {
 			// start the lightweight GRANDPA observer
-			service.spawn_task(grandpa::run_grandpa_observer(
+			service.spawn_task("grandpa-observer", grandpa::run_grandpa_observer(
 				grandpa_config,
 				grandpa_link,
 				service.network(),
@@ -186,7 +177,7 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
 
 			// the GRANDPA voter task is considered infallible, i.e.
 			// if it fails we take down the service with it.
-			service.spawn_essential_task(grandpa::run_grandpa_voter(voter_config)?);
+			service.spawn_essential_task("grandpa", grandpa::run_grandpa_voter(voter_config)?);
 		},
 		(_, true) => {
 			grandpa::setup_disabled_grandpa(
@@ -201,7 +192,7 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
 }
 
 /// Builds a new service for a light client.
-pub fn new_light<C: Send + Default + 'static>(config: Configuration<C, GenesisConfig>)
+pub fn new_light(config: Configuration<GenesisConfig>)
 	-> Result<impl AbstractService, ServiceError>
 {
 	let inherent_data_providers = InherentDataProviders::new();
@@ -213,12 +204,13 @@ pub fn new_light<C: Send + Default + 'static>(config: Configuration<C, GenesisCo
 		.with_transaction_pool(|config, client, fetcher| {
 			let fetcher = fetcher
 				.ok_or_else(|| "Trying to start light transaction pool without active fetcher")?;
-				let pool_api = sc_transaction_pool::LightChainApi::new(client.clone(), fetcher.clone());
-				let pool = sc_transaction_pool::BasicPool::with_revalidation_type(
-					config, pool_api, sc_transaction_pool::RevalidationType::Light,
-				);
-				Ok(pool)
-			})?
+
+			let pool_api = sc_transaction_pool::LightChainApi::new(client.clone(), fetcher.clone());
+			let pool = sc_transaction_pool::BasicPool::with_revalidation_type(
+				config, Arc::new(pool_api), sc_transaction_pool::RevalidationType::Light,
+			);
+			Ok(pool)
+		})?
 		.with_import_queue_and_fprb(|_config, client, backend, fetcher, _select_chain, _tx_pool| {
 			let fetch_checker = fetcher
 				.map(|fetcher| fetcher.checker().clone())
