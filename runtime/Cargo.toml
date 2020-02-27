@@ -5,33 +5,33 @@ authors = ["Paracon"]
 edition = "2018"
 
 [dependencies]
-aura = { version = "2.0.0", default-features = false, package = "pallet-aura", git = "https://github.com/paritytech/substrate.git" }
-balances = { version = "2.0.0", default-features = false, package = "pallet-balances", git = "https://github.com/paritytech/substrate.git" }
-frame-support = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-grandpa = { version = "2.0.0", default-features = false, package = "pallet-grandpa", git = "https://github.com/paritytech/substrate.git" }
-indices = { version = "2.0.0", default-features = false, package = "pallet-indices", git = "https://github.com/paritytech/substrate.git" }
-randomness-collective-flip = { version = "2.0.0", default-features = false, package = "pallet-randomness-collective-flip", git = "https://github.com/paritytech/substrate.git" }
-sudo = { version = "2.0.0", default-features = false, package = "pallet-sudo", git = "https://github.com/paritytech/substrate.git" }
-system = { version = "2.0.0", default-features = false, package = "frame-system", git = "https://github.com/paritytech/substrate.git" }
-timestamp = { version = "2.0.0", default-features = false, package = "pallet-timestamp", git = "https://github.com/paritytech/substrate.git" }
-transaction-payment = { version = "2.0.0", default-features = false, package = "pallet-transaction-payment", git = "https://github.com/paritytech/substrate.git" }
+aura = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-aura", git = "https://github.com/paritytech/substrate.git" }
+balances = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-balances", git = "https://github.com/paritytech/substrate.git" }
+frame-support = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+grandpa = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-grandpa", git = "https://github.com/paritytech/substrate.git" }
+indices = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-indices", git = "https://github.com/paritytech/substrate.git" }
+randomness-collective-flip = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-randomness-collective-flip", git = "https://github.com/paritytech/substrate.git" }
+sudo = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-sudo", git = "https://github.com/paritytech/substrate.git" }
+system = { version = "2.0.0-alpha.2", default-features = false, package = "frame-system", git = "https://github.com/paritytech/substrate.git" }
+timestamp = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-timestamp", git = "https://github.com/paritytech/substrate.git" }
+transaction-payment = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-transaction-payment", git = "https://github.com/paritytech/substrate.git" }
 
 codec = { package = "parity-scale-codec", version = "1.0.0", default-features = false, features = ["derive"] }
-frame-executive = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+frame-executive = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
 serde = { version = "1.0.101", optional = true, features = ["derive"] }
-sp-api = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-api = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
 sp-block-builder = { git = "https://github.com/paritytech/substrate.git", default-features = false}
-sp-consensus-aura = { version = "0.8", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-sp-core = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-consensus-aura = { version = "0.8.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-core = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
 sp-inherents = { git = "https://github.com/paritytech/substrate.git", default-features = false}
-sp-io = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-sp-offchain = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-sp-runtime = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-sp-session = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-sp-std = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-sp-transaction-pool = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-sp-version = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
-pallet-contracts-primitives = { version = "2.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-io = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-offchain = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-runtime = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-session = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-std = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-transaction-pool = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+sp-version = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
+pallet-contracts-primitives = { version = "2.0.0-alpha.2", default-features = false, git = "https://github.com/paritytech/substrate.git" }
 
 contracts = { package = "pallet-contracts", git = "https://github.com/paritytech/substrate.git", default-features = false }
 contracts-rpc = { package = "pallet-contracts-rpc-runtime-api",  git = "https://github.com/paritytech/substrate.git", default-features = false }
