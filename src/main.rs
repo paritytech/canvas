@@ -7,11 +7,11 @@ mod service;
 mod cli;
 mod command;
 
-pub use sc_cli::{VersionInfo, error};
+pub use sc_cli::VersionInfo;
 
-fn main() -> Result<(), error::Error> {
+fn main() -> sc_cli::Result<()> {
 	let version = VersionInfo {
-		name: "Substrate Node",
+		name: "paracon",
 		commit: env!("VERGEN_SHA_SHORT"),
 		version: env!("CARGO_PKG_VERSION"),
 		executable_name: "paracon",
