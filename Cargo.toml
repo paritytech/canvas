@@ -31,8 +31,8 @@ sc-network = "0.8.0-alpha.3"
 sc-consensus-aura = "0.8.0-alpha.3"
 sp-consensus-aura = "0.8.0-alpha.3"
 sp-consensus = "0.8.0-alpha.3"
-grandpa = { version = "0.8.0-alpha.3", package = "sc-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
-grandpa-primitives = { version = "2.0.0-alpha.3", package = "sp-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
+grandpa = { version = "0.8.0-alpha.3", package = "sc-finality-grandpa" }
+grandpa-primitives = { version = "2.0.0-alpha.3", package = "sp-finality-grandpa" }
 sc-client = "0.8.0-alpha.3"
 paracon-runtime = { version = "0.1.0", path = "runtime" }
 sp-runtime = "2.0.0-alpha.3"
