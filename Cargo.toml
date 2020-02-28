@@ -19,28 +19,28 @@ hex-literal = "0.2.1"
 jsonrpc-core = "14.0.5"
 structopt = "0.3.9"
 
-sp-io = { version = "2.0.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sc-cli = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sp-core = { version = "2.0.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sc-executor = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sc-service = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sp-inherents = { version = "2.0.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sc-transaction-pool = { version = "2.0.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sp-transaction-pool = { version = "2.0.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sc-network = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sc-consensus-aura = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sp-consensus-aura = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sp-consensus = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-grandpa = { version = "0.8.0-alpha.2", package = "sc-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
-grandpa-primitives = { version = "2.0.0-alpha.2", package = "sp-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
-sc-client = { version = "0.8.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
+sp-io = "2.0.0-alpha.3"
+sc-cli = "0.8.0-alpha.3"
+sp-core = "2.0.0-alpha.3"
+sc-executor = "0.8.0-alpha.3"
+sc-service = "0.8.0-alpha.3"
+sp-inherents = "2.0.0-alpha.3"
+sc-transaction-pool = "2.0.0-alpha.3"
+sp-transaction-pool = "2.0.0-alpha.3"
+sc-network = "0.8.0-alpha.3"
+sc-consensus-aura = "0.8.0-alpha.3"
+sp-consensus-aura = "0.8.0-alpha.3"
+sp-consensus = "0.8.0-alpha.3"
+grandpa = { version = "0.8.0-alpha.3", package = "sc-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
+grandpa-primitives = { version = "2.0.0-alpha.3", package = "sp-finality-grandpa", git = "https://github.com/paritytech/substrate.git" }
+sc-client = "0.8.0-alpha.3"
 paracon-runtime = { version = "0.1.0", path = "runtime" }
-sp-runtime = { version = "2.0.0-alpha.2", git = "https://github.com/paritytech/substrate.git" }
-sc-basic-authorship = { git = "https://github.com/paritytech/substrate.git" }
-sc-rpc = { package = "sc-rpc",  git = "https://github.com/paritytech/substrate.git" }
+sp-runtime = "2.0.0-alpha.3"
+sc-basic-authorship = "0.8.0-alpha.3"
+sc-rpc = "2.0.0-alpha.3"
 
-contracts-rpc = { package = "pallet-contracts-rpc",  git = "https://github.com/paritytech/substrate.git" }
+contracts-rpc = { package = "pallet-contracts-rpc", version = "0.8.0-alpha.3" }
 
 [build-dependencies]
 vergen = "3.0.4"
-build-script-utils = { version = "2.0.0-alpha.2", package = "substrate-build-script-utils", git = "https://github.com/paritytech/substrate.git" }
+build-script-utils = { version = "2.0.0-alpha.3", package = "substrate-build-script-utils" }
