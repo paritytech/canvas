@@ -1,7 +1,7 @@
 use sp_core::{Pair, Public, sr25519};
 use paracon_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
-	SudoConfig, IndicesConfig, SystemConfig, WASM_BINARY, Signature,
+	SudoConfig, SystemConfig, WASM_BINARY, Signature,
 	ContractsConfig, MILLICENTS,
 };
 use sp_consensus_aura::sr25519::{AuthorityId as AuraId};
@@ -139,9 +139,6 @@ fn testnet_genesis(
 		system: Some(SystemConfig {
 			code: WASM_BINARY.to_vec(),
 			changes_trie_config: Default::default(),
-		}),
-		indices: Some(IndicesConfig {
-			ids: endowed_accounts.clone(),
 		}),
 		balances: Some(BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
