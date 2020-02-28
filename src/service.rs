@@ -63,8 +63,8 @@ macro_rules! new_full_start {
 
 				Ok(import_queue)
 			})?
-			.with_rpc_extensions(|client, _pool, _backend, _, _| -> Result<IoHandler<sc_rpc::Metadata>, _> {
-				let handler = contracts_rpc::Contracts::new(client.clone());
+			.with_rpc_extensions(|builder| -> Result<IoHandler<sc_rpc::Metadata>, _> {
+				let handler = contracts_rpc::Contracts::new(builder.client().clone());
 				let delegate = contracts_rpc::ContractsApi::to_delegate(handler);
 
 				let mut io = IoHandler::default();
