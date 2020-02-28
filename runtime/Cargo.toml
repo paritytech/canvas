@@ -9,7 +9,6 @@ aura = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-
 balances = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-balances" }
 frame-support = { version = "2.0.0-alpha.2", default-features = false }
 grandpa = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-grandpa" }
-indices = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-indices" }
 randomness-collective-flip = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-randomness-collective-flip" }
 sudo = { version = "2.0.0-alpha.2", default-features = false, package = "pallet-sudo" }
 system = { version = "2.0.0-alpha.2", default-features = false, package = "frame-system" }
@@ -48,7 +47,6 @@ std = [
 	"frame-executive/std",
 	"frame-support/std",
 	"grandpa/std",
-	"indices/std",
 	"randomness-collective-flip/std",
 	"serde",
 	"sp-api/std",

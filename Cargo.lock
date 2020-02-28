@@ -2578,22 +2578,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pallet-indices"
-version = "2.0.0-alpha.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-dependencies = [
- "frame-support 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "frame-system 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "parity-scale-codec 1.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "serde 1.0.104 (registry+https://github.com/rust-lang/crates.io-index)",
- "sp-core 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "sp-io 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "sp-keyring 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "sp-runtime 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "sp-std 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
 name = "pallet-randomness-collective-flip"
 version = "2.0.0-alpha.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2731,7 +2715,6 @@ dependencies = [
  "pallet-contracts-primitives 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "pallet-contracts-rpc-runtime-api 0.8.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "pallet-grandpa 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "pallet-indices 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "pallet-randomness-collective-flip 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "pallet-sudo 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "pallet-timestamp 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -6249,7 +6232,6 @@ dependencies = [
 "checksum pallet-contracts-rpc-runtime-api 0.8.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)" = "dd5988e4f2e0278288cd4a53c5b65dae3896a1f5ee21adb78f7a797b4e3e4aa5"
 "checksum pallet-finality-tracker 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)" = "2d4bebd7c00aeae5e17638e4b4161aed8be3f351c239dd8d3fc9a9f97b0d5055"
 "checksum pallet-grandpa 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)" = "4a61de7f7b40fcfeaf971b7e9c8572f037a386bbd6d5173861dea3ff9d5ad64a"
-"checksum pallet-indices 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)" = "a9d68ea4c81ba0283cece2e36ff24cd4b39e9cb88a7c7293d27574b5e7521489"
 "checksum pallet-randomness-collective-flip 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)" = "7af6090931478ba9f88c3aefac210765a03d192354c45b77c2dd65cb60c3a197"
 "checksum pallet-session 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)" = "5883bbaf00e5c07ed88b4ba1afbedf1719e5623a4e1b56cfdfc542eebf3506e0"
 "checksum pallet-sudo 2.0.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)" = "94f529b51b16e97109c150f844833fb57db315ea284b44224d0d5ba7b68e273b"
