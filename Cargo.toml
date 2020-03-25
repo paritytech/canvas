@@ -19,28 +19,28 @@ hex-literal = "0.2.1"
 jsonrpc-core = "14.0.5"
 structopt = "0.3.9"
 
-sp-io = "2.0.0-alpha.3"
-sc-cli = "0.8.0-alpha.3"
-sp-core = "2.0.0-alpha.3"
-sc-executor = "0.8.0-alpha.3"
-sc-service = "0.8.0-alpha.3"
-sp-inherents = "2.0.0-alpha.3"
-sc-transaction-pool = "2.0.0-alpha.3"
-sp-transaction-pool = "2.0.0-alpha.3"
-sc-network = "0.8.0-alpha.3"
-sc-consensus-aura = "0.8.0-alpha.3"
-sp-consensus-aura = "0.8.0-alpha.3"
-sp-consensus = "0.8.0-alpha.3"
-grandpa = { version = "0.8.0-alpha.3", package = "sc-finality-grandpa" }
-grandpa-primitives = { version = "2.0.0-alpha.3", package = "sp-finality-grandpa" }
-sc-client = "0.8.0-alpha.3"
+sp-io = "2.0.0-alpha.5"
+sc-cli = "0.8.0-alpha.5"
+sp-core = "2.0.0-alpha.5"
+sc-executor = "0.8.0-alpha.5"
+sc-service = "0.8.0-alpha.5"
+sp-inherents = "2.0.0-alpha.5"
+sc-transaction-pool = "2.0.0-alpha.5"
+sp-transaction-pool = "2.0.0-alpha.5"
+sc-network = "0.8.0-alpha.5"
+sc-consensus-aura = "0.8.0-alpha.5"
+sp-consensus-aura = "0.8.0-alpha.5"
+sp-consensus = "0.8.0-alpha.5"
+grandpa = { version = "0.8.0-alpha.5", package = "sc-finality-grandpa" }
+grandpa-primitives = { version = "2.0.0-alpha.5", package = "sp-finality-grandpa" }
+sc-client = "0.8.0-alpha.5"
 paracon-runtime = { version = "0.1.0", path = "runtime" }
-sp-runtime = "2.0.0-alpha.3"
-sc-basic-authorship = "0.8.0-alpha.3"
-sc-rpc = "2.0.0-alpha.3"
+sp-runtime = "2.0.0-alpha.5"
+sc-basic-authorship = "0.8.0-alpha.5"
+sc-rpc = "2.0.0-alpha.5"
 
-contracts-rpc = { package = "pallet-contracts-rpc", version = "0.8.0-alpha.3" }
+contracts-rpc = { package = "pallet-contracts-rpc", version = "0.8.0-alpha.5" }
 
 [build-dependencies]
 vergen = "3.0.4"
-build-script-utils = { version = "2.0.0-alpha.3", package = "substrate-build-script-utils" }
+build-script-utils = { version = "2.0.0-alpha.5", package = "substrate-build-script-utils" }
