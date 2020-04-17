@@ -43,4 +43,4 @@ contracts-rpc = { package = "pallet-contracts-rpc", version = "0.8.0-alpha.6" }
 
 [build-dependencies]
 vergen = "3.0.4"
-build-script-utils = { version = "2.0.0-alpha.6", package = "substrate-build-script-utils" }
+substrate-build-script-utils = { version = "2.0.0-alpha.6", package = "substrate-build-script-utils" }
