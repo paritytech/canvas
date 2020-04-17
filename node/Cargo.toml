@@ -21,6 +21,7 @@ structopt = "0.3.9"
 
 sp-io = "2.0.0-alpha.6"
 sc-cli = "0.8.0-alpha.6"
+sc-client-api = "2.0.0-alpha.6"
 sp-core = "2.0.0-alpha.6"
 sc-executor = "0.8.0-alpha.6"
 sc-service = "0.8.0-alpha.6"
@@ -31,8 +32,8 @@ sc-network = "0.8.0-alpha.6"
 sc-consensus-aura = "0.8.0-alpha.6"
 sp-consensus-aura = "0.8.0-alpha.6"
 sp-consensus = "0.8.0-alpha.6"
-grandpa = { version = "0.8.0-alpha.6", package = "sc-finality-grandpa" }
-grandpa-primitives = { version = "2.0.0-alpha.6", package = "sp-finality-grandpa" }
+sc-finality-grandpa = { version = "0.8.0-alpha.6", package = "sc-finality-grandpa" }
+sp-finality-grandpa = { version = "2.0.0-alpha.6", package = "sp-finality-grandpa" }
 sc-client = "0.8.0-alpha.6"
 paracon-runtime = { version = "0.1.0", path = "../runtime" }
 sp-runtime = "2.0.0-alpha.6"

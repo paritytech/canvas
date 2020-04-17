@@ -4,7 +4,7 @@ use std::sync::Arc;
 use std::time::Duration;
 use sc_client::LongestChain;
 use sc_client_api::ExecutorProvider;
-use paracon_runtime::{self, GenesisConfig, opaque::Block, RuntimeApi};
+use paracon_runtime::{self, opaque::Block, RuntimeApi};
 use sc_service::{error::{Error as ServiceError}, AbstractService, Configuration, ServiceBuilder};
 use sp_inherents::InherentDataProviders;
 use sc_executor::native_executor_instance;
@@ -64,6 +64,14 @@ macro_rules! new_full_start {
 				import_setup = Some((grandpa_block_import, grandpa_link));
 
 				Ok(import_queue)
+			})?
+			.with_rpc_extensions(|builder| -> Result<IoHandler<sc_rpc::Metadata>, _> {
+				let handler = contracts_rpc::Contracts::new(builder.client().clone());
+				let delegate = contracts_rpc::ContractsApi::to_delegate(handler);
+
+				let mut io = IoHandler::default();
+				io.extend_with(delegate);
+				Ok(io)
 			})?;
 
 		(builder, import_setup, inherent_data_providers)
