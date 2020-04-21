@@ -32,7 +32,7 @@ macro_rules! new_full_start {
 		let inherent_data_providers = sp_inherents::InherentDataProviders::new();
 
 		let builder = sc_service::ServiceBuilder::new_full::<
-			paracon_runtime::opaque::Block, paracon_runtime::RuntimeApi, crate::service::Executor
+		paracon_runtime::opaque::Block, paracon_runtime::RuntimeApi, crate::service::Executor
 		>($config)?
 			.with_select_chain(|_config, backend| {
 				Ok(sc_client::LongestChain::new(backend.clone()))
@@ -66,12 +66,12 @@ macro_rules! new_full_start {
 				Ok(import_queue)
 			})?
 			.with_rpc_extensions(|builder| -> Result<IoHandler<sc_rpc::Metadata>, _> {
-				let handler = contracts_rpc::Contracts::new(builder.client().clone());
-				let delegate = contracts_rpc::ContractsApi::to_delegate(handler);
+					let handler = pallet_contracts_rpc::Contracts::new(builder.client().clone());
+					let delegate = pallet_contracts_rpc::ContractsApi::to_delegate(handler);
 
-				let mut io = IoHandler::default();
-				io.extend_with(delegate);
-				Ok(io)
+					let mut io = IoHandler::default();
+					io.extend_with(delegate);
+					Ok(io)
 			})?;
 
 		(builder, import_setup, inherent_data_providers)

@@ -2,7 +2,7 @@ use sp_core::{Pair, Public, sr25519};
 use paracon_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature,
-	ContractsConfig, MILLICENTS,
+	ContractsConfig, ContractsSchedule, MILLICENTS,
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
@@ -39,6 +39,7 @@ pub fn authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
 		get_from_seed::<GrandpaId>(s),
 	)
 }
+
 
 pub fn testnet_authorities() -> Vec<(AuraId, GrandpaId)> {
 	use sp_core::crypto::UncheckedInto;
@@ -112,11 +113,6 @@ fn testnet_genesis(
 	endowed_accounts: Vec<AccountId>,
 	enable_println: bool
 ) -> GenesisConfig {
-    let mut contracts_config = ContractsConfig {
-        current_schedule: Default::default(),
-        gas_price: 1 * MILLICENTS,
-    };
-    contracts_config.current_schedule.enable_println = enable_println;
 
 	GenesisConfig {
 		system: Some(SystemConfig {
@@ -135,6 +131,12 @@ fn testnet_genesis(
 		grandpa: Some(GrandpaConfig {
 			authorities: initial_authorities.iter().map(|x| (x.1.clone(), 1)).collect(),
 		}),
-		contracts: Some(contracts_config),
+		contracts: Some(ContractsConfig {
+			current_schedule: ContractsSchedule {
+					enable_println,
+					..Default::default()
+			},
+			gas_price: 1 * MILLICENTS,
+		}),
 	}
 }
