@@ -24,19 +24,20 @@ use grandpa::fg_primitives;
 use sp_version::RuntimeVersion;
 #[cfg(feature = "std")]
 use sp_version::NativeVersion;
+use contracts_rpc::ContractExecResult;
 
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
 pub use sp_runtime::BuildStorage;
 pub use timestamp::Call as TimestampCall;
 pub use balances::Call as BalancesCall;
+pub use contracts::Schedule as ContractsSchedule;
 pub use sp_runtime::{Permill, Perbill};
 pub use frame_support::{
 	StorageValue, construct_runtime, parameter_types,
 	traits::Randomness,
 	weights::Weight,
 };
-use contracts_rpc::ContractExecResult;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -112,7 +113,7 @@ pub const MILLICENTS: Balance = 1_000_000_000;
 pub const CENTS: Balance = 1_000 * MILLICENTS;
 pub const DOLLARS: Balance = 100 * CENTS;
 
-/// The version infromation used to identify this runtime when compiled natively.
+/// The version information used to identify this runtime when compiled natively.
 #[cfg(feature = "std")]
 pub fn native_version() -> NativeVersion {
 	NativeVersion {
@@ -394,7 +395,9 @@ impl_runtime_apis! {
 		}
 	}
 
-	impl contracts_rpc::ContractsApi<Block, AccountId, Balance, BlockNumber> for Runtime {
+	impl contracts_rpc::ContractsApi<Block, AccountId, Balance, BlockNumber>
+	for Runtime
+	{
 		fn call(
 			origin: AccountId,
 			dest: AccountId,
@@ -402,27 +405,26 @@ impl_runtime_apis! {
 			gas_limit: u64,
 			input_data: Vec<u8>,
 		) -> ContractExecResult {
-			let exec_result =
-				Contracts::bare_call(origin, dest.into(), value, gas_limit, input_data);
-			match exec_result {
-				Ok(v) => ContractExecResult::Success {
-					status: v.status,
-					data: v.data,
-				},
-				Err(_) => ContractExecResult::Error,
-			}
+					let exec_result = Contracts::bare_call(origin, dest.into(), value, gas_limit, input_data);
+					match exec_result {
+						Ok(v) => ContractExecResult::Success {
+							status: v.status,
+							data: v.data,
+						},
+						Err(_) => ContractExecResult::Error,
+				}
 		}
 
 		fn get_storage(
 			address: AccountId,
 			key: [u8; 32],
-		) -> pallet_contracts_primitives::GetStorageResult {
+		) -> contracts_primitives::GetStorageResult {
 			Contracts::get_storage(address, key)
 		}
 
 		fn rent_projection(
 			address: AccountId,
-		) -> pallet_contracts_primitives::RentProjectionResult<BlockNumber> {
+		) -> contracts_primitives::RentProjectionResult<BlockNumber> {
 			Contracts::rent_projection(address)
 		}
 	}
