@@ -38,7 +38,7 @@ impl SubstrateCli for Cli {
 	}
 
 	fn support_url() -> &'static str {
-		"support.anonymous.an"
+		"https://github.com/paritytech/paracon-node/issues/new"
 	}
 
 	fn copyright_start_year() -> i32 {
