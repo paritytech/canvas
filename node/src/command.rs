@@ -1,28 +1,28 @@
-// Copyright 2017-2020 Parity Technologies (UK) Ltd.
 // This file is part of Substrate.
 
-// Substrate is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
+// Copyright (C) 2017-2020 Parity Technologies (UK) Ltd.
+// SPDX-License-Identifier: Apache-2.0
 
-// Substrate is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with Substrate.  If not, see <http://www.gnu.org/licenses/>.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// 	http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 use crate::chain_spec;
 use crate::cli::Cli;
 use crate::service;
 use sc_cli::SubstrateCli;
-use sp_consensus_aura::sr25519::AuthorityPair as AuraPair;
 
 impl SubstrateCli for Cli {
 	fn impl_name() -> &'static str {
-		"Paracon Node"
+		"Substrate Node"
 	}
 
 	fn impl_version() -> &'static str {
@@ -38,11 +38,11 @@ impl SubstrateCli for Cli {
 	}
 
 	fn support_url() -> &'static str {
-		"https://github.com/paritytech/paracon-node/issues/new"
+		"support.anonymous.an"
 	}
 
 	fn copyright_start_year() -> i32 {
-		2020
+		2017
 	}
 
 	fn executable_name() -> &'static str {
@@ -52,7 +52,7 @@ impl SubstrateCli for Cli {
 	fn load_spec(&self, id: &str) -> Result<Box<dyn sc_service::ChainSpec>, String> {
 		Ok(match id {
 			"dev" => Box::new(chain_spec::development_config()),
-			"" => Box::new(chain_spec::testnet_config()), // default to running on testnet
+			"" | "local" => Box::new(chain_spec::testnet_config()),
 			path => Box::new(chain_spec::ChainSpec::from_json_file(
 				std::path::PathBuf::from(path),
 			)?),

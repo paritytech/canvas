@@ -2,7 +2,7 @@ use sp_core::{Pair, Public, sr25519};
 use paracon_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature,
-	ContractsConfig, ContractsSchedule, MILLICENTS,
+	ContractsConfig, ContractsSchedule,
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
@@ -64,22 +64,24 @@ pub fn development_config() -> ChainSpec {
 		"Development",
 		"dev",
 		ChainType::Development,
-		|| testnet_genesis(vec![
-			authority_keys_from_seed("Alice"),
-		],
-						   get_account_id_from_seed::<sr25519::Public>("Alice"),
-						   vec![
-							   get_account_id_from_seed::<sr25519::Public>("Alice"),
-							   get_account_id_from_seed::<sr25519::Public>("Bob"),
-							   get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
-							   get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
-						   ],
-						   true),
+		|| testnet_genesis(
+			vec![
+				authority_keys_from_seed("Alice"),
+			],
+			get_account_id_from_seed::<sr25519::Public>("Alice"),
+			vec![
+				get_account_id_from_seed::<sr25519::Public>("Alice"),
+				get_account_id_from_seed::<sr25519::Public>("Bob"),
+				get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
+				get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
+			],
+			true,
+		),
 		vec![],
 		None,
 		None,
 		None,
-		None
+		None,
 	)
 }
 
@@ -136,7 +138,6 @@ fn testnet_genesis(
 					enable_println,
 					..Default::default()
 			},
-			gas_price: 1 * MILLICENTS,
 		}),
 	}
 }

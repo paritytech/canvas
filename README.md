@@ -26,7 +26,6 @@ Add custom types in `https://polkadot.js.org/apps/#/settings/developer`
 ```
 {
   "Address": "AccountId",
-  "LookupSource": "AccountId",
-  "Weight": "u32"
+  "LookupSource": "AccountId"
 }
 ```
