@@ -22,7 +22,7 @@ use sc_cli::SubstrateCli;
 
 impl SubstrateCli for Cli {
 	fn impl_name() -> &'static str {
-		"Substrate Node"
+		"Paracon Node"
 	}
 
 	fn impl_version() -> &'static str {
