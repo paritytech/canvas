@@ -11,9 +11,8 @@ stages:
 variables:
   GIT_STRATEGY:                    fetch
   GIT_DEPTH:                       100
-  CARGO_HOME:                      "/ci-cache/${CI_PROJECT_NAME}/cargo/${CI_JOB_NAME}"
+  CARGO_INCREMENTAL:               0
   CARGO_TARGET_DIR:                "/ci-cache/${CI_PROJECT_NAME}/targets/${CI_COMMIT_REF_NAME}/${CI_JOB_NAME}"
-  REGISTRY:                        registry.parity.io/parity/infrastructure/scripts
 
 .collect-artifacts:                &collect-artifacts
   artifacts:
@@ -24,13 +23,12 @@ variables:
       - artifacts/
 
 .docker-env:                       &docker-env
-  image:                           ${REGISTRY}/substrate-ci-linux:latest
+  image:                           paritytech/ci-linux:production
   before_script:
     - cargo -vV
     - rustc -vV
     - rustup show
     - bash --version
-    - mkdir -p ${CARGO_HOME}; touch ${CARGO_HOME}/config
     - mkdir -p ${CARGO_TARGET_DIR}
     - sccache -s
   only:
