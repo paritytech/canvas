@@ -4,7 +4,7 @@ use std::sync::Arc;
 use std::time::Duration;
 use sc_client_api::ExecutorProvider;
 use sc_consensus::LongestChain;
-use paracon_runtime::{self, opaque::Block, RuntimeApi};
+use canvas_runtime::{self, opaque::Block, RuntimeApi};
 use sc_service::{error::{Error as ServiceError}, AbstractService, Configuration, ServiceBuilder};
 use sp_inherents::InherentDataProviders;
 use sc_executor::native_executor_instance;
@@ -17,8 +17,8 @@ use sc_finality_grandpa::{
 // Our native executor instance.
 native_executor_instance!(
 	pub Executor,
-	paracon_runtime::api::dispatch,
-	paracon_runtime::native_version,
+	canvas_runtime::api::dispatch,
+	canvas_runtime::native_version,
 );
 
 /// Starts a `ServiceBuilder` for a full service.
@@ -36,7 +36,7 @@ macro_rules! new_full_start {
 		let inherent_data_providers = sp_inherents::InherentDataProviders::new();
 
 		let builder = sc_service::ServiceBuilder::new_full::<
-			paracon_runtime::opaque::Block, paracon_runtime::RuntimeApi, crate::service::Executor
+			canvas_runtime::opaque::Block, canvas_runtime::RuntimeApi, crate::service::Executor
 		>($config)?
 			.with_select_chain(|_config, backend| {
 				Ok(sc_consensus::LongestChain::new(backend.clone()))

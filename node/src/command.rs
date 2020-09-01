@@ -38,7 +38,7 @@ impl SubstrateCli for Cli {
 	}
 
 	fn support_url() -> &'static str {
-		"https://github.com/paritytech/paracon-node/issues/new"
+		"https://github.com/paritytech/canvas-node/issues/new"
 	}
 
 	fn copyright_start_year() -> i32 {
@@ -74,7 +74,7 @@ pub fn run() -> sc_cli::Result<()> {
 			runner.run_node(
 				service::new_light,
 				service::new_full,
-				paracon_runtime::VERSION
+				canvas_runtime::VERSION
 			)
 		}
 	}

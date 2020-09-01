@@ -1,5 +1,5 @@
 [package]
-name = "paracon-runtime"
+name = "canvas-runtime"
 version = "0.1.0"
 authors = ["Paracon"]
 edition = "2018"

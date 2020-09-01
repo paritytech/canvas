@@ -435,6 +435,73 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4964518bd3b4a8190e832886cdc0da9794f12e8e6c1613a9e90ff331c4c8724b"
 
 [[package]]
+name = "canvas-node"
+version = "0.1.0"
+dependencies = [
+ "canvas-runtime",
+ "futures 0.3.4",
+ "hex-literal",
+ "jsonrpc-core",
+ "log",
+ "pallet-contracts-rpc",
+ "parking_lot 0.10.2",
+ "sc-basic-authorship",
+ "sc-cli",
+ "sc-client-api",
+ "sc-consensus",
+ "sc-consensus-aura",
+ "sc-executor",
+ "sc-finality-grandpa",
+ "sc-network",
+ "sc-rpc",
+ "sc-service",
+ "sc-transaction-pool",
+ "sp-consensus",
+ "sp-consensus-aura",
+ "sp-core",
+ "sp-finality-grandpa",
+ "sp-inherents",
+ "sp-runtime",
+ "sp-transaction-pool",
+ "structopt",
+ "substrate-build-script-utils",
+]
+
+[[package]]
+name = "canvas-runtime"
+version = "0.1.0"
+dependencies = [
+ "frame-executive",
+ "frame-support",
+ "frame-system",
+ "pallet-aura",
+ "pallet-balances",
+ "pallet-contracts",
+ "pallet-contracts-primitives",
+ "pallet-contracts-rpc-runtime-api",
+ "pallet-grandpa",
+ "pallet-randomness-collective-flip",
+ "pallet-sudo",
+ "pallet-timestamp",
+ "pallet-transaction-payment",
+ "parity-scale-codec",
+ "serde",
+ "sp-api",
+ "sp-block-builder",
+ "sp-consensus-aura",
+ "sp-core",
+ "sp-inherents",
+ "sp-io",
+ "sp-offchain",
+ "sp-runtime",
+ "sp-session",
+ "sp-std",
+ "sp-transaction-pool",
+ "sp-version",
+ "substrate-wasm-builder-runner",
+]
+
+[[package]]
 name = "cc"
 version = "1.0.50"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2878,73 +2945,6 @@ dependencies = [
  "sp-api",
  "sp-runtime",
  "sp-std",
-]
-
-[[package]]
-name = "paracon-node"
-version = "0.1.0"
-dependencies = [
- "futures 0.3.4",
- "hex-literal",
- "jsonrpc-core",
- "log",
- "pallet-contracts-rpc",
- "paracon-runtime",
- "parking_lot 0.10.2",
- "sc-basic-authorship",
- "sc-cli",
- "sc-client-api",
- "sc-consensus",
- "sc-consensus-aura",
- "sc-executor",
- "sc-finality-grandpa",
- "sc-network",
- "sc-rpc",
- "sc-service",
- "sc-transaction-pool",
- "sp-consensus",
- "sp-consensus-aura",
- "sp-core",
- "sp-finality-grandpa",
- "sp-inherents",
- "sp-runtime",
- "sp-transaction-pool",
- "structopt",
- "substrate-build-script-utils",
-]
-
-[[package]]
-name = "paracon-runtime"
-version = "0.1.0"
-dependencies = [
- "frame-executive",
- "frame-support",
- "frame-system",
- "pallet-aura",
- "pallet-balances",
- "pallet-contracts",
- "pallet-contracts-primitives",
- "pallet-contracts-rpc-runtime-api",
- "pallet-grandpa",
- "pallet-randomness-collective-flip",
- "pallet-sudo",
- "pallet-timestamp",
- "pallet-transaction-payment",
- "parity-scale-codec",
- "serde",
- "sp-api",
- "sp-block-builder",
- "sp-consensus-aura",
- "sp-core",
- "sp-inherents",
- "sp-io",
- "sp-offchain",
- "sp-runtime",
- "sp-session",
- "sp-std",
- "sp-transaction-pool",
- "sp-version",
- "substrate-wasm-builder-runner",
 ]
 
 [[package]]

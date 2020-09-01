@@ -1,13 +1,13 @@
 # .gitlab-ci.yml
 #
-# paracon-node
+# canvas-node
 #
 # pipelines can be triggered manually in the web
 
 
 stages:
     - test
-  
+
 variables:
   GIT_STRATEGY:                    fetch
   GIT_DEPTH:                       100

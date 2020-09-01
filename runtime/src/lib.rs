@@ -92,8 +92,8 @@ pub mod opaque {
 
 /// This runtime version.
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("paracon"),
-	impl_name: create_runtime_str!("paracon"),
+	spec_name: create_runtime_str!("canvas"),
+	impl_name: create_runtime_str!("canvas"),
 	authoring_version: 1,
 	spec_version: 5,
 	impl_version: 5,

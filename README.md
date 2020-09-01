@@ -1,4 +1,4 @@
-# paracon-node
+# canvas-node
 
 Paracon Node implementation
 
