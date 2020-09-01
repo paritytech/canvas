@@ -1,7 +1,7 @@
 [package]
 name = "canvas-runtime"
 version = "0.1.0"
-authors = ["Paracon"]
+authors = ["Canvas"]
 edition = "2018"
 
 [package.metadata.docs.rs]

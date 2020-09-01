@@ -87,7 +87,7 @@ pub fn development_config() -> ChainSpec {
 
 pub fn testnet_config() -> ChainSpec {
 	ChainSpec::from_genesis(
-		"Paracon Testnet 1",
+		"Canvas Testnet 1",
 		"canvas_testnet1",
 		ChainType::Live,
 		|| testnet_genesis(
