@@ -1,7 +1,7 @@
 [package]
-name = "paracon-node"
+name = "canvas-node"
 version = "0.1.0"
-authors = ["Paracon"]
+authors = ["Canvas"]
 build = "build.rs"
 edition = "2018"
 
@@ -16,7 +16,7 @@ structopt = "0.3.8"
 jsonrpc-core = "14.0.5"
 hex-literal = "0.2.1"
 
-paracon-runtime = { version = "0.1.0", path = "../runtime" }
+canvas-runtime = { version = "0.1.0", path = "../runtime" }
 pallet-contracts-rpc = "0.8.0-alpha.8"
 
 sc-basic-authorship = "0.8.0-alpha.8"
@@ -42,5 +42,5 @@ sp-transaction-pool = "2.0.0-alpha.8"
 substrate-build-script-utils = "2.0.0-alpha.8"
 
 [[bin]]
-name = "paracon"
+name = "canvas"
 path = "src/main.rs"

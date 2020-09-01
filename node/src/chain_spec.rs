@@ -1,5 +1,5 @@
 use sp_core::{Pair, Public, sr25519};
-use paracon_runtime::{
+use canvas_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature,
 	ContractsConfig, ContractsSchedule,
@@ -87,8 +87,8 @@ pub fn development_config() -> ChainSpec {
 
 pub fn testnet_config() -> ChainSpec {
 	ChainSpec::from_genesis(
-		"Paracon Testnet 1",
-		"paracon_testnet1",
+		"Canvas Testnet 1",
+		"canvas_testnet1",
 		ChainType::Live,
 		|| testnet_genesis(
 			testnet_authorities(),

@@ -1,6 +1,6 @@
-# paracon-node
+# canvas-node
 
-Paracon Node implementation
+Node implementation for Canvas, a Substrate chain for smart contracts.
 
 To be continued...
 
