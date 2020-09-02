@@ -667,12 +667,10 @@ name = "canvas-node"
 version = "0.1.0"
 dependencies = [
  "canvas-runtime",
- "futures 0.3.5",
  "hex-literal",
  "jsonrpc-core",
- "log",
  "pallet-contracts-rpc",
- "parking_lot 0.10.2",
+ "pallet-transaction-payment-rpc",
  "sc-basic-authorship",
  "sc-cli",
  "sc-client-api",
@@ -680,11 +678,13 @@ dependencies = [
  "sc-consensus-aura",
  "sc-executor",
  "sc-finality-grandpa",
- "sc-network",
  "sc-rpc",
  "sc-rpc-api",
  "sc-service",
  "sc-transaction-pool",
+ "sp-api",
+ "sp-block-builder",
+ "sp-blockchain",
  "sp-consensus",
  "sp-consensus-aura",
  "sp-core",
@@ -694,6 +694,7 @@ dependencies = [
  "sp-transaction-pool",
  "structopt",
  "substrate-build-script-utils",
+ "substrate-frame-rpc-system",
 ]
 
 [[package]]
@@ -708,7 +709,6 @@ dependencies = [
  "pallet-balances",
  "pallet-contracts",
  "pallet-contracts-primitives",
- "pallet-contracts-rpc",
  "pallet-grandpa",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
@@ -3846,6 +3846,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-transaction-payment-rpc"
+version = "2.0.0-rc6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7fc40837d4ce1e10f7fa499e4e7014771610ff1094f7007390c5d67044497789"
+dependencies = [
+ "jsonrpc-core",
+ "jsonrpc-core-client",
+ "jsonrpc-derive",
+ "pallet-transaction-payment-rpc-runtime-api",
+ "parity-scale-codec",
+ "serde",
+ "sp-api",
+ "sp-blockchain",
+ "sp-core",
+ "sp-rpc",
+ "sp-runtime",
+]
+
+[[package]]
 name = "pallet-transaction-payment-rpc-runtime-api"
 version = "2.0.0-rc6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6806,6 +6825,30 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0bf0107b85ed2f59e42d015274a3816ba3bd5b0f01a69818bc04d3ea94a242e3"
 dependencies = [
  "platforms",
+]
+
+[[package]]
+name = "substrate-frame-rpc-system"
+version = "2.0.0-rc6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24d33128123584134d38386e8ab5306eec77f336db7d4bb9e55e1ca90e477dcc"
+dependencies = [
+ "frame-system-rpc-runtime-api",
+ "futures 0.3.5",
+ "jsonrpc-core",
+ "jsonrpc-core-client",
+ "jsonrpc-derive",
+ "log",
+ "parity-scale-codec",
+ "sc-client-api",
+ "sc-rpc-api",
+ "serde",
+ "sp-api",
+ "sp-block-builder",
+ "sp-blockchain",
+ "sp-core",
+ "sp-runtime",
+ "sp-transaction-pool",
 ]
 
 [[package]]
