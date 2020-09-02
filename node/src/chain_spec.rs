@@ -60,11 +60,14 @@ pub fn testnet_root() -> AccountId {
 }
 
 pub fn development_config() -> ChainSpec {
+	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
+
 	ChainSpec::from_genesis(
 		"Development",
 		"dev",
 		ChainType::Development,
 		|| testnet_genesis(
+			wasm_binary,
 			vec![
 				authority_keys_from_seed("Alice"),
 			],
@@ -86,11 +89,14 @@ pub fn development_config() -> ChainSpec {
 }
 
 pub fn testnet_config() -> ChainSpec {
+	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
+
 	ChainSpec::from_genesis(
 		"Canvas Testnet 1",
 		"canvas_testnet1",
 		ChainType::Live,
 		|| testnet_genesis(
+			wasm_binary,
 			testnet_authorities(),
 			testnet_root(),
 			vec![testnet_root()],
@@ -110,6 +116,7 @@ pub fn testnet_config() -> ChainSpec {
 }
 
 fn testnet_genesis(
+	wasm_binary: &[u8],
 	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
@@ -117,23 +124,26 @@ fn testnet_genesis(
 ) -> GenesisConfig {
 
 	GenesisConfig {
-		system: Some(SystemConfig {
-			code: WASM_BINARY.to_vec(),
+		frame_system: Some(SystemConfig {
+			// Add Wasm runtime to storage.
+			code: wasm_binary.to_vec(),
 			changes_trie_config: Default::default(),
 		}),
-		balances: Some(BalancesConfig {
+		pallet_balances: Some(BalancesConfig {
+			// Configure endowed accounts with initial balance of 1 << 60.
 			balances: endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
 		}),
-		sudo: Some(SudoConfig {
-			key: root_key,
-		}),
-		aura: Some(AuraConfig {
+		pallet_aura: Some(AuraConfig {
 			authorities: initial_authorities.iter().map(|x| (x.0.clone())).collect(),
 		}),
-		grandpa: Some(GrandpaConfig {
+		pallet_grandpa: Some(GrandpaConfig {
 			authorities: initial_authorities.iter().map(|x| (x.1.clone(), 1)).collect(),
 		}),
-		contracts: Some(ContractsConfig {
+		pallet_sudo: Some(SudoConfig {
+			// Assign network admin rights.
+			key: root_key,
+		}),
+		pallet_contracts: Some(ContractsConfig {
 			current_schedule: ContractsSchedule {
 					enable_println,
 					..Default::default()

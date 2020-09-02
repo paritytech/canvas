@@ -18,7 +18,9 @@
 use crate::chain_spec;
 use crate::cli::Cli;
 use crate::service;
-use sc_cli::SubstrateCli;
+use sc_cli::{SubstrateCli, RuntimeVersion, Role, ChainSpec};
+use sc_service::PartialComponents;
+use crate::service::new_partial;
 
 impl SubstrateCli for Cli {
 	fn impl_name() -> &'static str {
@@ -45,9 +47,6 @@ impl SubstrateCli for Cli {
 		2020
 	}
 
-	fn executable_name() -> &'static str {
-		env!("CARGO_PKG_NAME")
-	}
 
 	fn load_spec(&self, id: &str) -> Result<Box<dyn sc_service::ChainSpec>, String> {
 		Ok(match id {
@@ -58,6 +57,10 @@ impl SubstrateCli for Cli {
 			)?),
 		})
 	}
+
+	fn native_runtime_version(_: &Box<dyn ChainSpec>) -> &'static RuntimeVersion {
+		&canvas_runtime::VERSION
+	}
 }
 
 /// Parse and run command line arguments
@@ -67,15 +70,18 @@ pub fn run() -> sc_cli::Result<()> {
 	match &cli.subcommand {
 		Some(subcommand) => {
 			let runner = cli.create_runner(subcommand)?;
-			runner.run_subcommand(subcommand, |config| Ok(new_full_start!(config).0))
+			runner.run_subcommand(subcommand, |config| {
+				let PartialComponents { client, backend, task_manager, import_queue, .. }
+					= new_partial(&config)?;
+				Ok((client, backend, import_queue, task_manager))
+			})
 		}
 		None => {
 			let runner = cli.create_runner(&cli.run)?;
-			runner.run_node(
-				service::new_light,
-				service::new_full,
-				canvas_runtime::VERSION
-			)
+			runner.run_node_until_exit(|config| match config.role {
+				Role::Light => service::new_light(config),
+				_ => service::new_full(config),
+			})
 		}
 	}
 }
