@@ -59,14 +59,14 @@ pub fn testnet_root() -> AccountId {
 	hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into()
 }
 
-pub fn development_config() -> ChainSpec {
+pub fn development_config() -> Result<ChainSpec, String> {
 	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
 
-	ChainSpec::from_genesis(
+	Ok(ChainSpec::from_genesis(
 		"Development",
 		"dev",
 		ChainType::Development,
-		|| testnet_genesis(
+		move || testnet_genesis(
 			wasm_binary,
 			vec![
 				authority_keys_from_seed("Alice"),
@@ -85,17 +85,17 @@ pub fn development_config() -> ChainSpec {
 		None,
 		None,
 		None,
-	)
+	))
 }
 
-pub fn testnet_config() -> ChainSpec {
+pub fn testnet_config() -> Result<ChainSpec, String> {
 	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
 
-	ChainSpec::from_genesis(
+	Ok(ChainSpec::from_genesis(
 		"Canvas Testnet 1",
 		"canvas_testnet1",
 		ChainType::Live,
-		|| testnet_genesis(
+		move || testnet_genesis(
 			wasm_binary,
 			testnet_authorities(),
 			testnet_root(),
@@ -112,7 +112,7 @@ pub fn testnet_config() -> ChainSpec {
 		Some("prc"),
 		None,
 		None
-	)
+	))
 }
 
 fn testnet_genesis(

@@ -7,7 +7,7 @@
 
 use std::sync::Arc;
 
-use canvas_runtime::{opaque::Block, AccountId, Balance, Index};
+use canvas_runtime::{opaque::Block, AccountId, Balance, BlockNumber, Index};
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 use sp_api::ProvideRuntimeApi;
 use sp_blockchain::{Error as BlockChainError, HeaderMetadata, HeaderBackend};
@@ -33,6 +33,7 @@ pub fn create_full<C, P>(
 	C: HeaderBackend<Block> + HeaderMetadata<Block, Error=BlockChainError> + 'static,
 	C: Send + Sync + 'static,
 	C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
+	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
 	C::Api: pallet_transaction_payment_rpc::TransactionPaymentRuntimeApi<Block, Balance>,
 	C::Api: BlockBuilder<Block>,
 	P: TransactionPool + 'static,
