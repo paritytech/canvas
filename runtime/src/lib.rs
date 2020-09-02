@@ -93,8 +93,8 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("canvas"),
 	impl_name: create_runtime_str!("canvas"),
 	authoring_version: 1,
-	spec_version: 5,
-	impl_version: 5,
+	spec_version: 6,
+	impl_version: 6,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
 };
