@@ -40,6 +40,7 @@ pallet-transaction-payment-rpc-runtime-api = { version = "2.0.0-rc6", default-fe
 # Contracts specific packages
 pallet-contracts = { version = "2.0.0-rc6", default_features = false }
 pallet-contracts-primitives = { version = "2.0.0-rc6", default_features = false }
+pallet-contracts-rpc-runtime-api = { version = "0.8.0-rc6", default-features = false }
 
 [build-dependencies]
 wasm-builder-runner = { version = "1.0.5", package = "substrate-wasm-builder-runner" }
@@ -74,4 +75,5 @@ std = [
     "frame-system-rpc-runtime-api/std",
     "pallet-contracts/std",
     "pallet-contracts-primitives/std",
+    "pallet-contracts-rpc-runtime-api/std",
 ]
