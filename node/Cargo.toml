@@ -27,6 +27,7 @@ sc-finality-grandpa = "0.8.0-rc6"
 sp-finality-grandpa = "2.0.0-rc6"
 sc-client-api = "2.0.0-rc6"
 sp-runtime = "2.0.0-rc6"
+pallet-contracts = "2.0.0-rc6"
 
 # These dependencies are used for the node's RPCs
 jsonrpc-core = "14.0.5"

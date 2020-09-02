@@ -669,6 +669,7 @@ dependencies = [
  "canvas-runtime",
  "hex-literal",
  "jsonrpc-core",
+ "pallet-contracts",
  "pallet-contracts-rpc",
  "pallet-transaction-payment-rpc",
  "sc-basic-authorship",

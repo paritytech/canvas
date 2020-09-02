@@ -2,7 +2,7 @@ use sp_core::{Pair, Public, sr25519};
 use canvas_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature,
-	ContractsConfig, ContractsSchedule,
+	ContractsConfig,
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
@@ -144,7 +144,7 @@ fn testnet_genesis(
 			key: root_key,
 		}),
 		pallet_contracts: Some(ContractsConfig {
-			current_schedule: ContractsSchedule {
+			current_schedule: pallet_contracts::Schedule {
 					enable_println,
 					..Default::default()
 			},
