@@ -10,16 +10,15 @@ targets = ["x86_64-unknown-linux-gnu"]
 [features]
 default = ["std"]
 std = [
-    "aura/std",
-    "balances/std",
+    "pallet-aura/std",
+    "pallet-balances/std",
     "codec/std",
-    "contracts/std",
-    "contracts-primitives/std",
-    "contracts-rpc/std",
+    "pallet-contracts/std",
+    "pallet-contracts-primitives/std",
     "frame-executive/std",
     "frame-support/std",
-    "grandpa/std",
-    "randomness-collective-flip/std",
+    "pallet-grandpa/std",
+    "pallet-randomness-collective-flip/std",
     "serde",
     "sp-api/std",
     "sp-block-builder/std",
@@ -33,24 +32,24 @@ std = [
     "sp-std/std",
     "sp-transaction-pool/std",
     "sp-version/std",
-    "sudo/std",
-    "system/std",
-    "timestamp/std",
-    "transaction-payment/std",
+    "pallet-sudo/std",
+    "frame-system/std",
+    "pallet-timestamp/std",
+    "pallet-transaction-payment/std",
 ]
 
 [dependencies]
-aura = { version = "2.0.0-rc6", default-features = false, package = "pallet-aura"}
-balances = { version = "2.0.0-rc6", default-features = false, package = "pallet-balances"}
-contracts = { version = "2.0.0-rc6", default_features = false, package = "pallet-contracts" }
-contracts-primitives = { version = "2.0.0-rc6", default_features = false, package = "pallet-contracts-primitives" }
-contracts-rpc = { version = "0.8.0-rc6", default-features = false, package = "pallet-contracts-rpc-runtime-api" }
-grandpa = { version = "2.0.0-rc6", default-features = false, package = "pallet-grandpa" }
-randomness-collective-flip = { version = "2.0.0-rc6", default-features = false, package = "pallet-randomness-collective-flip" }
-sudo = { version = "2.0.0-rc6", default-features = false, package = "pallet-sudo" }
-system = { version = "2.0.0-rc6", default-features = false, package = "frame-system" }
-timestamp = { version = "2.0.0-rc6", default-features = false, package = "pallet-timestamp" }
-transaction-payment = { version = "2.0.0-rc6", default-features = false, package = "pallet-transaction-payment" }
+pallet-aura = { version = "2.0.0-rc6", default-features = false }
+pallet-balances = { version = "2.0.0-rc6", default-features = false }
+pallet-contracts = { version = "2.0.0-rc6", default_features = false }
+pallet-contracts-primitives = { version = "2.0.0-rc6", default_features = false }
+pallet-contracts-rpc = { version = "0.8.0-rc6", default-features = false }
+pallet-grandpa = { version = "2.0.0-rc6", default-features = false }
+pallet-randomness-collective-flip = { version = "2.0.0-rc6", default-features = false }
+pallet-sudo = { version = "2.0.0-rc6", default-features = false }
+frame-system = { version = "2.0.0-rc6", default-features = false }
+pallet-timestamp = { version = "2.0.0-rc6", default-features = false }
+pallet-transaction-payment = { version = "2.0.0-rc6", default-features = false }
 
 codec = { default-features = false, features = ["derive"], package = "parity-scale-codec", version = "1.3.0" }
 serde = { version = "1.0.101", features = ["derive"], optional = true }
