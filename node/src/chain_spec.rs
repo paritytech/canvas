@@ -2,7 +2,7 @@ use sp_core::{Pair, Public, sr25519};
 use canvas_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature,
-	ContractsConfig, ContractsSchedule,
+	ContractsConfig,
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
@@ -59,12 +59,15 @@ pub fn testnet_root() -> AccountId {
 	hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into()
 }
 
-pub fn development_config() -> ChainSpec {
-	ChainSpec::from_genesis(
+pub fn development_config() -> Result<ChainSpec, String> {
+	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
+
+	Ok(ChainSpec::from_genesis(
 		"Development",
 		"dev",
 		ChainType::Development,
-		|| testnet_genesis(
+		move || testnet_genesis(
+			wasm_binary,
 			vec![
 				authority_keys_from_seed("Alice"),
 			],
@@ -82,15 +85,18 @@ pub fn development_config() -> ChainSpec {
 		None,
 		None,
 		None,
-	)
+	))
 }
 
-pub fn testnet_config() -> ChainSpec {
-	ChainSpec::from_genesis(
+pub fn testnet_config() -> Result<ChainSpec, String> {
+	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
+
+	Ok(ChainSpec::from_genesis(
 		"Canvas Testnet 1",
 		"canvas_testnet1",
 		ChainType::Live,
-		|| testnet_genesis(
+		move || testnet_genesis(
+			wasm_binary,
 			testnet_authorities(),
 			testnet_root(),
 			vec![testnet_root()],
@@ -106,10 +112,11 @@ pub fn testnet_config() -> ChainSpec {
 		Some("prc"),
 		None,
 		None
-	)
+	))
 }
 
 fn testnet_genesis(
+	wasm_binary: &[u8],
 	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
@@ -117,24 +124,27 @@ fn testnet_genesis(
 ) -> GenesisConfig {
 
 	GenesisConfig {
-		system: Some(SystemConfig {
-			code: WASM_BINARY.to_vec(),
+		frame_system: Some(SystemConfig {
+			// Add Wasm runtime to storage.
+			code: wasm_binary.to_vec(),
 			changes_trie_config: Default::default(),
 		}),
-		balances: Some(BalancesConfig {
+		pallet_balances: Some(BalancesConfig {
+			// Configure endowed accounts with initial balance of 1 << 60.
 			balances: endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
 		}),
-		sudo: Some(SudoConfig {
-			key: root_key,
-		}),
-		aura: Some(AuraConfig {
+		pallet_aura: Some(AuraConfig {
 			authorities: initial_authorities.iter().map(|x| (x.0.clone())).collect(),
 		}),
-		grandpa: Some(GrandpaConfig {
+		pallet_grandpa: Some(GrandpaConfig {
 			authorities: initial_authorities.iter().map(|x| (x.1.clone(), 1)).collect(),
 		}),
-		contracts: Some(ContractsConfig {
-			current_schedule: ContractsSchedule {
+		pallet_sudo: Some(SudoConfig {
+			// Assign network admin rights.
+			key: root_key,
+		}),
+		pallet_contracts: Some(ContractsConfig {
+			current_schedule: pallet_contracts::Schedule {
 					enable_println,
 					..Default::default()
 			},
