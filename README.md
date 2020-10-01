@@ -2,7 +2,7 @@
 
 Node implementation for Canvas, a Substrate chain for smart contracts.
 
-To be continued...
+To be continued....
 
 To run local dev node, do
 
