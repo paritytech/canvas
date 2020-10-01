@@ -29,3 +29,5 @@ Add custom types in `https://polkadot.js.org/apps/#/settings/developer`
   "LookupSource": "AccountId"
 }
 ```
+
+**Note: currently not compatible with polkadot.js UI, it's a WIP**
