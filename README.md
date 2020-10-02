@@ -2,7 +2,7 @@
 
 Node implementation for Canvas, a Substrate chain for smart contracts.
 
-To be continued...
+To be continued....
 
 To run local dev node, do
 
@@ -29,3 +29,5 @@ Add custom types in `https://polkadot.js.org/apps/#/settings/developer`
   "LookupSource": "AccountId"
 }
 ```
+
+**Note: currently not compatible with polkadot.js UI, it's a WIP**
