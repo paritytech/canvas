@@ -259,7 +259,7 @@ impl pallet_transaction_payment::Trait for Runtime {
 
 parameter_types! {
 	pub const TombstoneDeposit: Balance = 16 * MILLICENTS;
-	pub const RentByteFee: Balance = 4 * MILLICENTS;
+	pub const RentByteFee: 0; // State rent disabled for the testnet
 	pub const RentDepositOffset: Balance = 1000 * MILLICENTS;
 	pub const SurchargeReward: Balance = 150 * MILLICENTS;
 }
