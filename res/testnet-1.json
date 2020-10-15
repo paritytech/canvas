@@ -10,7 +10,8 @@
   "protocolId": "prc",
   "properties": {
     "tokenSymbol": "CAN",
-    "tokenDecimals": 12
+    "tokenDecimals": 12,
+    "ss58Format": 42
   },
   "consensusEngine": null,
   "lightSyncState": null,
