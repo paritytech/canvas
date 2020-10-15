@@ -8,7 +8,10 @@
   ],
   "telemetryEndpoints": null,
   "protocolId": "prc",
-  "properties": null,
+  "properties": {
+    "tokenSymbol": "CAN",
+    "tokenDecimals": 12
+  },
   "consensusEngine": null,
   "lightSyncState": null,
   "genesis": {
