@@ -93,7 +93,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("canvas"),
 	impl_name: create_runtime_str!("canvas"),
 	authoring_version: 1,
-	spec_version: 6,
+	spec_version: 7,
 	impl_version: 6,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
@@ -259,7 +259,7 @@ impl pallet_transaction_payment::Trait for Runtime {
 
 parameter_types! {
 	pub const TombstoneDeposit: Balance = 16 * MILLICENTS;
-	pub const RentByteFee: Balance = 4 * MILLICENTS;
+	pub const RentByteFee: Balance = 100_000;
 	pub const RentDepositOffset: Balance = 1000 * MILLICENTS;
 	pub const SurchargeReward: Balance = 150 * MILLICENTS;
 }
