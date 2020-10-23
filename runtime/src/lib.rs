@@ -10,7 +10,8 @@ use sp_std::prelude::*;
 use sp_core::{crypto::KeyTypeId, OpaqueMetadata};
 use sp_runtime::{
 	ApplyExtrinsicResult, generic, create_runtime_str, impl_opaque_keys, MultiSignature,
-	transaction_validity::{TransactionValidity, TransactionSource},
+	transaction_validity::{TransactionValidity, TransactionSource}, Perquintill,
+	FixedPointNumber,
 };
 use sp_runtime::traits::{
 	BlakeTwo256, Block as BlockT, IdentityLookup, Verify, IdentifyAccount, NumberFor, Saturating,
@@ -19,6 +20,7 @@ use sp_api::impl_runtime_apis;
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use pallet_grandpa::{AuthorityId as GrandpaId, AuthorityList as GrandpaAuthorityList};
 use pallet_grandpa::fg_primitives;
+use pallet_transaction_payment::{Multiplier, TargetedFeeAdjustment};
 use sp_version::RuntimeVersion;
 #[cfg(feature = "std")]
 use sp_version::NativeVersion;
@@ -112,6 +114,7 @@ pub const DAYS: BlockNumber = HOURS * 24;
 pub const MILLICENTS: Balance = 1_000_000_000;
 pub const CENTS: Balance = 1_000 * MILLICENTS;
 pub const DOLLARS: Balance = 100 * CENTS;
+pub const CANS: Balance = CENTS;
 
 /// The version information used to identify this runtime when compiled natively.
 #[cfg(feature = "std")]
@@ -246,7 +249,11 @@ impl pallet_balances::Trait for Runtime {
 }
 
 parameter_types! {
-	pub const TransactionByteFee: Balance = 1;
+	/// 1 CAN = 1 Megabyte
+	pub const TransactionByteFee: Balance = CANS / (1024 * 1024);
+	pub const TargetBlockFullness: Perquintill = Perquintill::from_percent(25);
+	pub AdjustmentVariable: Multiplier = Multiplier::saturating_from_rational(3, 100_000);
+	pub MinimumMultiplier: Multiplier = Multiplier::saturating_from_rational(1, 1_000_000_000u128);
 }
 
 impl pallet_transaction_payment::Trait for Runtime {
@@ -254,7 +261,8 @@ impl pallet_transaction_payment::Trait for Runtime {
 	type OnTransactionPayment = ();
 	type TransactionByteFee = TransactionByteFee;
 	type WeightToFee = IdentityFee<Balance>;
-	type FeeMultiplierUpdate = ();
+	type FeeMultiplierUpdate =
+		TargetedFeeAdjustment<Self, TargetBlockFullness, AdjustmentVariable, MinimumMultiplier>;
 }
 
 parameter_types! {
