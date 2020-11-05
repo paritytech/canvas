@@ -78,7 +78,6 @@ build:
       when: manual
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                   # PRs
       when: manual
-
   script:
     - cargo build --release
   after_script:
