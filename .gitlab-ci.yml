@@ -81,5 +81,5 @@ build:
   script:
     - cargo build --release
   after_script:
-    - mkdir -p ./artifacts/cargo-contract/
-    - cp ${CARGO_TARGET_DIR}/release/cargo-contract ./artifacts/cargo-contract/
+    - mkdir -p ./artifacts/canvas/
+    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas/
