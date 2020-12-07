@@ -78,7 +78,9 @@ pub fn new_partial(config: &Configuration) -> Result<sc_service::PartialComponen
 }
 
 /// Builds a new service for a full client.
-pub fn new_full(config: Configuration) -> Result<TaskManager, ServiceError> {
+pub fn new_full(mut config: Configuration) -> Result<TaskManager, ServiceError> {
+	config.network.notifications_protocols.push(sc_finality_grandpa::GRANDPA_PROTOCOL_NAME.into());
+
 	let sc_service::PartialComponents {
 		client, backend, mut task_manager, import_queue, keystore_container,
 		select_chain, transaction_pool, inherent_data_providers,
@@ -210,7 +212,7 @@ pub fn new_full(config: Configuration) -> Result<TaskManager, ServiceError> {
 			sc_finality_grandpa::run_grandpa_voter(grandpa_config)?
 		);
 	} else {
-		sc_finality_grandpa::setup_disabled_grandpa(network)?;
+//		sc_finality_grandpa::setup_disabled_grandpa(network)?;
 	}
 
 	network_starter.start_network();
