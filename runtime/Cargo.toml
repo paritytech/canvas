@@ -9,29 +9,44 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 codec = { package = "parity-scale-codec", version = "1.3.4", default-features = false, features = ["derive"] }
+serde = { version = "1.0.101", optional = true, features = ["derive"] }
 
+parachain-info = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
+
+# Substrate dependencies
+sp-std = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-api = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-io = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-version = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-runtime = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-core = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-session = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-offchain = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-block-builder = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-transaction-pool = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-inherents = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+
+frame-support = { git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false }
+frame-executive = { git = "https://github.com/paritytech/substrate", package = "frame-executive", default-features = false }
+frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
 pallet-aura = { git = "https://github.com/paritytech/substrate", package = "pallet-aura", default-features = false }
 pallet-balances = { git = "https://github.com/paritytech/substrate", package = "pallet-balances", default-features = false }
-frame-support = { git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false }
 pallet-grandpa = { git = "https://github.com/paritytech/substrate", package = "pallet-grandpa", default-features = false }
 pallet-randomness-collective-flip = { git = "https://github.com/paritytech/substrate", package = "pallet-randomness-collective-flip", default-features = false }
 pallet-sudo = { git = "https://github.com/paritytech/substrate", package = "pallet-sudo", default-features = false }
-frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
 pallet-timestamp = { git = "https://github.com/paritytech/substrate", package = "pallet-timestamp", default-features = false }
 pallet-transaction-payment = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment", default-features = false }
-frame-executive = { git = "https://github.com/paritytech/substrate", package = "frame-executive", default-features = false }
-serde = { version = "1.0.101", optional = true, features = ["derive"] }
-sp-api = { git = "https://github.com/paritytech/substrate", package = "sp-api", default-features = false }
-sp-block-builder = { git = "https://github.com/paritytech/substrate", package = "sp-block-builder", default-features = false }
-sp-consensus-aura = { git = "https://github.com/paritytech/substrate", package = "sp-consensus-aura", default-features = false }
-sp-core = { git = "https://github.com/paritytech/substrate", package = "sp-core", default-features = false }
-sp-inherents = { git = "https://github.com/paritytech/substrate", package = "sp-inherents", default-features = false }
-sp-offchain = { git = "https://github.com/paritytech/substrate", package = "sp-offchain", default-features = false }
-sp-runtime = { git = "https://github.com/paritytech/substrate", package = "sp-runtime", default-features = false }
-sp-session = { git = "https://github.com/paritytech/substrate", package = "sp-session", default-features = false }
-sp-std = { git = "https://github.com/paritytech/substrate", package = "sp-std", default-features = false }
-sp-transaction-pool = { git = "https://github.com/paritytech/substrate", package = "sp-transaction-pool", default-features = false }
-sp-version = { git = "https://github.com/paritytech/substrate", package = "sp-version", default-features = false }
+
+# Cumulus dependencies
+cumulus-pallet-parachain-system = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
+cumulus-primitives-core = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
+cumulus-pallet-xcm-handler = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
+
+# Polkadot dependencies
+polkadot-parachain = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "master" }
+xcm = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "master" }
+xcm-builder = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "master" }
+xcm-executor = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "master" }
 
 # Used for the node's RPCs
 frame-system-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "frame-system-rpc-runtime-api", default-features = false }
@@ -43,26 +58,15 @@ pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate",
 pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false }
 
 [build-dependencies]
-wasm-builder-runner = { version = "1.0.6", package = "substrate-wasm-builder-runner" }
+substrate-wasm-builder = "3.0.0"
 
 [features]
 default = ["std"]
 std = [
     "codec/std",
-    "frame-executive/std",
-    "frame-support/std",
-    "pallet-aura/std",
-    "pallet-balances/std",
-    "pallet-grandpa/std",
-    "pallet-randomness-collective-flip/std",
-    "pallet-sudo/std",
-    "pallet-timestamp/std",
-    "pallet-transaction-payment/std",
-    "pallet-transaction-payment-rpc-runtime-api/std",
     "serde",
     "sp-api/std",
     "sp-block-builder/std",
-    "sp-consensus-aura/std",
     "sp-core/std",
     "sp-inherents/std",
     "sp-offchain/std",
@@ -71,9 +75,25 @@ std = [
     "sp-std/std",
     "sp-transaction-pool/std",
     "sp-version/std",
+    "frame-executive/std",
+    "frame-support/std",
     "frame-system/std",
+    "pallet-balances/std",
+    "pallet-grandpa/std",
+    "pallet-randomness-collective-flip/std",
+    "pallet-sudo/std",
+    "pallet-timestamp/std",
+    "pallet-transaction-payment/std",
+    "pallet-transaction-payment-rpc-runtime-api/std",
     "frame-system-rpc-runtime-api/std",
     "pallet-contracts/std",
     "pallet-contracts-primitives/std",
     "pallet-contracts-rpc-runtime-api/std",
+    "parachain-info/std",
+    "cumulus-pallet-parachain-system/std",
+    "cumulus-pallet-xcm-handler/std",
+    "cumulus-primitives-core/std",
+    "xcm/std",
+    "xcm-builder/std",
+    "xcm-executor/std",
 ]
