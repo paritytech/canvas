@@ -12,10 +12,10 @@ targets = ["x86_64-unknown-linux-gnu"]
 structopt = "0.3.8"
 hex-literal = "0.2.1"
 
-sc-cli = { version = "0.8.0", git = "https://github.com/paritytech/substrate", package = "sc-cli", features = ["wasmtime"] }
+sc-cli = { version = "0.9.0", git = "https://github.com/paritytech/substrate", package = "sc-cli", features = ["wasmtime"] }
 sp-core = { git = "https://github.com/paritytech/substrate", package = "sp-core" }
-sc-executor = { version = "0.8.0", git = "https://github.com/paritytech/substrate", package = "sc-executor", features = ["wasmtime"] }
-sc-service = { version = "0.8.0", git = "https://github.com/paritytech/substrate", package = "sc-service", features = ["wasmtime"] }
+sc-executor = { version = "0.9.0", git = "https://github.com/paritytech/substrate", package = "sc-executor", features = ["wasmtime"] }
+sc-service = { version = "0.9.0", git = "https://github.com/paritytech/substrate", package = "sc-service", features = ["wasmtime"] }
 sp-inherents = { git = "https://github.com/paritytech/substrate", package = "sp-inherents" }
 sc-transaction-pool = { git = "https://github.com/paritytech/substrate", package = "sc-transaction-pool" }
 sp-transaction-pool = { git = "https://github.com/paritytech/substrate", package = "sp-transaction-pool" }
@@ -30,7 +30,7 @@ sp-runtime = { git = "https://github.com/paritytech/substrate", package = "sp-ru
 pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts" }
 
 # These dependencies are used for the node's RPCs
-jsonrpc-core = "15.0.0"
+jsonrpc-core = "15.1.0"
 sc-rpc = { git = "https://github.com/paritytech/substrate", package = "sc-rpc" }
 sp-api = { git = "https://github.com/paritytech/substrate", package = "sp-api" }
 sc-rpc-api = { git = "https://github.com/paritytech/substrate", package = "sc-rpc-api" }
