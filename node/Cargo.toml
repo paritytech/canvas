@@ -12,6 +12,9 @@ targets = ["x86_64-unknown-linux-gnu"]
 structopt = "0.3.8"
 hex-literal = "0.2.1"
 
+# todo: remove once funty issue resolved
+funty = "=1.1.0"
+
 sc-cli = { version = "0.9.0", git = "https://github.com/paritytech/substrate", branch = "at-contracts-framev2", package = "sc-cli", features = ["wasmtime"] }
 sp-core = { git = "https://github.com/paritytech/substrate", branch = "at-contracts-framev2", package = "sp-core" }
 sc-executor = { version = "0.9.0", git = "https://github.com/paritytech/substrate", branch = "at-contracts-framev2", package = "sc-executor", features = ["wasmtime"] }
