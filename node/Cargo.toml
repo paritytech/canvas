@@ -19,6 +19,7 @@ sc-cli = { version = "0.9.0", git = "https://github.com/paritytech/substrate", b
 sp-core = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-core" }
 sc-executor = { version = "0.9.0", git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-executor", features = ["wasmtime"] }
 sc-service = { version = "0.9.0", git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-service", features = ["wasmtime"] }
+sc-telemetry = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-telemetry" }
 sp-inherents = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-inherents" }
 sc-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-transaction-pool" }
 sp-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-transaction-pool" }
