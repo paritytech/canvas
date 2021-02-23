@@ -657,7 +657,6 @@ name = "canvas-node"
 version = "0.1.0"
 dependencies = [
  "canvas-runtime",
- "funty",
  "hex-literal",
  "jsonrpc-core",
  "pallet-contracts",
