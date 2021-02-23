@@ -264,18 +264,6 @@ impl pallet_transaction_payment::Config for Runtime {
 	type FeeMultiplierUpdate = ();
 }
 
-// parameter_types! {
-// 	pub const TombstoneDeposit: Balance = 16 * MILLICENTS;
-// 	pub const RentByteFee: Balance = 100_000;
-// 	pub const RentDepositOffset: Balance = 1000 * MILLICENTS;
-// 	pub const SurchargeReward: Balance = 150 * MILLICENTS;
-// 	pub const SignedClaimHandicap: u32 = 2;
-// 	pub const MaxDepth: u32 = 32;
-// 	pub const StorageSizeOffset: u32 = 8;
-// 	pub const MaxValueSize: u32 = 16 * 1024;
-// }
-
-// todo: these are copied from default-node-runtime, need to check if any need to change (see originals above)
 parameter_types! {
 	pub const TombstoneDeposit: Balance = deposit(
 		1,
