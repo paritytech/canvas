@@ -83,6 +83,7 @@ pub fn run() -> sc_cli::Result<()> {
 	let cli = Cli::from_args();
 
 	match &cli.subcommand {
+		Some(Subcommand::Key(cmd)) => cmd.run(&cli),
 		Some(Subcommand::BuildSpec(cmd)) => {
 			let runner = cli.create_runner(cmd)?;
 			runner.sync_run(|config| cmd.run(config.chain_spec, config.network))
@@ -137,7 +138,7 @@ pub fn run() -> sc_cli::Result<()> {
 				match config.role {
 					Role::Light => service::new_light(config),
 					_ => service::new_full(config),
-				}
+				}.map_err(sc_cli::Error::Service)
 			})
 		}
 	}
