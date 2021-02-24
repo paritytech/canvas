@@ -1954,9 +1954,9 @@ checksum = "3dcaa9ae7725d12cdb85b3ad99a434db70b468c09ded17e012d86b5c1010f7a7"
 
 [[package]]
 name = "funty"
-version = "1.2.0"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1847abb9cb65d566acd5942e94aea9c8f547ad02c98e1649326fc0e8910b8b1e"
+checksum = "fed34cd105917e91daa4da6b3728c47b068749d6a62c59811f06ed2ac71d9da7"
 
 [[package]]
 name = "futures"
@@ -4593,7 +4593,7 @@ checksum = "989d43012e2ca1c4a02507c67282691a0a3207f9dc67cec596b43fe925b3d325"
 [[package]]
 name = "polkadot-core-primitives"
 version = "0.7.30"
-source = "git+https://github.com/paritytech/polkadot?branch=master#c66049ddda26c9609d1a2cf23c0975a1f9677712"
+source = "git+https://github.com/paritytech/polkadot?branch=master#680a8777022fd6f0200abfafa40202d4aae42420"
 dependencies = [
  "parity-scale-codec",
  "parity-util-mem",
@@ -4605,7 +4605,7 @@ dependencies = [
 [[package]]
 name = "polkadot-parachain"
 version = "0.8.28"
-source = "git+https://github.com/paritytech/polkadot?branch=master#c66049ddda26c9609d1a2cf23c0975a1f9677712"
+source = "git+https://github.com/paritytech/polkadot?branch=master#680a8777022fd6f0200abfafa40202d4aae42420"
 dependencies = [
  "derive_more",
  "futures 0.3.13",
@@ -4632,7 +4632,7 @@ dependencies = [
 [[package]]
 name = "polkadot-primitives"
 version = "0.8.28"
-source = "git+https://github.com/paritytech/polkadot?branch=master#c66049ddda26c9609d1a2cf23c0975a1f9677712"
+source = "git+https://github.com/paritytech/polkadot?branch=master#680a8777022fd6f0200abfafa40202d4aae42420"
 dependencies = [
  "bitvec",
  "frame-system 3.0.0 (git+https://github.com/paritytech/substrate?branch=master)",
@@ -9287,7 +9287,7 @@ dependencies = [
 [[package]]
 name = "xcm"
 version = "0.8.22"
-source = "git+https://github.com/paritytech/polkadot?branch=master#c66049ddda26c9609d1a2cf23c0975a1f9677712"
+source = "git+https://github.com/paritytech/polkadot?branch=master#680a8777022fd6f0200abfafa40202d4aae42420"
 dependencies = [
  "parity-scale-codec",
 ]
@@ -9295,7 +9295,7 @@ dependencies = [
 [[package]]
 name = "xcm-builder"
 version = "0.8.22"
-source = "git+https://github.com/paritytech/polkadot?branch=master#c66049ddda26c9609d1a2cf23c0975a1f9677712"
+source = "git+https://github.com/paritytech/polkadot?branch=master#680a8777022fd6f0200abfafa40202d4aae42420"
 dependencies = [
  "frame-support 3.0.0 (git+https://github.com/paritytech/substrate?branch=master)",
  "parity-scale-codec",
@@ -9311,7 +9311,7 @@ dependencies = [
 [[package]]
 name = "xcm-executor"
 version = "0.8.22"
-source = "git+https://github.com/paritytech/polkadot?branch=master#c66049ddda26c9609d1a2cf23c0975a1f9677712"
+source = "git+https://github.com/paritytech/polkadot?branch=master#680a8777022fd6f0200abfafa40202d4aae42420"
 dependencies = [
  "frame-support 3.0.0 (git+https://github.com/paritytech/substrate?branch=master)",
  "impl-trait-for-tuples",
