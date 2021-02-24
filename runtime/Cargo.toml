@@ -29,9 +29,7 @@ sp-inherents = { git = "https://github.com/paritytech/substrate", default-featur
 frame-support = { git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false }
 frame-executive = { git = "https://github.com/paritytech/substrate", package = "frame-executive", default-features = false }
 frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
-pallet-aura = { git = "https://github.com/paritytech/substrate", package = "pallet-aura", default-features = false }
 pallet-balances = { git = "https://github.com/paritytech/substrate", package = "pallet-balances", default-features = false }
-pallet-grandpa = { git = "https://github.com/paritytech/substrate", package = "pallet-grandpa", default-features = false }
 pallet-randomness-collective-flip = { git = "https://github.com/paritytech/substrate", package = "pallet-randomness-collective-flip", default-features = false }
 pallet-sudo = { git = "https://github.com/paritytech/substrate", package = "pallet-sudo", default-features = false }
 pallet-timestamp = { git = "https://github.com/paritytech/substrate", package = "pallet-timestamp", default-features = false }

@@ -700,12 +700,10 @@ dependencies = [
  "frame-support 3.0.0 (git+https://github.com/paritytech/substrate)",
  "frame-system 3.0.0 (git+https://github.com/paritytech/substrate)",
  "frame-system-rpc-runtime-api",
- "pallet-aura",
  "pallet-balances 3.0.0 (git+https://github.com/paritytech/substrate)",
  "pallet-contracts",
  "pallet-contracts-primitives",
  "pallet-contracts-rpc-runtime-api",
- "pallet-grandpa",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
  "pallet-timestamp",
@@ -3937,38 +3935,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pallet-aura"
-version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#1db510877725255634dd4d50b696da79b152abb7"
-dependencies = [
- "frame-support 3.0.0 (git+https://github.com/paritytech/substrate)",
- "frame-system 3.0.0 (git+https://github.com/paritytech/substrate)",
- "pallet-session",
- "pallet-timestamp",
- "parity-scale-codec",
- "sp-application-crypto 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-consensus-aura",
- "sp-runtime 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-std 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-timestamp",
-]
-
-[[package]]
-name = "pallet-authorship"
-version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#1db510877725255634dd4d50b696da79b152abb7"
-dependencies = [
- "frame-support 3.0.0 (git+https://github.com/paritytech/substrate)",
- "frame-system 3.0.0 (git+https://github.com/paritytech/substrate)",
- "impl-trait-for-tuples",
- "parity-scale-codec",
- "sp-authorship",
- "sp-inherents 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-runtime 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-std 3.0.0 (git+https://github.com/paritytech/substrate)",
-]
-
-[[package]]
 name = "pallet-balances"
 version = "3.0.0"
 source = "git+https://github.com/paritytech/substrate?branch=master#1db510877725255634dd4d50b696da79b152abb7"
@@ -4070,25 +4036,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pallet-grandpa"
-version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#1db510877725255634dd4d50b696da79b152abb7"
-dependencies = [
- "frame-support 3.0.0 (git+https://github.com/paritytech/substrate)",
- "frame-system 3.0.0 (git+https://github.com/paritytech/substrate)",
- "pallet-authorship",
- "pallet-session",
- "parity-scale-codec",
- "sp-application-crypto 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-core 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-finality-grandpa",
- "sp-runtime 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-session 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-staking 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-std 3.0.0 (git+https://github.com/paritytech/substrate)",
-]
-
-[[package]]
 name = "pallet-randomness-collective-flip"
 version = "3.0.0"
 source = "git+https://github.com/paritytech/substrate#1db510877725255634dd4d50b696da79b152abb7"
@@ -4098,24 +4045,6 @@ dependencies = [
  "parity-scale-codec",
  "safe-mix",
  "sp-runtime 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-std 3.0.0 (git+https://github.com/paritytech/substrate)",
-]
-
-[[package]]
-name = "pallet-session"
-version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#1db510877725255634dd4d50b696da79b152abb7"
-dependencies = [
- "frame-support 3.0.0 (git+https://github.com/paritytech/substrate)",
- "frame-system 3.0.0 (git+https://github.com/paritytech/substrate)",
- "impl-trait-for-tuples",
- "pallet-timestamp",
- "parity-scale-codec",
- "sp-core 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-io 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-runtime 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-session 3.0.0 (git+https://github.com/paritytech/substrate)",
- "sp-staking 3.0.0 (git+https://github.com/paritytech/substrate)",
  "sp-std 3.0.0 (git+https://github.com/paritytech/substrate)",
 ]
 
