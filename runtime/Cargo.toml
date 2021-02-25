@@ -26,14 +26,14 @@ sp-block-builder = { git = "https://github.com/paritytech/substrate", default-fe
 sp-transaction-pool = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
 sp-inherents = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
 
-frame-support = { git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false }
-frame-executive = { git = "https://github.com/paritytech/substrate", package = "frame-executive", default-features = false }
-frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
-pallet-balances = { git = "https://github.com/paritytech/substrate", package = "pallet-balances", default-features = false }
-pallet-randomness-collective-flip = { git = "https://github.com/paritytech/substrate", package = "pallet-randomness-collective-flip", default-features = false }
-pallet-sudo = { git = "https://github.com/paritytech/substrate", package = "pallet-sudo", default-features = false }
-pallet-timestamp = { git = "https://github.com/paritytech/substrate", package = "pallet-timestamp", default-features = false }
-pallet-transaction-payment = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment", default-features = false }
+frame-support = { git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false, branch = "master" }
+frame-executive = { git = "https://github.com/paritytech/substrate", package = "frame-executive", default-features = false, branch = "master" }
+frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false, branch = "master" }
+pallet-balances = { git = "https://github.com/paritytech/substrate", package = "pallet-balances", default-features = false, branch = "master" }
+pallet-randomness-collective-flip = { git = "https://github.com/paritytech/substrate", package = "pallet-randomness-collective-flip", default-features = false, branch = "master" }
+pallet-sudo = { git = "https://github.com/paritytech/substrate", package = "pallet-sudo", default-features = false, branch = "master" }
+pallet-timestamp = { git = "https://github.com/paritytech/substrate", package = "pallet-timestamp", default-features = false, branch = "master" }
+pallet-transaction-payment = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment", default-features = false, branch = "master" }
 
 # Cumulus dependencies
 cumulus-pallet-parachain-system = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
@@ -47,13 +47,13 @@ xcm-builder = { git = "https://github.com/paritytech/polkadot", default-features
 xcm-executor = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "master" }
 
 # Used for the node's RPCs
-frame-system-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "frame-system-rpc-runtime-api", default-features = false }
-pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment-rpc-runtime-api", default-features = false }
+frame-system-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", branch = "master", package = "frame-system-rpc-runtime-api", default-features = false }
+pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-transaction-payment-rpc-runtime-api", default-features = false }
 
 # Contracts specific packages
-pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts", default-features = false }
-pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-primitives", default-features = false }
-pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false }
+pallet-contracts = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-contracts", default-features = false }
+pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-contracts-primitives", default-features = false }
+pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-contracts-rpc-runtime-api", default-features = false }
 
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"

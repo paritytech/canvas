@@ -12,40 +12,40 @@ targets = ["x86_64-unknown-linux-gnu"]
 structopt = "0.3.8"
 hex-literal = "0.2.1"
 
-sc-cli = { version = "0.9.0", git = "https://github.com/paritytech/substrate", package = "sc-cli", features = ["wasmtime"] }
-sp-core = { git = "https://github.com/paritytech/substrate", package = "sp-core" }
-sc-executor = { version = "0.9.0", git = "https://github.com/paritytech/substrate", package = "sc-executor", features = ["wasmtime"] }
-sc-service = { version = "0.9.0", git = "https://github.com/paritytech/substrate", package = "sc-service", features = ["wasmtime"] }
-sc-telemetry = { git = "https://github.com/paritytech/substrate", package = "sc-telemetry" }
-sp-inherents = { git = "https://github.com/paritytech/substrate", package = "sp-inherents" }
-sc-transaction-pool = { git = "https://github.com/paritytech/substrate", package = "sc-transaction-pool" }
-sp-transaction-pool = { git = "https://github.com/paritytech/substrate", package = "sp-transaction-pool" }
-sc-consensus-aura = { git = "https://github.com/paritytech/substrate", package = "sc-consensus-aura" }
-sp-consensus-aura = { git = "https://github.com/paritytech/substrate", package = "sp-consensus-aura" }
-sp-consensus = { git = "https://github.com/paritytech/substrate", package = "sp-consensus" }
-sc-consensus = { git = "https://github.com/paritytech/substrate", package = "sc-consensus" }
-sc-finality-grandpa = { git = "https://github.com/paritytech/substrate", package = "sc-finality-grandpa" }
-sp-finality-grandpa = { git = "https://github.com/paritytech/substrate", package = "sp-finality-grandpa" }
-sc-client-api = { git = "https://github.com/paritytech/substrate", package = "sc-client-api" }
-sp-runtime = { git = "https://github.com/paritytech/substrate", package = "sp-runtime" }
-pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts" }
+sc-cli = { version = "0.9.0", git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-cli", features = ["wasmtime"] }
+sp-core = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-core" }
+sc-executor = { version = "0.9.0", git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-executor", features = ["wasmtime"] }
+sc-service = { version = "0.9.0", git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-service", features = ["wasmtime"] }
+sc-telemetry = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-telemetry" }
+sp-inherents = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-inherents" }
+sc-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-transaction-pool" }
+sp-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-transaction-pool" }
+sc-consensus-aura = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-consensus-aura" }
+sp-consensus-aura = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-consensus-aura" }
+sp-consensus = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-consensus" }
+sc-consensus = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-consensus" }
+sc-finality-grandpa = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-finality-grandpa" }
+sp-finality-grandpa = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-finality-grandpa" }
+sc-client-api = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-client-api" }
+sp-runtime = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-runtime" }
+pallet-contracts = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-contracts" }
 
 # These dependencies are used for the node's RPCs
 jsonrpc-core = "15.1.0"
-sc-rpc = { git = "https://github.com/paritytech/substrate", package = "sc-rpc" }
-sp-api = { git = "https://github.com/paritytech/substrate", package = "sp-api" }
-sc-rpc-api = { git = "https://github.com/paritytech/substrate", package = "sc-rpc-api" }
-sp-blockchain = { git = "https://github.com/paritytech/substrate", package = "sp-blockchain" }
-sp-block-builder = { git = "https://github.com/paritytech/substrate", package = "sp-block-builder" }
-sc-basic-authorship = { git = "https://github.com/paritytech/substrate", package = "sc-basic-authorship" }
-substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", package = "substrate-frame-rpc-system" }
-pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment-rpc" }
-pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" }
+sc-rpc = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-rpc" }
+sp-api = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-api" }
+sc-rpc-api = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-rpc-api" }
+sp-blockchain = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-blockchain" }
+sp-block-builder = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-block-builder" }
+sc-basic-authorship = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-basic-authorship" }
+substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", branch = "master", package = "substrate-frame-rpc-system" }
+pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-transaction-payment-rpc" }
+pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-contracts-rpc" }
 
 canvas-runtime = { version = "0.1.0", path = "../runtime" }
 
 [build-dependencies]
-substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", package = "substrate-build-script-utils" }
+substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", branch = "master", package = "substrate-build-script-utils" }
 
 [[bin]]
 name = "canvas"
