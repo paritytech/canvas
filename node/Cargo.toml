@@ -15,32 +15,32 @@ codec = { package = "parity-scale-codec", version = "2.0.0" }
 hex-literal = "0.2.1"
 
 # Substrate dependencies
-sp-runtime = { git = "https://github.com/paritytech/substrate", default-features = false, rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-io = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-core = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-inherents = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-consensus = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-session = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-consensus = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-cli = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-client-api = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-executor = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-service = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-telemetry = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-transaction-pool = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-transaction-pool = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-network = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-basic-authorship = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-timestamp = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-blockchain = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-block-builder = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-trie = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-finality-grandpa = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-chain-spec = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-rpc = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sc-tracing = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-sp-offchain = { git = "https://github.com/paritytech/substrate", rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
-pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts" , rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
+sp-runtime = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
+sp-io = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-core = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-inherents = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-consensus = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-session = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-consensus = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-cli = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-client-api = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-executor = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-service = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-telemetry = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-network = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-basic-authorship = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-timestamp = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-blockchain = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-block-builder = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-trie = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-finality-grandpa = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-chain-spec = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-rpc = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sc-tracing = { git = "https://github.com/paritytech/substrate", branch = "master" }
+sp-offchain = { git = "https://github.com/paritytech/substrate", branch = "master" }
+pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts" , branch = "master" }
 
 # These dependencies are used for the node's RPCs
 jsonrpc-core = "15.1.0"
@@ -52,7 +52,7 @@ jsonrpc-core = "15.1.0"
 #sc-basic-authorship = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-basic-authorship" }
 #substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", branch = "master", package = "substrate-frame-rpc-system" }
 #pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-transaction-payment-rpc" }
-pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" , rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
+pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" , branch = "master" }
 
 # Cumulus dependencies
 cumulus-client-consensus-relay-chain = { git = "https://github.com/paritytech/cumulus", branch = "master" }
@@ -64,7 +64,7 @@ cumulus-primitives-core = { git = "https://github.com/paritytech/cumulus", branc
 canvas-runtime = { version = "0.1.0", path = "../runtime" }
 
 [build-dependencies]
-substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", package = "substrate-build-script-utils" , rev = "74d5612172965d66d5876ee1519a8a66c2adc4ba" }
+substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", package = "substrate-build-script-utils" , branch = "master" }
 
 [[bin]]
 name = "canvas"
