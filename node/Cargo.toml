@@ -51,7 +51,7 @@ sc-rpc-api = { git = "https://github.com/paritytech/substrate", branch = "master
 #sp-blockchain = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-blockchain" }
 #sp-block-builder = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sp-block-builder" }
 #sc-basic-authorship = { git = "https://github.com/paritytech/substrate", branch = "master", package = "sc-basic-authorship" }
-#substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", branch = "master", package = "substrate-frame-rpc-system" }
+substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", branch = "master", package = "substrate-frame-rpc-system" }
 pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrate", branch = "master", package = "pallet-transaction-payment-rpc" }
 pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" , branch = "master" }
 

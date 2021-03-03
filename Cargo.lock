@@ -708,6 +708,7 @@ dependencies = [
  "sp-trie",
  "structopt",
  "substrate-build-script-utils",
+ "substrate-frame-rpc-system",
 ]
 
 [[package]]
