@@ -1,20 +1,19 @@
-use sp_core::{Pair, Public, sr25519};
+use cumulus_primitives_core::ParaId;
+use hex_literal::hex;
+use sc_chain_spec::{ChainSpecExtension, ChainSpecGroup};
+use sc_service::ChainType;
+use serde::{Deserialize, Serialize};
+use sp_core::{sr25519, Pair, Public};
+use sp_runtime::traits::{IdentifyAccount, Verify};
+
 use canvas_runtime::{
-	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
+	AccountId, BalancesConfig, GenesisConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature,
 	ContractsConfig,
 };
-use sp_consensus_aura::sr25519::AuthorityId as AuraId;
-use sp_finality_grandpa::AuthorityId as GrandpaId;
-use sp_runtime::traits::{Verify, IdentifyAccount};
-use sc_service::ChainType;
-use hex_literal::hex;
 
-// Note this is the URL for the telemetry server
-//const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
-
-/// Specialized `ChainSpec`. This is a specialization of the general Substrate ChainSpec type.
-pub type ChainSpec = sc_service::GenericChainSpec<GenesisConfig>;
+/// Specialized `ChainSpec` for the normal parachain runtime.
+pub type ChainSpec = sc_service::GenericChainSpec<parachain_runtime::GenesisConfig, Extensions>;
 
 /// Helper function to generate a crypto pair from seed
 pub fn get_from_seed<TPublic: Public>(seed: &str) -> <TPublic::Pair as Pair>::Public {
@@ -23,40 +22,31 @@ pub fn get_from_seed<TPublic: Public>(seed: &str) -> <TPublic::Pair as Pair>::Pu
 		.public()
 }
 
+/// The extensions for the [`ChainSpec`].
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, ChainSpecGroup, ChainSpecExtension)]
+#[serde(deny_unknown_fields)]
+pub struct Extensions {
+	/// The relay chain of the Parachain.
+	pub relay_chain: String,
+	/// The id of the Parachain.
+	pub para_id: u32,
+}
+
+impl Extensions {
+	/// Try to get the extension from the given `ChainSpec`.
+	pub fn try_get(chain_spec: &dyn sc_service::ChainSpec) -> Option<&Self> {
+		sc_chain_spec::get_extension(chain_spec.extensions())
+	}
+}
+
 type AccountPublic = <Signature as Verify>::Signer;
 
 /// Helper function to generate an account ID from seed
-pub fn get_account_id_from_seed<TPublic: Public>(seed: &str) -> AccountId where
-	AccountPublic: From<<TPublic::Pair as Pair>::Public>
+pub fn get_account_id_from_seed<TPublic: Public>(seed: &str) -> AccountId
+	where
+		AccountPublic: From<<TPublic::Pair as Pair>::Public>,
 {
 	AccountPublic::from(get_from_seed::<TPublic>(seed)).into_account()
-}
-
-/// Helper function to generate an authority key for Aura
-pub fn authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
-	(
-		get_from_seed::<AuraId>(s),
-		get_from_seed::<GrandpaId>(s),
-	)
-}
-
-
-pub fn testnet_authorities() -> Vec<(AuraId, GrandpaId)> {
-	use sp_core::crypto::UncheckedInto;
-	vec![
-		(
-			hex!("74608217b1709e1d3a4fe65b132db5c3f321e625026080833189661aa5e20712").unchecked_into(),
-			hex!("a5abc21ac95ae63dd6e61e5bec263ab46d1efe16d3dcc085d0de297318cb662d").unchecked_into(),
-		),
-		(
-			hex!("44f3876fe4f653533c65e79461a476b8d6a107fb71b6ec0f3485bb53b4e7b842").unchecked_into(),
-			hex!("281be34a71b661b257153e1145522fd0820cfff6a3601b40e7f85d3bc155240d").unchecked_into(),
-		),
-	]
-}
-
-pub fn testnet_root() -> AccountId {
-	hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into()
 }
 
 pub fn development_config() -> Result<ChainSpec, String> {
