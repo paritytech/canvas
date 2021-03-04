@@ -37,6 +37,19 @@ use sp_core::hexdisplay::HexDisplay;
 use sp_runtime::traits::Block as BlockT;
 use std::{io::Write, net::SocketAddr};
 
+fn load_spec(
+	id: &str,
+	para_id: ParaId,
+) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
+	Ok(match id {
+		"dev" => Box::new(chain_spec::development_config(para_id)?),
+		"" | "testnet" => Box::new(chain_spec::local_testnet_config(para_id)), // todo: from solo: default to running on testnet
+		path => Box::new(chain_spec::ChainSpec::from_json_file(
+			std::path::PathBuf::from(path),
+		)?),
+	})
+}
+
 impl SubstrateCli for Cli {
 	fn impl_name() -> String {
 		"Canvas Node".into()
@@ -64,13 +77,7 @@ impl SubstrateCli for Cli {
 
 
 	fn load_spec(&self, id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
-		Ok(match id {
-			"dev" => Box::new(chain_spec::development_config()?),
-			"" => Box::new(chain_spec::testnet_config()?), // default to running on testnet
-			path => Box::new(chain_spec::ChainSpec::from_json_file(
-				std::path::PathBuf::from(path),
-			)?),
-		})
+		load_spec(id, self.run.parachain_id.unwrap_or(300).into())
 	}
 
 	fn native_runtime_version(_: &Box<dyn ChainSpec>) -> &'static RuntimeVersion {
@@ -288,5 +295,133 @@ pub fn run() -> Result<()> {
 					.map_err(Into::into)
 			})
 		}
+	}
+}
+
+impl DefaultConfigurationValues for RelayChainCli {
+	fn p2p_listen_port() -> u16 {
+		30334
+	}
+
+	fn rpc_ws_listen_port() -> u16 {
+		9945
+	}
+
+	fn rpc_http_listen_port() -> u16 {
+		9934
+	}
+
+	fn prometheus_listen_port() -> u16 {
+		9616
+	}
+}
+
+impl CliConfiguration<Self> for RelayChainCli {
+	fn shared_params(&self) -> &SharedParams {
+		self.base.base.shared_params()
+	}
+
+	fn import_params(&self) -> Option<&ImportParams> {
+		self.base.base.import_params()
+	}
+
+	fn network_params(&self) -> Option<&NetworkParams> {
+		self.base.base.network_params()
+	}
+
+	fn keystore_params(&self) -> Option<&KeystoreParams> {
+		self.base.base.keystore_params()
+	}
+
+	fn base_path(&self) -> Result<Option<BasePath>> {
+		Ok(self
+			.shared_params()
+			.base_path()
+			.or_else(|| self.base_path.clone().map(Into::into)))
+	}
+
+	fn rpc_http(&self, default_listen_port: u16) -> Result<Option<SocketAddr>> {
+		self.base.base.rpc_http(default_listen_port)
+	}
+
+	fn rpc_ipc(&self) -> Result<Option<String>> {
+		self.base.base.rpc_ipc()
+	}
+
+	fn rpc_ws(&self, default_listen_port: u16) -> Result<Option<SocketAddr>> {
+		self.base.base.rpc_ws(default_listen_port)
+	}
+
+	fn prometheus_config(&self, default_listen_port: u16) -> Result<Option<PrometheusConfig>> {
+		self.base.base.prometheus_config(default_listen_port)
+	}
+
+	fn init<C: SubstrateCli>(&self) -> Result<sc_telemetry::TelemetryWorker> {
+		unreachable!("PolkadotCli is never initialized; qed");
+	}
+
+	fn chain_id(&self, is_dev: bool) -> Result<String> {
+		let chain_id = self.base.base.chain_id(is_dev)?;
+
+		Ok(if chain_id.is_empty() {
+			self.chain_id.clone().unwrap_or_default()
+		} else {
+			chain_id
+		})
+	}
+
+	fn role(&self, is_dev: bool) -> Result<sc_service::Role> {
+		self.base.base.role(is_dev)
+	}
+
+	fn transaction_pool(&self) -> Result<sc_service::config::TransactionPoolOptions> {
+		self.base.base.transaction_pool()
+	}
+
+	fn state_cache_child_ratio(&self) -> Result<Option<usize>> {
+		self.base.base.state_cache_child_ratio()
+	}
+
+	fn rpc_methods(&self) -> Result<sc_service::config::RpcMethods> {
+		self.base.base.rpc_methods()
+	}
+
+	fn rpc_ws_max_connections(&self) -> Result<Option<usize>> {
+		self.base.base.rpc_ws_max_connections()
+	}
+
+	fn rpc_cors(&self, is_dev: bool) -> Result<Option<Vec<String>>> {
+		self.base.base.rpc_cors(is_dev)
+	}
+
+	fn telemetry_external_transport(&self) -> Result<Option<sc_service::config::ExtTransport>> {
+		self.base.base.telemetry_external_transport()
+	}
+
+	fn default_heap_pages(&self) -> Result<Option<u64>> {
+		self.base.base.default_heap_pages()
+	}
+
+	fn force_authoring(&self) -> Result<bool> {
+		self.base.base.force_authoring()
+	}
+
+	fn disable_grandpa(&self) -> Result<bool> {
+		self.base.base.disable_grandpa()
+	}
+
+	fn max_runtime_instances(&self) -> Result<Option<usize>> {
+		self.base.base.max_runtime_instances()
+	}
+
+	fn announce_block(&self) -> Result<bool> {
+		self.base.base.announce_block()
+	}
+
+	fn telemetry_endpoints(
+		&self,
+		chain_spec: &Box<dyn ChainSpec>,
+	) -> Result<Option<sc_telemetry::TelemetryEndpoints>> {
+		self.base.base.telemetry_endpoints(chain_spec)
 	}
 }

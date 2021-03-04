@@ -1,5 +1,4 @@
 use cumulus_primitives_core::ParaId;
-use hex_literal::hex;
 use sc_chain_spec::{ChainSpecExtension, ChainSpecGroup};
 use sc_service::ChainType;
 use serde::{Deserialize, Serialize};
@@ -8,12 +7,12 @@ use sp_runtime::traits::{IdentifyAccount, Verify};
 
 use canvas_runtime::{
 	AccountId, BalancesConfig, GenesisConfig,
-	SudoConfig, SystemConfig, WASM_BINARY, Signature,
+	SudoConfig, SystemConfig, Signature,
 	ContractsConfig,
 };
 
 /// Specialized `ChainSpec` for the normal parachain runtime.
-pub type ChainSpec = sc_service::GenericChainSpec<parachain_runtime::GenesisConfig, Extensions>;
+pub type ChainSpec = sc_service::GenericChainSpec<canvas_runtime::GenesisConfig, Extensions>;
 
 /// Helper function to generate a crypto pair from seed
 pub fn get_from_seed<TPublic: Public>(seed: &str) -> <TPublic::Pair as Pair>::Public {
@@ -49,18 +48,12 @@ pub fn get_account_id_from_seed<TPublic: Public>(seed: &str) -> AccountId
 	AccountPublic::from(get_from_seed::<TPublic>(seed)).into_account()
 }
 
-pub fn development_config() -> Result<ChainSpec, String> {
-	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
-
+pub fn development_config(id: ParaId) -> Result<ChainSpec, String> {
 	Ok(ChainSpec::from_genesis(
 		"Development",
 		"dev",
 		ChainType::Development,
 		move || testnet_genesis(
-			wasm_binary,
-			vec![
-				authority_keys_from_seed("Alice"),
-			],
 			get_account_id_from_seed::<sr25519::Public>("Alice"),
 			vec![
 				get_account_id_from_seed::<sr25519::Public>("Alice"),
@@ -68,75 +61,91 @@ pub fn development_config() -> Result<ChainSpec, String> {
 				get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
 				get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
 			],
+			id,
 			true,
 		),
 		vec![],
 		None,
 		None,
 		None,
-		None,
+		Extensions {
+			relay_chain: "rococo-dev".into(),
+			para_id: id.into(),
+		},
 	))
 }
 
-pub fn testnet_config() -> Result<ChainSpec, String> {
-	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
-
-	Ok(ChainSpec::from_genesis(
-		"Canvas Testnet 1",
-		"canvas_testnet1",
-		ChainType::Live,
-		move || testnet_genesis(
-			wasm_binary,
-			testnet_authorities(),
-			testnet_root(),
-			vec![testnet_root()],
-			true,
-		),
-		vec![
-			"/ip4/35.233.19.96/tcp/30333/p2p/QmNvYhAZSBtahCqCXznYiq8e24Yes1GraPFYCc3DyA5f3z".parse()
-				.expect("MultiaddrWithPeerId"),
-			"/ip4/35.205.110.21/tcp/30333/p2p/QmPKFc9B2oeQFc5oxbNsRENwSYibzzafKmcHs9wBZCJH4U".parse()
-				.expect("MultiaddrWithPeerId"),
-		],
+pub fn local_testnet_config(id: ParaId) -> ChainSpec {
+	ChainSpec::from_genesis(
+		// Name
+		"Local Testnet",
+		// ID
+		"local_testnet",
+		ChainType::Local,
+		move || {
+			testnet_genesis(
+				get_account_id_from_seed::<sr25519::Public>("Alice"),
+				vec![
+					get_account_id_from_seed::<sr25519::Public>("Alice"),
+					get_account_id_from_seed::<sr25519::Public>("Bob"),
+					get_account_id_from_seed::<sr25519::Public>("Charlie"),
+					get_account_id_from_seed::<sr25519::Public>("Dave"),
+					get_account_id_from_seed::<sr25519::Public>("Eve"),
+					get_account_id_from_seed::<sr25519::Public>("Ferdie"),
+					get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Charlie//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Dave//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Eve//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Ferdie//stash"),
+				],
+				id,
+				true,
+			)
+		},
+		vec![],
 		None,
-		Some("prc"),
 		None,
-		None
-	))
+		None,
+		Extensions {
+			relay_chain: "rococo-local".into(),
+			para_id: id.into(),
+		},
+	)
 }
 
 fn testnet_genesis(
-	wasm_binary: &[u8],
-	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
+	parachain_id: ParaId,
 	enable_println: bool
 ) -> GenesisConfig {
 
 	GenesisConfig {
 		frame_system: Some(SystemConfig {
 			// Add Wasm runtime to storage.
-			code: wasm_binary.to_vec(),
+			code: canvas_runtime::WASM_BINARY
+				.expect("WASM binary was not build, please build it!")
+				.to_vec(),
 			changes_trie_config: Default::default(),
 		}),
 		pallet_balances: Some(BalancesConfig {
 			// Configure endowed accounts with initial balance of 1 << 60.
-			balances: endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
+			balances: endowed_accounts
+				.iter()
+				.cloned()
+				.map(|k|(k, 1 << 60))
+				.collect(),
 		}),
-		pallet_aura: Some(AuraConfig {
-			authorities: initial_authorities.iter().map(|x| (x.0.clone())).collect(),
-		}),
-		pallet_grandpa: Some(GrandpaConfig {
-			authorities: initial_authorities.iter().map(|x| (x.1.clone(), 1)).collect(),
-		}),
+		parachain_info: Some(canvas_runtime::ParachainInfoConfig { parachain_id }),
 		pallet_sudo: Some(SudoConfig {
 			// Assign network admin rights.
 			key: root_key,
 		}),
 		pallet_contracts: Some(ContractsConfig {
 			current_schedule: pallet_contracts::Schedule {
-					enable_println,
-					..Default::default()
+				enable_println,
+				..Default::default()
 			},
 		}),
 	}
