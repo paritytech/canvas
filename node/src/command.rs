@@ -75,7 +75,6 @@ impl SubstrateCli for Cli {
 		2020
 	}
 
-
 	fn load_spec(&self, id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
 		load_spec(id, self.run.parachain_id.unwrap_or(300).into())
 	}
@@ -109,7 +108,6 @@ impl SubstrateCli for RelayChainCli {
 	fn copyright_start_year() -> i32 {
 		2020
 	}
-
 
 	fn load_spec(&self, id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
 		polkadot_cli::Cli::from_iter([RelayChainCli::executable_name().to_string()].iter())
