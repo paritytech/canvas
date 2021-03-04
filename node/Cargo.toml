@@ -56,11 +56,11 @@ pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrat
 pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" , branch = "master" }
 
 # Cumulus dependencies
-cumulus-client-consensus-relay-chain = { git = "https://github.com/paritytech/cumulus", branch = "aj-update-substrate-polkadot" }
-cumulus-client-collator = { git = "https://github.com/paritytech/cumulus", branch = "aj-update-substrate-polkadot" }
-cumulus-client-service = { git = "https://github.com/paritytech/cumulus", branch = "aj-update-substrate-polkadot" }
-cumulus-client-network = { git = "https://github.com/paritytech/cumulus", branch = "aj-update-substrate-polkadot" }
-cumulus-primitives-core = { git = "https://github.com/paritytech/cumulus", branch = "aj-update-substrate-polkadot" }
+cumulus-client-consensus-relay-chain = { git = "https://github.com/paritytech/cumulus", branch = "master" }
+cumulus-client-collator = { git = "https://github.com/paritytech/cumulus", branch = "master" }
+cumulus-client-service = { git = "https://github.com/paritytech/cumulus", branch = "master" }
+cumulus-client-network = { git = "https://github.com/paritytech/cumulus", branch = "master" }
+cumulus-primitives-core = { git = "https://github.com/paritytech/cumulus", branch = "master" }
 
 # Polkadot dependencies
 polkadot-primitives = { git = "https://github.com/paritytech/polkadot", branch = "master" }
