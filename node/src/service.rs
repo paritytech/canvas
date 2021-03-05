@@ -22,7 +22,7 @@ use cumulus_client_service::{
 	prepare_node_config, start_collator, start_full_node, StartCollatorParams, StartFullNodeParams,
 };
 use cumulus_primitives_core::ParaId;
-use canvas_runtime::{Block, RuntimeApi};
+use canvas_runtime::{opaque::Block, RuntimeApi};
 use polkadot_primitives::v0::CollatorPair;
 use sc_executor::native_executor_instance;
 pub use sc_executor::NativeExecutor;
@@ -152,14 +152,16 @@ async fn start_node_impl(
 
 	let rpc_extensions_builder = {
 		let client = client.clone();
+		let pool = transaction_pool.clone();
 
-		Box::new(move |_, _| {
-			let mut io = jsonrpc_core::IoHandler::default();
-			// Contracts RPC API extension
-			io.extend_with(
-				pallet_contracts_rpc::ContractsApi::to_delegate(pallet_contracts_rpc::Contracts::new(client.clone()))
-			);
-			io
+		Box::new(move |deny_unsafe, _| {
+			let deps = crate::rpc::FullDeps {
+				client: client.clone(),
+				pool: pool.clone(),
+				deny_unsafe,
+			};
+
+			crate::rpc::create_full(deps)
 		})
 	};
 
