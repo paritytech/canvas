@@ -22,9 +22,8 @@ use cumulus_client_service::{
 	prepare_node_config, start_collator, start_full_node, StartCollatorParams, StartFullNodeParams,
 };
 use cumulus_primitives_core::ParaId;
-use canvas_runtime::RuntimeApi;
+use canvas_runtime::{Block, RuntimeApi};
 use polkadot_primitives::v0::CollatorPair;
-use canvas_runtime::Block;
 use sc_executor::native_executor_instance;
 pub use sc_executor::NativeExecutor;
 use sc_service::{Configuration, PartialComponents, Role, TFullBackend, TFullClient, TaskManager};
@@ -101,21 +100,13 @@ pub fn new_partial(
 ///
 /// This is the actual implementation that is abstract over the executor and the runtime api.
 #[sc_tracing::logging::prefix_logs_with("Parachain")]
-async fn start_node_impl<RB>(
+async fn start_node_impl(
 	parachain_config: Configuration,
 	collator_key: CollatorPair,
 	polkadot_config: Configuration,
 	id: ParaId,
 	validator: bool,
-	rpc_ext_builder: RB,
-) -> sc_service::error::Result<(TaskManager, Arc<TFullClient<Block, RuntimeApi, Executor>>)>
-	where
-		RB: Fn(
-			Arc<TFullClient<Block, RuntimeApi, Executor>>,
-		) -> jsonrpc_core::IoHandler<sc_rpc::Metadata>
-		+ Send
-		+ 'static,
-{
+) -> sc_service::error::Result<(TaskManager, Arc<TFullClient<Block, RuntimeApi, Executor>>)> {
 	if matches!(parachain_config.role, Role::Light) {
 		return Err("Light client not supported!".into());
 	}
@@ -159,8 +150,18 @@ async fn start_node_impl<RB>(
 			block_announce_validator_builder: Some(Box::new(|_| block_announce_validator)),
 		})?;
 
-	let rpc_client = client.clone();
-	let rpc_extensions_builder = Box::new(move |_, _| rpc_ext_builder(rpc_client.clone()));
+	let rpc_extensions_builder = {
+		let client = client.clone();
+
+		Box::new(move |_, _| {
+			let mut io = jsonrpc_core::IoHandler::default();
+			// Contracts RPC API extension
+			io.extend_with(
+				pallet_contracts_rpc::ContractsApi::to_delegate(pallet_contracts_rpc::Contracts::new(client.clone()))
+			);
+			io
+		})
+	};
 
 	let telemetry_span = TelemetrySpan::new();
 	let _telemetry_span_entered = telemetry_span.enter();
@@ -249,7 +250,6 @@ pub async fn start_node(
 		polkadot_config,
 		id,
 		validator,
-		|_| Default::default(),
 	)
 		.await
 }
