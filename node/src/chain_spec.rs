@@ -122,31 +122,31 @@ fn testnet_genesis(
 ) -> GenesisConfig {
 
 	GenesisConfig {
-		frame_system: Some(SystemConfig {
+		frame_system: SystemConfig {
 			// Add Wasm runtime to storage.
 			code: canvas_runtime::WASM_BINARY
 				.expect("WASM binary was not build, please build it!")
 				.to_vec(),
 			changes_trie_config: Default::default(),
-		}),
-		pallet_balances: Some(BalancesConfig {
+		},
+		pallet_balances: BalancesConfig {
 			// Configure endowed accounts with initial balance of 1 << 60.
 			balances: endowed_accounts
 				.iter()
 				.cloned()
 				.map(|k|(k, 1 << 60))
 				.collect(),
-		}),
-		parachain_info: Some(canvas_runtime::ParachainInfoConfig { parachain_id }),
-		pallet_sudo: Some(SudoConfig {
+		},
+		parachain_info: canvas_runtime::ParachainInfoConfig { parachain_id },
+		pallet_sudo: SudoConfig {
 			// Assign network admin rights.
 			key: root_key,
-		}),
-		pallet_contracts: Some(ContractsConfig {
+		},
+		pallet_contracts: ContractsConfig {
 			current_schedule: pallet_contracts::Schedule {
 				enable_println,
 				..Default::default()
 			},
-		}),
+		},
 	}
 }
