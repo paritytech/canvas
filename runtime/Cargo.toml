@@ -11,7 +11,7 @@ targets = ["x86_64-unknown-linux-gnu"]
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false, features = ["derive"] }
 serde = { version = "1.0.101", optional = true, features = ["derive"] }
 
-parachain-info = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
+parachain-info = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "rococo-v1" }
 
 # Substrate dependencies
 sp-std = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "rococo-v1" }
@@ -36,9 +36,9 @@ pallet-timestamp = { git = "https://github.com/paritytech/substrate", package = 
 pallet-transaction-payment = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment", default-features = false, branch = "rococo-v1" }
 
 # Cumulus dependencies
-cumulus-pallet-parachain-system = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
-cumulus-primitives-core = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
-cumulus-pallet-xcm-handler = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
+cumulus-pallet-parachain-system = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "rococo-v1" }
+cumulus-primitives-core = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "rococo-v1" }
+cumulus-pallet-xcm-handler = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "rococo-v1" }
 
 # Polkadot dependencies
 polkadot-parachain = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "rococo-v1" }
