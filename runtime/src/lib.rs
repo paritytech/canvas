@@ -331,6 +331,7 @@ impl cumulus_pallet_xcm_handler::Config for Runtime {
 	type UpwardMessageSender = ParachainSystem;
 	type HrmpMessageSender = ParachainSystem;
     type SendXcmOrigin = EnsureRoot<AccountId>;
+	type AccountIdConverter = LocationConverter;
 }
 
 parameter_types! {
@@ -474,7 +475,7 @@ impl_runtime_apis! {
 		}
 
 		fn random_seed() -> <Block as BlockT>::Hash {
-			RandomnessCollectiveFlip::random_seed()
+			RandomnessCollectiveFlip::random_seed().0
 		}
 	}
 
