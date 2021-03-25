@@ -52,6 +52,7 @@ pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrat
 pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" , branch = "rococo-v1" }
 
 # Cumulus dependencies
+cumulus-client-cli = { git = "https://github.com/paritytech/cumulus", branch = "rococo-v1" }
 cumulus-client-consensus-relay-chain = { git = "https://github.com/paritytech/cumulus", branch = "rococo-v1" }
 cumulus-client-collator = { git = "https://github.com/paritytech/cumulus", branch = "rococo-v1" }
 cumulus-client-service = { git = "https://github.com/paritytech/cumulus", branch = "rococo-v1" }
