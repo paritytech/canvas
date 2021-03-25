@@ -45,12 +45,8 @@ pallet-contracts = { git = "https://github.com/paritytech/substrate", package = 
 
 # These dependencies are used for the node's RPCs
 jsonrpc-core = "15.1.0"
-#sc-rpc = { git = "https://github.com/paritytech/substrate", branch = "rococo-v1", package = "sc-rpc" }
 sp-api = { git = "https://github.com/paritytech/substrate", branch = "rococo-v1" }
 sc-rpc-api = { git = "https://github.com/paritytech/substrate", branch = "rococo-v1" }
-#sp-blockchain = { git = "https://github.com/paritytech/substrate", branch = "rococo-v1", package = "sp-blockchain" }
-#sp-block-builder = { git = "https://github.com/paritytech/substrate", branch = "rococo-v1", package = "sp-block-builder" }
-#sc-basic-authorship = { git = "https://github.com/paritytech/substrate", branch = "rococo-v1", package = "sc-basic-authorship" }
 substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", package = "substrate-frame-rpc-system" , branch = "rococo-v1" }
 pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment-rpc" , branch = "rococo-v1" }
 pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" , branch = "rococo-v1" }
