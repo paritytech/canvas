@@ -10,7 +10,7 @@ The master branch is currently tracking substrate master in order to include var
 If it fails to build/install, use the cargo `--locked` flag to ensures that the most recent working version of
  substrate will be used.
 
-Latest commit confirmed working: https://github.com/paritytech/substrate/tree/e6ac7e72c2251b8a23454c8cf0e3a2ad2c1ed566
+Latest commit confirmed working: https://github.com/paritytech/substrate/tree/c6ba7933c840cd262cca4b95cfdfa93452e83f84
 
 ## Usage
 
