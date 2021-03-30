@@ -31,3 +31,13 @@ or
 ```
 cargo run --release -- --chain=./res/testnet-1.json
 ```
+
+## Running as a parachain
+
+An experimental implementation which allows running `canvas-node` as a parachain, tracking the `rococo-v1` 
+branches of
+[`substrate`](https://github.com/paritytech/substrate/tree/rococo-v1), 
+[`polkadot`](https://github.com/paritytech/polkadot/tree/rococo-v1) and 
+[`cumulus`](https://github.com/paritytech/cumulus/tree/rococo-v1) is available on our own 
+[`rococo-v1`](https://github.com/paritytech/canvas-node/tree/rococo-v1)
+branch.
