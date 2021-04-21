@@ -1,43 +1,57 @@
 # canvas-node
 
-Node implementation for Canvas, a Substrate chain for smart contracts.
+This is a node implementation for Canvas, a [Substrate](https://github.com/paritytech/substrate)
+chain for smart contracts.
+
+It uses Substrate's smart contract module ‒ the
+[`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
+pallet.
+
 
 ## Note
 
-The master branch is currently tracking substrate master in order to include various fixes. Therefore it may not
- build if there are breaking changes.
+The master branch is currently tracking Substrate master in order to include
+various fixes. Therefore, it may not build if there are breaking changes.
 
-If it fails to build/install, use the cargo `--locked` flag to ensures that the most recent working version of
- substrate will be used.
+## Installation
 
-Latest commit confirmed working: https://github.com/paritytech/substrate/tree/c6ba7933c840cd262cca4b95cfdfa93452e83f84
+Follow the [official installation steps](https://substrate.dev/docs/en/knowledgebase/getting-started/) 
+to set up all Substrate prerequisites.
+
+Afterwards you can install this node via
+
+```bash
+cargo install canvas-node --git https://github.com/paritytech/canvas-node.git --force
+```
+
+If it fails to build/install, add the cargo `--locked` flag. The installation process
+will then use the same versions as the `Cargo.lock` in this repository to ensure that the
+most recent working version of Substrate will be used.
+
+The latest confirmed working Substrate commit which will then be used is
+[c6ba7933c840cd262cca4b95cfdfa93452e83f84](https://github.com/paritytech/substrate/tree/c6ba7933c840cd262cca4b95cfdfa93452e83f84).
 
 ## Usage
 
-To run local dev node, do
+To run a local dev node execute
+```
+canvas --dev --tmp
+```
+The `--tmp` implies that a new chain will be created each time the command
+is executed. If you want to persist chain state across runs leave it away.
+
+To run `testnet-1` execute
 
 ```
-cargo run --release -- --dev
-```
-
-To run test net 1, do
-
-```
-cargo run --release
-```
-
-or
-
-```
-cargo run --release -- --chain=./res/testnet-1.json
+canvas --chain=./res/testnet-1.json
 ```
 
 ## Running as a parachain
 
-An experimental implementation which allows running `canvas-node` as a parachain, tracking the `rococo-v1` 
-branches of
+The [`rococo-v1`](https://github.com/paritytech/canvas-node/tree/rococo-v1) branch
+contains an experimental implementation which allows running `canvas-node` as a parachain.
+
+It tracks the `rococo-v1` branches of
 [`substrate`](https://github.com/paritytech/substrate/tree/rococo-v1), 
 [`polkadot`](https://github.com/paritytech/polkadot/tree/rococo-v1) and 
-[`cumulus`](https://github.com/paritytech/cumulus/tree/rococo-v1) is available on our own 
-[`rococo-v1`](https://github.com/paritytech/canvas-node/tree/rococo-v1)
-branch.
+[`cumulus`](https://github.com/paritytech/cumulus/tree/rococo-v1).
