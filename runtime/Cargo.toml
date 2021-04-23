@@ -46,7 +46,7 @@ pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate",
 pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false }
 
 [build-dependencies]
-substrate-wasm-builder = "4.0.0"
+substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", package = "substrate-wasm-builder" }
 
 [features]
 default = ["std"]
