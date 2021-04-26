@@ -1,6 +1,6 @@
 [package]
 name = "canvas-node"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Canvas"]
 build = "build.rs"
 edition = "2018"
@@ -42,7 +42,7 @@ substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", 
 pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment-rpc" }
 pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc" }
 
-canvas-runtime = { version = "0.1.0", path = "../runtime" }
+canvas-runtime = { version = "0.1.1", path = "../runtime" }
 
 [build-dependencies]
 substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", package = "substrate-build-script-utils" }
