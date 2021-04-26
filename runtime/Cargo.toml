@@ -5,10 +5,10 @@ authors = ["Canvas"]
 edition = "2018"
 
 [dependencies]
-frame-system = { git = "https://github.com/paritytech/substrate", branch = "master", package = "frame-system", default-features = false }
+frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
 
 [build-dependencies]
-substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", branch = "master", package = "substrate-wasm-builder" }
+substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", package = "substrate-wasm-builder" }
 
 [features]
 default = ["std"]
