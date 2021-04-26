@@ -1730,7 +1730,7 @@ dependencies = [
 [[package]]
 name = "sp-maybe-compressed-blob"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
+source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
 dependencies = [
  "ruzstd",
  "zstd",
@@ -1916,7 +1916,7 @@ dependencies = [
 [[package]]
 name = "substrate-wasm-builder"
 version = "4.0.0"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
+source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
 dependencies = [
  "ansi_term",
  "atty",
