@@ -470,7 +470,7 @@ dependencies = [
 [[package]]
 name = "frame-metadata"
 version = "13.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "parity-scale-codec",
  "serde",
@@ -481,7 +481,7 @@ dependencies = [
 [[package]]
 name = "frame-support"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "bitflags",
  "frame-metadata",
@@ -507,7 +507,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "Inflector",
  "frame-support-procedural-tools",
@@ -519,7 +519,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "frame-support-procedural-tools-derive",
  "proc-macro-crate 1.0.0",
@@ -531,7 +531,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools-derive"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -541,7 +541,7 @@ dependencies = [
 [[package]]
 name = "frame-system"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "frame-support",
  "impl-trait-for-tuples",
@@ -1587,7 +1587,7 @@ checksum = "fe0f37c9e8f3c5a4a66ad655a93c74daac4ad00c441533bf5c6e7990bb42604e"
 [[package]]
 name = "sp-application-crypto"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "parity-scale-codec",
  "serde",
@@ -1599,7 +1599,7 @@ dependencies = [
 [[package]]
 name = "sp-arithmetic"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "integer-sqrt",
  "num-traits",
@@ -1613,7 +1613,7 @@ dependencies = [
 [[package]]
 name = "sp-core"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "base58",
  "blake2-rfc",
@@ -1657,7 +1657,7 @@ dependencies = [
 [[package]]
 name = "sp-debug-derive"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1667,7 +1667,7 @@ dependencies = [
 [[package]]
 name = "sp-externalities"
 version = "0.9.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "environmental",
  "parity-scale-codec",
@@ -1678,7 +1678,7 @@ dependencies = [
 [[package]]
 name = "sp-inherents"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "parity-scale-codec",
  "parking_lot",
@@ -1690,7 +1690,7 @@ dependencies = [
 [[package]]
 name = "sp-io"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "futures",
  "hash-db",
@@ -1714,7 +1714,7 @@ dependencies = [
 [[package]]
 name = "sp-keystore"
 version = "0.9.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -1739,7 +1739,7 @@ dependencies = [
 [[package]]
 name = "sp-panic-handler"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "backtrace",
 ]
@@ -1747,7 +1747,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "either",
  "hash256-std-hasher",
@@ -1768,7 +1768,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
@@ -1785,7 +1785,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface-proc-macro"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "Inflector",
  "proc-macro-crate 1.0.0",
@@ -1797,7 +1797,7 @@ dependencies = [
 [[package]]
 name = "sp-staking"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "parity-scale-codec",
  "sp-runtime",
@@ -1807,7 +1807,7 @@ dependencies = [
 [[package]]
 name = "sp-state-machine"
 version = "0.9.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "hash-db",
  "log",
@@ -1829,12 +1829,12 @@ dependencies = [
 [[package]]
 name = "sp-std"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 
 [[package]]
 name = "sp-storage"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -1847,7 +1847,7 @@ dependencies = [
 [[package]]
 name = "sp-tracing"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "log",
  "parity-scale-codec",
@@ -1860,7 +1860,7 @@ dependencies = [
 [[package]]
 name = "sp-trie"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "hash-db",
  "memory-db",
@@ -1874,7 +1874,7 @@ dependencies = [
 [[package]]
 name = "sp-version"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -1886,7 +1886,7 @@ dependencies = [
 [[package]]
 name = "sp-wasm-interface"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate#4cbeeca68750d40c8899a3a0fb6058886034862d"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-debug-cargo-bug#22aed21006b3cdc5dd54892c664e79e2e55c25e4"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",

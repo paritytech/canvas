@@ -5,7 +5,7 @@ authors = ["Canvas"]
 edition = "2018"
 
 [dependencies]
-frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
+frame-system = { git = "https://github.com/paritytech/substrate", branch = "cmichi-debug-cargo-bug", package = "frame-system", default-features = false }
 
 [build-dependencies]
 substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", branch = "cmichi-debug-cargo-bug", package = "substrate-wasm-builder" }
