@@ -15,6 +15,16 @@ jobs:
       RUST_BACKTRACE: full
     steps:
       - uses: actions/checkout@master
+
+      # Necessary for the `prost_build` crate.
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+      - run: echo "$HOME/bin" >> $GITHUB_PATH
+      - run: echo "$HOME/go/bin" >> $GITHUB_PATH
+      - run: echo "/opt/hostedtoolcache/protoc/3.15.8/x64" >> $GITHUB_PATH
+      - run: echo $GITHUB_PATH
+      - run: protoc --version
+
       - name: Install nightly toolchain
         id: toolchain-nightly
         uses: actions-rs/toolchain@master
@@ -22,14 +32,14 @@ jobs:
           profile: minimal
           toolchain: nightly
           components: rust-src
+          target: wasm32-unknown-unknown
           override: true
       - name: Install stable toolchain
         id: toolchain-stable
         uses: actions-rs/toolchain@master
         with:
-          profile: complete
+          profile: minimal
           toolchain: stable
-          components: wasm32-unknown-unknown
           override: true
       - name: Rust Cache
         uses: Swatinem/rust-cache@v1.2.0
@@ -38,4 +48,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUSTTARGET: ${{ matrix.target }}
-          EXTRA_FILES: "README.md"
