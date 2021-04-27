@@ -4,47 +4,18 @@ on:
     types: [ created ]
 
 jobs:
-  release:
-    name: release ${{ matrix.target }}
+  get-rust-versions:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        target: [ x86_64-unknown-linux-musl ]
-    env:
-      RUST_BACKTRACE: full
+    container:
+      image: paritytech/ci-linux:production
     steps:
-      - uses: actions/checkout@master
-
-      # Necessary for the `prost_build` crate.
-      - name: Install Protoc
-        uses: arduino/setup-protoc@v1
-      - run: echo "$HOME/bin" >> $GITHUB_PATH
-      - run: echo "$HOME/go/bin" >> $GITHUB_PATH
-      - run: echo "/opt/hostedtoolcache/protoc/3.15.8/x64" >> $GITHUB_PATH
-      - run: echo $GITHUB_PATH
-      - run: protoc --version
-
-      - name: Install nightly toolchain
-        id: toolchain-nightly
-        uses: actions-rs/toolchain@master
+      - name: Checkout sources & submodules
+        uses: actions/checkout@master
         with:
-          profile: minimal
-          toolchain: nightly
-          components: rust-src
-          target: wasm32-unknown-unknown
-          override: true
-      - name: Install stable toolchain
-        id: toolchain-stable
-        uses: actions-rs/toolchain@master
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
+          fetch-depth: 1
+          submodules: recursive
+
       - name: Rust Cache
         uses: Swatinem/rust-cache@v1.2.0
-      - name: Compile and release
-        uses: rust-build/rust-build.action@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RUSTTARGET: ${{ matrix.target }}
+
+      - run: cargo build --release --bins
