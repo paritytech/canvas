@@ -6,6 +6,7 @@
 
 
 stages:
+    - publish
     - test
     - build
 
@@ -82,6 +83,40 @@ build:
       allow_failure: true
   script:
     - cargo build --release
+  after_script:
+    - mkdir -p ./artifacts/canvas/
+    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas/
+
+publish:
+  stage:                           publish
+  #needs:
+    #- job: build
+      #artifacts: true
+  <<:                              *docker-env
+  <<:                              *collect-artifacts
+  script:
+    - ls
+    - touch foo
+    - |
+        RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases" \
+           -H "Cookie: logged_in=no" \
+           -H "Authorization: token ${GITHUB_TOKEN}" \
+           -H "Content-Type: application/json; charset=utf-8" \
+           -d $'{
+               "tag_name": "${GIT_COMMIT_REF_NAME}",
+               "name": "${GIT_COMMIT_REF_NAME}",
+               "prerelease": true
+           }')
+    - echo $RESP
+    - ID=$(echo $RESP | jq .id)
+
+    - |
+      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$ID/assets?name=canvas" \
+         -H "Cookie: logged_in=no" \
+         -H "Authorization: token ${GITHUB_TOKEN}" \
+        --data-binary @"foo" \
+        -H "Content-Type: application/octet-stream"
+
   after_script:
     - mkdir -p ./artifacts/canvas/
     - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas/
