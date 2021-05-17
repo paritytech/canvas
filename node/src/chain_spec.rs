@@ -2,7 +2,6 @@ use sp_core::{Pair, Public, sr25519};
 use canvas_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature,
-	ContractsConfig,
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
@@ -78,7 +77,6 @@ pub fn development_config() -> Result<ChainSpec, String> {
 				get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
 				get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
 			],
-			true,
 		),
 		vec![],
 		None,
@@ -100,7 +98,6 @@ pub fn testnet_config() -> Result<ChainSpec, String> {
 			testnet_authorities(),
 			testnet_root(),
 			vec![testnet_root()],
-			true,
 		),
 		vec![
 			"/ip4/35.233.19.96/tcp/30333/p2p/QmNvYhAZSBtahCqCXznYiq8e24Yes1GraPFYCc3DyA5f3z".parse()
@@ -120,7 +117,6 @@ fn testnet_genesis(
 	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
-	enable_println: bool
 ) -> GenesisConfig {
 
 	GenesisConfig {
@@ -142,11 +138,6 @@ fn testnet_genesis(
 		pallet_sudo: SudoConfig {
 			// Assign network admin rights.
 			key: root_key,
-		},
-		pallet_contracts: ContractsConfig {
-			// println should only be enabled on development chains
-			current_schedule: pallet_contracts::Schedule::default()
-				.enable_println(enable_println),
 		},
 	}
 }
