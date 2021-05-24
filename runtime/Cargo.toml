@@ -49,7 +49,11 @@ pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substr
 substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", package = "substrate-wasm-builder" }
 
 [features]
-default = ["std"]
+default = [
+    "std",
+    # temporarily enable unstable contracts features by default, remove this before using on a production chain.
+    "contracts-unstable-interface",
+]
 std = [
     "codec/std",
     "frame-executive/std",
