@@ -39,19 +39,41 @@ pub fn authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
 	)
 }
 
-
 pub fn testnet_authorities() -> Vec<(AuraId, GrandpaId)> {
 	use sp_core::crypto::UncheckedInto;
-	vec![
+
+	// ./scripts/prepare-test-net.sh 2
+	let initial_authorities: Vec<(
+		AccountId,
+		AccountId,
+		AuraId,
+		GrandpaId,
+	)> = vec![
 		(
-			hex!("74608217b1709e1d3a4fe65b132db5c3f321e625026080833189661aa5e20712").unchecked_into(),
-			hex!("a5abc21ac95ae63dd6e61e5bec263ab46d1efe16d3dcc085d0de297318cb662d").unchecked_into(),
+			//5Dkp2xwztRtRkXdmLDJUm8wvdHWSApgYgJY3rB5brKZkWJPM
+			hex!["4ad2d854d1bc5bbfdf93b689cb1aa3986684126c2b16d86924019de6798b0971"].into(),
+			//5DvnJs3jM7sJkgfpVDxwu9GNmpFyzJSn2jG9w1hxBBWwqi92
+			hex!["526d7d3d5357d20e4cd75d1a452bd5b4903caf160f55d6bd19807efbdf165319"].into(),
+			//5GKFbTTgrVS4Vz1UWWHPqMZQNFWZtqo7H2KpCDyYhEL3aS26
+			hex!["bc09354c12c054c8f6b3da208485eacec4ac648bad348895273b37bab5a0937c"].unchecked_into(),
+			//5ErzrnqhfgXJeuFsRvwNsrbqBAbiePoqeeDZZYzaTDxwtANY
+			hex!["7bc6fd5dc6e832b294bbf2ae21df67f990a526793a9ded12a5e54e40a5a94d1d"].unchecked_into(),
 		),
 		(
-			hex!("44f3876fe4f653533c65e79461a476b8d6a107fb71b6ec0f3485bb53b4e7b842").unchecked_into(),
-			hex!("281be34a71b661b257153e1145522fd0820cfff6a3601b40e7f85d3bc155240d").unchecked_into(),
+			//5Gnadix7NJH2K7Akr5hVKyXqtYqTsQJbXnKFFt274MsG8n7h
+			hex!["d0e0ece66fb861b82383e85326a2e179316021105492820ca544ea8743620b59"].into(),
+			//5FADgcPNMtcLtrmd16rZk6HJfDWqtEDT4N3jMSqtFo8tJhRr
+			hex!["88e95527362f479ebf30502db2f7d88329e034f5d77aed585042c548fa93ae01"].into(),
+			//5EPRJHm2GpABVWcwnAujcrhnrjFZyDGd5TwKFzkBoGgdRyv2
+			hex!["66be63b7bcbfb91040e5248e2d1ceb822cf219c57848c5924ffa3a1f8e67ba72"].unchecked_into(),
+			//5HNx7nq3brkA3St9CAU1KijnscvAsa5ornNuk1H1iSuXy1nd
+			hex!["eb17972691ec3a7d09a316baddc8838362ade2c12a21a506d697903e16577bfd"].unchecked_into(),
 		),
-	]
+    ];
+    initial_authorities
+        .into_iter()
+        .map(|(_, _, aura_id, grandpa_id)| (aura_id, grandpa_id))
+        .collect()
 }
 
 pub fn testnet_root() -> AccountId {
@@ -88,26 +110,42 @@ pub fn development_config() -> Result<ChainSpec, String> {
 
 pub fn testnet_config() -> Result<ChainSpec, String> {
 	let wasm_binary = WASM_BINARY.ok_or("Development wasm binary not available".to_string())?;
+	let mut properties = sc_service::Properties::new();
+	properties.insert("tokenSymbol".to_string(), "CAN".into());
+	properties.insert("tokenDecimals".to_string(), 12.into());
+	properties.insert("ss58Format".to_string(), 42.into());
 
 	Ok(ChainSpec::from_genesis(
-		"Canvas Testnet 1",
-		"canvas_testnet1",
+		"Canvas Testnet",
+		"canvas_testnet2",
 		ChainType::Live,
 		move || testnet_genesis(
 			wasm_binary,
 			testnet_authorities(),
 			testnet_root(),
-			vec![testnet_root()],
+			vec![
+				testnet_root(),
+
+				// AccountId of the Canvas Testnet faucet
+				hex!("18c64aa111a8a0e6e4eed41d6d906c7614d745e48be3cfc13b6128e1d51f4405").into(),
+
+				// AccountId of an account which `ink-waterfall` uses for automated testing
+				hex!("0e47e2344d523c3cc5c34394b0d58b9a4200e813a038e6c5a6163cc07d70b069").into(),
+			],
 		),
 		vec![
-			"/ip4/35.233.19.96/tcp/30333/p2p/QmNvYhAZSBtahCqCXznYiq8e24Yes1GraPFYCc3DyA5f3z".parse()
+			"/ip4/34.90.191.237/tcp/30333/p2p/12D3KooWKg3Rpxcr9oJ8n6khoxpGKWztCZydtUZk2cojHqnfLrpj".parse()
 				.expect("MultiaddrWithPeerId"),
-			"/ip4/35.205.110.21/tcp/30333/p2p/QmPKFc9B2oeQFc5oxbNsRENwSYibzzafKmcHs9wBZCJH4U".parse()
+			"/ip4/35.204.68.28/tcp/30333/p2p/12D3KooWPEXYrz8tHU3nDtPoPw4V7ou5dzMEWSTuUj7vaWiYVAVh".parse()
+				.expect("MultiaddrWithPeerId"),
+			"/ip4/34.90.139.15/tcp/30333/p2p/12D3KooWEVU8AFNary4nP4qEnEcwJaRuy59Wefekzdu9pKbnVEhk".parse()
+				.expect("MultiaddrWithPeerId"),
+			"/ip4/35.204.99.97/tcp/30333/p2p/12D3KooWP6pV3ZmcXzGDjv8ZMgA6nZxfAKDxSz4VNiLx6vVCQgJX".parse()
 				.expect("MultiaddrWithPeerId"),
 		],
 		None,
 		Some("prc"),
-		None,
+		Some(properties),
 		None
 	))
 }
