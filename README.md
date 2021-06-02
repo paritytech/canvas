@@ -29,7 +29,7 @@ will then use the same versions as the `Cargo.lock` in this repository to ensure
 most recent working version of Substrate will be used.
 
 The latest confirmed working Substrate commit which will then be used is
-[fc410e8f85e3bac5a081d5f772be5658c95c978a](https://github.com/paritytech/substrate/tree/fc410e8f85e3bac5a081d5f772be5658c95c978a).
+[4652f9e00f0e3079b9ed40ff806829f17fd1ddcf](https://github.com/paritytech/substrate/tree/4652f9e00f0e3079b9ed40ff806829f17fd1ddcf).
 
 ## Usage
 
