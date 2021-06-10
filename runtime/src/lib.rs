@@ -121,7 +121,6 @@ pub const CANS: Balance = CENTS;
 
 // Prints debug output of the `contracts` pallet to stdout if the node is
 // started with `-lruntime::contracts=debug`.
-// Remove this before using on a production chain!
 pub const CONTRACTS_DEBUG_OUTPUT: bool = true;
 
 const fn deposit(items: u32, bytes: u32) -> Balance {
