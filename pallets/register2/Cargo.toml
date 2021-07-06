@@ -1,0 +1,38 @@
+[package]
+authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
+description = 'FRAME pallet template for defining custom runtime logic.'
+edition = '2018'
+homepage = 'https://substrate.dev'
+license = 'Unlicense'
+name = 'compose-register2'
+repository = 'https://github.com/substrate-developer-hub/substrate-node-template/'
+version = '0.1.0'
+
+[package.metadata.docs.rs]
+targets = ['x86_64-unknown-linux-gnu']
+
+# # alias "parity-scale-code" to "codec"
+# [dependencies.codec]
+# package = 'parity-scale-codec'
+# version = '2.0.0'
+# default-features = false
+# features = ['derive']
+
+[dependencies]
+codec = { package = 'parity-scale-codec', version = '2.0.0', default-features = false, features = ['derive'] }
+frame-support = { version = "3.0.0", git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false }
+frame-system = { version = "3.0.0", git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
+
+[dev-dependencies]
+serde = { version = "1.0.119" }
+sp-core = { version = "3.0.0", git = "https://github.com/paritytech/substrate", package = "sp-core", default-features = false }
+sp-io = { version = "3.0.0", git = "https://github.com/paritytech/substrate", package = "sp-io", default-features = false }
+sp-runtime = { version = "3.0.0", git = "https://github.com/paritytech/substrate", package = "sp-runtime", default-features = false }
+
+[features]
+default = ['std']
+std = [
+    'codec/std',
+    'frame-support/std',
+    'frame-system/std',
+]

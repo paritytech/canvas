@@ -2,7 +2,7 @@
 
 use std::{sync::Arc, time::Duration};
 use sc_client_api::{ExecutorProvider, RemoteBackend};
-use canvas_runtime::{self, opaque::Block, RuntimeApi};
+use compose_runtime::{self, opaque::Block, RuntimeApi};
 use sc_service::{error::Error as ServiceError, Configuration, TaskManager};
 use sc_executor::native_executor_instance;
 pub use sc_executor::NativeExecutor;
@@ -16,8 +16,8 @@ use sp_consensus::SlotData;
 // Our native executor instance.
 native_executor_instance!(
 	pub Executor,
-	canvas_runtime::api::dispatch,
-	canvas_runtime::native_version,
+	compose_runtime::api::dispatch,
+	compose_runtime::native_version,
 	frame_benchmarking::benchmarking::HostFunctions,
 );
 

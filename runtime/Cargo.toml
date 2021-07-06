@@ -1,7 +1,7 @@
 [package]
-name = "canvas-runtime"
+name = "compose-runtime"
 version = "0.1.0"
-authors = ["Canvas"]
+authors = ["Compose"]
 edition = "2018"
 
 [package.metadata.docs.rs]
@@ -44,6 +44,8 @@ pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/parityt
 pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts", default-features = false }
 pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-primitives", default-features = false }
 pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false }
+
+compose-register2 = { version = "0.1.0", path = "../pallets/register2", default-features = false }
 
 [build-dependencies]
 substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", package = "substrate-wasm-builder" }

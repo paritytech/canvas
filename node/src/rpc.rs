@@ -7,7 +7,7 @@
 
 use std::sync::Arc;
 
-use canvas_runtime::{opaque::Block, AccountId, Balance, BlockNumber, Hash, Index};
+use compose_runtime::{opaque::Block, AccountId, Balance, BlockNumber, Hash, Index};
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 use sp_api::ProvideRuntimeApi;
 use sp_blockchain::{Error as BlockChainError, HeaderMetadata, HeaderBackend};

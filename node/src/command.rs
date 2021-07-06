@@ -57,7 +57,7 @@ impl SubstrateCli for Cli {
 	}
 
 	fn native_runtime_version(_: &Box<dyn ChainSpec>) -> &'static RuntimeVersion {
-		&canvas_runtime::VERSION
+		&compose_runtime::VERSION
 	}
 }
 

@@ -343,6 +343,10 @@ impl pallet_sudo::Config for Runtime {
 
 impl pallet_randomness_collective_flip::Config for Runtime {}
 
+impl compose_register2::Config for Runtime{
+	type Event = Event;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -359,6 +363,7 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment::{Pallet, Storage},
 		Sudo: pallet_sudo::{Pallet, Call, Config<T>, Storage, Event<T>},
 		Contracts: pallet_contracts::{Pallet, Call, Storage, Event<T>},
+		ComposeRegister2: compose_register2::{Pallet, Call, Storage, Event<T>},
 	}
 );
 

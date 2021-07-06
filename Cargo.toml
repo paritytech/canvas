@@ -2,6 +2,7 @@
 members = [
     'node',
     'runtime',
+    'pallets/register2',
 ]
 [profile.release]
 panic = 'unwind'

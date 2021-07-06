@@ -1,7 +1,7 @@
 [package]
-name = "canvas-node"
+name = "compose-node"
 version = "0.1.0"
-authors = ["Canvas"]
+authors = ["Compose"]
 build = "build.rs"
 edition = "2018"
 
@@ -47,7 +47,7 @@ pallet-contracts-rpc = { git = "https://github.com/paritytech/substrate", packag
 frame-benchmarking = { git = "https://github.com/paritytech/substrate", package = "frame-benchmarking" }
 frame-benchmarking-cli = { git = "https://github.com/paritytech/substrate", package = "frame-benchmarking-cli" }
 
-canvas-runtime = { version = "0.1.0", path = "../runtime" }
+compose-runtime = { version = "0.1.0", path = "../runtime" }
 
 [build-dependencies]
 substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", package = "substrate-build-script-utils" }
