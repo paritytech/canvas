@@ -4,7 +4,7 @@ description = 'FRAME pallet template for defining custom runtime logic.'
 edition = '2018'
 homepage = 'https://substrate.dev'
 license = 'Unlicense'
-name = 'compose-register2'
+name = 'generic-pallet-v1'
 repository = 'https://github.com/substrate-developer-hub/substrate-node-template/'
 version = '0.1.0'
 

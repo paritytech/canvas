@@ -3,7 +3,7 @@ members = [
     'node',
     'runtime',
     'pallets/register',
-    # 'pallets/register2',
+    'pallets/generic-pallet-v1',
     # 'pallets/register3',
 ]
 [profile.release]

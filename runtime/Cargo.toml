@@ -45,9 +45,8 @@ pallet-contracts = { git = "https://github.com/paritytech/substrate", package = 
 pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-primitives", default-features = false }
 pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false }
 
-# compose-register = { version = "0.1.0", path = "../pallets/register", default-features = false }
-# compose-register2 = { version = "0.1.0", path = "../pallets/register2", default-features = false }
 compose-register = { version = "0.1.0", path = "../pallets/register", default-features = false }
+generic-pallet-v1 = { version = "0.1.0", path = "../pallets/generic-pallet-v1", default-features = false }
 
 [build-dependencies]
 substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", package = "substrate-wasm-builder" }
@@ -93,8 +92,7 @@ std = [
     "pallet-contracts-rpc-runtime-api/std",
 
     "compose-register/std",
-    # "compose-register2/std",
-    # "compose-register3/std",
+    "generic-pallet-v1/std",
 ]
 # Make contract callable functions marked as __unstable__ available. Do not enable
 # on live chains as those are subject to change.

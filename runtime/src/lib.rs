@@ -348,6 +348,10 @@ parameter_types! {
 	pub const MaxRouteByteSize: u32 = 512;
 }
 
+impl generic_pallet_v1::Config for Runtime {
+	type Event = Event;
+}
+
 impl compose_register::Config for Runtime {
 	type Event = Event;
 	type MaxDomainByteSize = MaxDomainByteSize;
@@ -371,8 +375,7 @@ construct_runtime!(
 		Sudo: pallet_sudo::{Pallet, Call, Config<T>, Storage, Event<T>},
 		Contracts: pallet_contracts::{Pallet, Call, Storage, Event<T>},
 		ComposeRegister: compose_register::{Pallet, Call, Storage, Event<T>},
-		// ComposeRegister2: compose_register2::{Pallet, Call, Event<T>},
-		// ComposeRegister3: compose_register3::{Pallet, Call, Event<T>},
+		GenericPalletV1: generic_pallet_v1::{Pallet, Call, Storage, Event<T>},
 	}
 );
 
