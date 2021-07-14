@@ -53,5 +53,5 @@ compose-runtime = { version = "0.1.0", path = "../runtime" }
 substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", package = "substrate-build-script-utils" }
 
 [[bin]]
-name = "canvas"
+name = "compose"
 path = "src/main.rs"

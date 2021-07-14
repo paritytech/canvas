@@ -1,0 +1,37 @@
+[package]
+name = "compose-register"
+version = "0.1.0"
+authors = ["jeflika9"]
+edition = "2018"
+license = "Apache-2.0"
+homepage = "https://github.com/jeflika9"
+repository = "https://github.com/jeflika9/compose-substrate"
+description = "Pallet for registering composable smart contracts"
+readme = "README.md"
+
+[dependencies]
+serde = { version = "1.0.119", features = ["derive"] }
+codec = { package = "parity-scale-codec", version = "2.1.1", default-features = false, features = ["derive"] }
+frame-support = { git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false }
+frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
+sp-core = { git = "https://github.com/paritytech/substrate", package = "sp-core", default-features = false }
+sp-io = { git = "https://github.com/paritytech/substrate", package = "sp-io", default-features = false }
+sp-runtime = { git = "https://github.com/paritytech/substrate", package = "sp-runtime", default-features = false }
+sp-sandbox = { git = "https://github.com/paritytech/substrate", package = "sp-sandbox", default-features = false }
+sp-std = { git = "https://github.com/paritytech/substrate", package = "sp-std", default-features = false }
+
+pallet-balances = { git = "https://github.com/paritytech/substrate", package = "pallet-balances", default-features = false }
+
+[features]
+default = ["std"]
+std = [
+	"codec/std",
+	"frame-support/std",
+	"frame-system/std",
+	"sp-core/std",
+	"sp-io/std",
+	"sp-runtime/std",
+	"sp-sandbox/std",
+	"sp-std/std",
+	"pallet-balances/std"
+]

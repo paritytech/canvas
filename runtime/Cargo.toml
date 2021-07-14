@@ -45,7 +45,9 @@ pallet-contracts = { git = "https://github.com/paritytech/substrate", package = 
 pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-primitives", default-features = false }
 pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false }
 
-compose-register2 = { version = "0.1.0", path = "../pallets/register2", default-features = false }
+# compose-register = { version = "0.1.0", path = "../pallets/register", default-features = false }
+# compose-register2 = { version = "0.1.0", path = "../pallets/register2", default-features = false }
+compose-register = { version = "0.1.0", path = "../pallets/register", default-features = false }
 
 [build-dependencies]
 substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", package = "substrate-wasm-builder" }
@@ -58,17 +60,8 @@ default = [
 ]
 std = [
     "codec/std",
-    "frame-executive/std",
-    "frame-support/std",
-    "pallet-aura/std",
-    "pallet-balances/std",
-    "pallet-grandpa/std",
-    "pallet-randomness-collective-flip/std",
-    "pallet-sudo/std",
-    "pallet-timestamp/std",
-    "pallet-transaction-payment/std",
-    "pallet-transaction-payment-rpc-runtime-api/std",
     "serde",
+
     "sp-api/std",
     "sp-block-builder/std",
     "sp-consensus-aura/std",
@@ -80,11 +73,28 @@ std = [
     "sp-std/std",
     "sp-transaction-pool/std",
     "sp-version/std",
+
+    "frame-executive/std",
+    "frame-support/std",
     "frame-system/std",
+    "pallet-aura/std",
+    "pallet-balances/std",
+    "pallet-grandpa/std",
+    "pallet-randomness-collective-flip/std",
+    "pallet-sudo/std",
+    "pallet-timestamp/std",
+    "pallet-transaction-payment/std",
+
     "frame-system-rpc-runtime-api/std",
+    "pallet-transaction-payment-rpc-runtime-api/std",
+    
     "pallet-contracts/std",
     "pallet-contracts-primitives/std",
     "pallet-contracts-rpc-runtime-api/std",
+
+    "compose-register/std",
+    # "compose-register2/std",
+    # "compose-register3/std",
 ]
 # Make contract callable functions marked as __unstable__ available. Do not enable
 # on live chains as those are subject to change.

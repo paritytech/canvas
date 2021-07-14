@@ -343,8 +343,15 @@ impl pallet_sudo::Config for Runtime {
 
 impl pallet_randomness_collective_flip::Config for Runtime {}
 
-impl compose_register2::Config for Runtime{
+parameter_types! {
+	pub const MaxDomainByteSize: u32 = 32;
+	pub const MaxRouteByteSize: u32 = 512;
+}
+
+impl compose_register::Config for Runtime {
 	type Event = Event;
+	type MaxDomainByteSize = MaxDomainByteSize;
+	type MaxRouteByteSize = MaxRouteByteSize;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
@@ -363,7 +370,9 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment::{Pallet, Storage},
 		Sudo: pallet_sudo::{Pallet, Call, Config<T>, Storage, Event<T>},
 		Contracts: pallet_contracts::{Pallet, Call, Storage, Event<T>},
-		ComposeRegister2: compose_register2::{Pallet, Call, Storage, Event<T>},
+		ComposeRegister: compose_register::{Pallet, Call, Storage, Event<T>},
+		// ComposeRegister2: compose_register2::{Pallet, Call, Event<T>},
+		// ComposeRegister3: compose_register3::{Pallet, Call, Event<T>},
 	}
 );
 
