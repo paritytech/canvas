@@ -89,14 +89,15 @@ build:
 
 publish:
   stage:                           publish
-  #needs:
-    #- job: build
-      #artifacts: true
+  needs:
+    - job: build
+      artifacts: true
   <<:                              *docker-env
   <<:                              *collect-artifacts
   script:
-    - ls
-    - touch foo
+    - find .
+    - find ${CARGO_TARGET_DIR}/release/canvas
+    - find artifacts/canvas/
     - |
         RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases" \
            -H "Cookie: logged_in=no" \
@@ -108,7 +109,7 @@ publish:
                "prerelease": true
            }')
     - echo $RESP
-    - ID=$(echo $RESP | jq .id)
+    - ID=$(echo $RESP | jq -r .id)
 
     - |
       curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$ID/assets?name=canvas" \
