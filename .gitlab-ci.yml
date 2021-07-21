@@ -83,8 +83,8 @@ build-linux:
   script:
     - cargo build --release
   after_script:
-    - mkdir -p ./artifacts/canvas/
-    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas/canvas-linux
+    - mkdir -p ./artifacts/canvas-linux/
+    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas-linux/canvas-linux
 
 build-mac:
   stage:                           build
@@ -96,8 +96,8 @@ build-mac:
   script:
     - cargo build --release
   after_script:
-    - mkdir -p ./artifacts/canvas/
-    - cp target/release/canvas ./artifacts/canvas/canvas-mac
+    - mkdir -p ./artifacts/canvas-mac/
+    - cp target/release/canvas ./artifacts/canvas-mac/canvas-mac
   tags:
     - osx
 
@@ -112,5 +112,6 @@ publish:
       artifacts: true
   script:
     - ls -lh
-    - find . -name "canvas-mac"
-    - find . -name "canvas-linux"
+    - ls -lh /
+    - find / -name "canvas-mac"
+    - find / -name "canvas-linux"
