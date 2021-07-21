@@ -133,13 +133,13 @@ publish:
     - RELEASE_ID=$(echo $RESP | jq -r .id)
     - echo "release id ${RELEASE_ID}"
     - |
-      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux" \
+      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux.tar.gz" \
         -H "Cookie: logged_in=no" \
         -H "Authorization: token ${GITHUB_TOKEN}" \
         -H "Content-Type: application/octet-stream" \
         --data-binary @"./canvas-linux.tar.gz"
     - |
-      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-mac" \
+      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-mac.tar.gz" \
         -H "Cookie: logged_in=no" \
         -H "Authorization: token ${GITHUB_TOKEN}" \
         -H "Content-Type: application/octet-stream" \
