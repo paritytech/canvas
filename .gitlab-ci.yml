@@ -63,7 +63,7 @@ test:
   stage:                           test
   <<:                              *docker-env
   script:
-    - cargo test --all
+    # - cargo test --all
 
 build-linux:
   stage:                           build
