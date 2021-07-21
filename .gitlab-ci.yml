@@ -60,7 +60,7 @@ workflow:
   tags:
     - kubernetes-parity-build
 
-# not used?
+# FIXME: remove, since unused
 .test-refs:                        &test-refs
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
