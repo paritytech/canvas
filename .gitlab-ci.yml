@@ -60,8 +60,7 @@ workflow:
   tags:
     - kubernetes-parity-build
 
-# FIXME: remove, since unused
-.test-refs:                        &test-refs
+.build-refs:                       &build-refs
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "schedule"
@@ -72,11 +71,7 @@ workflow:
 
 .publish-refs:                     &publish-refs
   rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-    - if: $CI_PIPELINE_SOURCE == "schedule"
     - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
-    # FIXME: remove me
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
 
 ### stage:                         build
 
@@ -84,7 +79,7 @@ build-linux:
   stage:                           build-linux
   <<:                              *docker-env
   <<:                              *collect-artifacts
-  <<:                              *test-refs
+  <<:                              *build-refs
   script:
     - time cargo build --release
     - time cargo test --release --all
@@ -97,6 +92,7 @@ build-mac:
   stage:                           build-mac
   <<:                              *docker-env
   <<:                              *collect-artifacts
+  # we run the mac build only when we actually want to publish
   <<:                              *publish-refs
   before_script:
     - unset CARGO_TARGET_DIR
