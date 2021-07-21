@@ -57,29 +57,29 @@ workflow:
   tags:
     - linux-docker
 
+.test-refs:                   &test-refs
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_REF_NAME == "master"
+    - if: $CI_COMMIT_REF_NAME == "tags"
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
+
 ### stage:                         test
 
 test:
   stage:                           test
   <<:                              *docker-env
   script:
+    # just temporarily disabled for testing the PR
     - echo cargo test --all
 
 build-linux:
   stage:                           build
   <<:                              *docker-env
   <<:                              *collect-artifacts
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-    - if: $CI_COMMIT_REF_NAME == "tags"
-    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/        # i.e. v1.0, v2.1rc1
-    - if: $CI_COMMIT_REF_NAME == "master"
-      when: manual
-      allow_failure: true
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                   # PRs
-      when: manual
-      allow_failure: true
+  <<:                              *test-refs
   script:
     - cargo build --release
   after_script:
@@ -90,35 +90,27 @@ build-mac:
   stage:                           build
   <<:                              *docker-env
   <<:                              *collect-artifacts
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-    - if: $CI_COMMIT_REF_NAME == "tags"
-    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/        # i.e. v1.0, v2.1rc1
-    - if: $CI_COMMIT_REF_NAME == "master"
-      when: manual
-      allow_failure: true
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                   # PRs
-      when: manual
-      allow_failure: true
+  <<:                              *test-refs
+  before_script:
+    - unset ${CARGO_TARGET_DIR}
   script:
     - cargo build --release
   after_script:
     - mkdir -p ./artifacts/canvas/
-    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas/canvas-mac
+    - cp target/release/canvas ./artifacts/canvas/canvas-mac
   tags:
     - osx
 
 publish:
   stage:                           publish
   <<:                              *docker-env
-  <<:                              *collect-artifacts
+  <<:                              *test-refs
   needs:
     - job: build-linux
       artifacts: true
     - job: build-mac
       artifacts: true
   script:
-    - find /ci-cache/${CI_PROJECT_NAME}/targets/build/release/
+    - find /ci-cache/${CI_PROJECT_NAME}/targets/build-mac/release/
     - find /ci-cache/${CI_PROJECT_NAME}/targets/build-linux/release/
-    - find /ci-cache/${CI_PROJECT_NAME}/targets/build-linux/release/canvas
+    - ls -lh /ci-cache/${CI_PROJECT_NAME}/targets/build-linux/release/canvas
