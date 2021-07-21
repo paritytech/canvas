@@ -113,5 +113,6 @@ publish:
   script:
     - ls -lh
     - ls -lh /
-    - find / -name "canvas-mac"
-    - find / -name "canvas-linux"
+    - find / -name "*canvas-mac*"
+    - find / -name "*canvas-linux*"
+    - find / -name "*artifacts*"
