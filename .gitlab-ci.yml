@@ -6,8 +6,9 @@
 
 
 stages:
-    - build
-    - publish
+  - test
+  - build
+  - publish
 
 variables:
   GIT_STRATEGY:                    fetch
@@ -36,6 +37,7 @@ workflow:
     - rustup show
     - bash --version
     - mkdir -p ${CARGO_TARGET_DIR}
+    - ./scripts/.ci/pre_cache.sh
     - sccache -s
   interruptible:                   true
   retry:
@@ -90,13 +92,13 @@ workflow:
 ### stage:                         build
 
 build-linux:
-  stage:                           build
+  stage:                           test
   <<:                              *docker-env
   <<:                              *collect-artifacts
   <<:                              *build-refs
   script:
-    - cargo build --release
-    - cargo test --release --all
+    - time cargo test --release --all
+    - time cargo build --release
     - mkdir -p ./artifacts/canvas-linux/
     - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas-linux/canvas
 
@@ -108,7 +110,7 @@ build-mac:
   before_script:
     - unset CARGO_TARGET_DIR
   script:
-    - cargo build --release
+    - time cargo build --release
     - mkdir -p ./artifacts/canvas-mac/
     - cp target/release/canvas ./artifacts/canvas-mac/canvas
   tags:
