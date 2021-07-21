@@ -114,7 +114,9 @@ publish:
   <<:                              *docker-env
   <<:                              *collect-artifacts
   needs:
-    - job: build
+    - job: build-linux
+      artifacts: true
+    - job: build-mac
       artifacts: true
   script:
     - find /ci-cache/${CI_PROJECT_NAME}/targets/build/release/
