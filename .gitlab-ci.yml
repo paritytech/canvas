@@ -69,16 +69,6 @@ workflow:
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
     - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
 
-.build-refs:                       &build-refs
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-    - if: $CI_COMMIT_REF_NAME == "master"
-    - if: $CI_COMMIT_REF_NAME == "tags"
-    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
-    # FIXME: remove me
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
-
 .publish-refs:                     &publish-refs
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
@@ -105,7 +95,7 @@ build-linux:
 ### stage:                         publish
 
 build-mac:
-  stage:                           publish
+  stage:                           build
   <<:                              *docker-env
   <<:                              *collect-artifacts
   <<:                              *publish-refs
@@ -131,7 +121,7 @@ publish:
   script:
     - git describe --tags
     - TAG_NAME=`git describe --tags`
-    - echo "tag name: " $TAG_NAME
+    - 'echo "tag name: " $TAG_NAME'
     - tar -czvf ./canvas-linux.tar.gz ./artifacts/canvas-linux/canvas
     - tar -czvf ./canvas-mac.tar.gz ./artifacts/canvas-mac/canvas
     - |
@@ -144,9 +134,9 @@ publish:
              \"name\": \"${TAG_NAME}\",
              \"prerelease\": true
          }")
-    - echo "api response: " $RESP
+    - 'echo "api response: " $RESP'
     - RELEASE_ID=$(echo $RESP | jq -r .id)
-    - echo "release id: " $RELEASE_ID
+    - 'echo "release id: " $RELEASE_ID'
     - |
       curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux" \
         -H "Cookie: logged_in=no" \
