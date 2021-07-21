@@ -81,8 +81,8 @@ build-linux:
   <<:                              *collect-artifacts
   <<:                              *build-refs
   script:
-    - time cargo build --release
-    - time cargo test --release --all
+    - cargo build --release
+    - cargo test --release --all
     - mkdir -p ./artifacts/canvas-linux/
     - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas-linux/canvas
 
@@ -97,7 +97,7 @@ build-mac:
   before_script:
     - unset CARGO_TARGET_DIR
   script:
-    - time cargo build --release
+    - cargo build --release
     - mkdir -p ./artifacts/canvas-mac/
     - cp target/release/canvas ./artifacts/canvas-mac/canvas
   tags:
