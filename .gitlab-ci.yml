@@ -135,7 +135,7 @@ publish:
          }")
     - echo "api response ${RESP}"
     - RELEASE_ID=$(echo $RESP | jq -r .id)
-    - echo "release id ${RELEASE_ID}
+    - echo "release id ${RELEASE_ID}"
     - |
       curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux" \
         -H "Cookie: logged_in=no" \
