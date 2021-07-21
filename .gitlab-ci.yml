@@ -37,7 +37,7 @@ workflow:
     - rustup show
     - bash --version
     - mkdir -p ${CARGO_TARGET_DIR}
-    - ./scripts/.ci/pre_cache.sh
+    - ./scripts/ci/pre_cache.sh
     - sccache -s
   interruptible:                   true
   retry:
