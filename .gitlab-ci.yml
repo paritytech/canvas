@@ -111,6 +111,6 @@ publish:
     - job: build-mac
       artifacts: true
   script:
-    - find /ci-cache/${CI_PROJECT_NAME}/targets/build-mac/release/
-    - find /ci-cache/${CI_PROJECT_NAME}/targets/build-linux/release/
-    - ls -lh /ci-cache/${CI_PROJECT_NAME}/targets/build-linux/release/canvas
+    - ls -lh
+    - find . -name "canvas-mac"
+    - find . -name "canvas-linux"
