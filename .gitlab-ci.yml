@@ -38,14 +38,6 @@ workflow:
     - bash --version
     - mkdir -p ${CARGO_TARGET_DIR}
     - sccache -s
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-    - if: $CI_COMMIT_REF_NAME == "master"
-    - if: $CI_COMMIT_REF_NAME == "tags"
-    - if: $CI_COMMIT_BRANCH
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                   # PRs
-    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/        # i.e. v1.0, v2.1rc1
   dependencies:                    []
   interruptible:                   true
   retry:
@@ -57,7 +49,18 @@ workflow:
   tags:
     - linux-docker
 
-.test-refs:                   &test-refs
+.kubernetes-env:                   &kubernetes-env
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - unknown_failure
+      - api_failure
+  interruptible:                   true
+  tags:
+    - kubernetes-parity-build
+
+.test-refs:                        &test-refs
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "schedule"
@@ -65,6 +68,26 @@ workflow:
     - if: $CI_COMMIT_REF_NAME == "tags"
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
     - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
+
+.build-refs:                       &build-refs
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_REF_NAME == "master"
+    - if: $CI_COMMIT_REF_NAME == "tags"
+    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
+    # FIXME: remove me
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+
+.publish-refs:                     &publish-refs
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_REF_NAME == "tags"
+    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
+    # FIXME: remove me
+    - if: $CI_COMMIT_REF_NAME == "master"
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
 
 ### stage:                         test
 
@@ -79,10 +102,9 @@ build-linux:
   stage:                           build
   <<:                              *docker-env
   <<:                              *collect-artifacts
-  <<:                              *test-refs
+  <<:                              *build-refs
   script:
     - cargo build --release
-  after_script:
     - mkdir -p ./artifacts/canvas-linux/
     - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas-linux/canvas-linux
 
@@ -90,12 +112,11 @@ build-mac:
   stage:                           build
   <<:                              *docker-env
   <<:                              *collect-artifacts
-  <<:                              *test-refs
+  <<:                              *build-refs
   before_script:
     - unset CARGO_TARGET_DIR
   script:
     - cargo build --release
-  after_script:
     - mkdir -p ./artifacts/canvas-mac/
     - cp target/release/canvas ./artifacts/canvas-mac/canvas-mac
   tags:
@@ -103,8 +124,8 @@ build-mac:
 
 publish:
   stage:                           publish
-  <<:                              *docker-env
-  <<:                              *test-refs
+  <<:                              *kubernetes-env
+  <<:                              *publish-refs
   needs:
     - job: build-linux
       artifacts: true
@@ -112,7 +133,4 @@ publish:
       artifacts: true
   script:
     - ls -lh
-    - ls -lh /
-    - find / -name "*canvas-mac*"
-    - find / -name "*canvas-linux*"
-    - find / -name "*artifacts*"
+    - ls -lh artifacts
