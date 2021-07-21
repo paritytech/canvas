@@ -6,7 +6,6 @@
 
 
 stages:
-    - test
     - build
     - publish
 
@@ -88,14 +87,7 @@ workflow:
     - if: $CI_COMMIT_REF_NAME == "master"
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
 
-### stage:                         test
-
-test:
-  stage:                           test
-  <<:                              *docker-env
-  script:
-    # just temporarily disabled for testing the PR
-    - echo cargo test --all
+### stage:                         build
 
 build-linux:
   stage:                           build
@@ -104,8 +96,9 @@ build-linux:
   <<:                              *build-refs
   script:
     - cargo build --release
+    - cargo test --release --all
     - mkdir -p ./artifacts/canvas-linux/
-    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas-linux/canvas-linux
+    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas-linux/canvas
 
 build-mac:
   stage:                           build
@@ -117,7 +110,7 @@ build-mac:
   script:
     - cargo build --release
     - mkdir -p ./artifacts/canvas-mac/
-    - cp target/release/canvas ./artifacts/canvas-mac/canvas-mac
+    - cp target/release/canvas ./artifacts/canvas-mac/canvas
   tags:
     - osx
 
@@ -132,6 +125,33 @@ publish:
     - job: build-mac
       artifacts: true
   script:
-    - ls -lh
-    - ls -lh artifacts/canvas-mac
-    - ls -lh artifacts/canvas-linux
+    - git describe --tags
+    - TAG_NAME=`git describe --tags`
+    - echo $TAG_NAME
+    - tar -czvf ./canvas-linux.tar.gz ./artifacts/canvas-linux/canvas
+    - tar -czvf ./canvas-mac.tar.gz ./artifacts/canvas-mac/canvas
+    - |
+      RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases" \
+         -H "Cookie: logged_in=no" \
+         -H "Authorization: token ${GITHUB_TOKEN}" \
+         -H "Content-Type: application/json; charset=utf-8" \
+         -d $'{
+             "tag_name": "${TAG_NAME}",
+             "name": "${TAG_NAME}",
+             "prerelease": true
+         }')
+    - echo $RESP
+    - RELEASE_ID=$(echo $RESP | jq -r .id)
+    - echo $RELEASE_ID
+    - |
+      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux" \
+        -H "Cookie: logged_in=no" \
+        -H "Authorization: token ${GITHUB_TOKEN}" \
+        -H "Content-Type: application/octet-stream" \
+        --data-binary @"./canvas-linux.tar.gz"
+    - |
+      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-mac" \
+        -H "Cookie: logged_in=no" \
+        -H "Authorization: token ${GITHUB_TOKEN}" \
+        -H "Content-Type: application/octet-stream" \
+        --data-binary @"./canvas-mac.tar.gz"
