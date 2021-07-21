@@ -38,7 +38,6 @@ workflow:
     - bash --version
     - mkdir -p ${CARGO_TARGET_DIR}
     - sccache -s
-  dependencies:                    []
   interruptible:                   true
   retry:
     max: 2
@@ -125,6 +124,7 @@ build-mac:
 publish:
   stage:                           publish
   <<:                              *kubernetes-env
+  image:                           paritytech/tools:latest
   <<:                              *publish-refs
   needs:
     - job: build-linux
@@ -133,4 +133,5 @@ publish:
       artifacts: true
   script:
     - ls -lh
-    - ls -lh artifacts
+    - ls -lh artifacts/canvas-mac
+    - ls -lh artifacts/canvas-linux
