@@ -6,8 +6,9 @@
 
 
 stages:
-    - test
-    - build
+  - build-linux
+  - build-mac
+  - publish
 
 variables:
   GIT_STRATEGY:                    fetch
@@ -36,16 +37,8 @@ workflow:
     - rustup show
     - bash --version
     - mkdir -p ${CARGO_TARGET_DIR}
+    - ./scripts/ci/pre_cache.sh
     - sccache -s
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-    - if: $CI_COMMIT_REF_NAME == "master"
-    - if: $CI_COMMIT_REF_NAME == "tags"
-    - if: $CI_COMMIT_BRANCH
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                   # PRs
-    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/        # i.e. v1.0, v2.1rc1
-  dependencies:                    []
   interruptible:                   true
   retry:
     max: 2
@@ -56,32 +49,100 @@ workflow:
   tags:
     - linux-docker
 
-### stage:                         test
+.kubernetes-env:                   &kubernetes-env
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - unknown_failure
+      - api_failure
+  interruptible:                   true
+  tags:
+    - kubernetes-parity-build
 
-build-test:
-  stage:                           test
-  <<:                              *docker-env
-  script:
-    - cargo build --release
-    - cargo test --release --all
-
-build:
-  stage:                           build
-  <<:                              *docker-env
-  <<:                              *collect-artifacts
+.build-refs:                       &build-refs
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "schedule"
-    - if: $CI_COMMIT_REF_NAME == "tags"
-    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/        # i.e. v1.0, v2.1rc1
     - if: $CI_COMMIT_REF_NAME == "master"
-      when: manual
-      allow_failure: true
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                   # PRs
-      when: manual
-      allow_failure: true
+    - if: $CI_COMMIT_REF_NAME == "tags"
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
+
+.publish-refs:                     &publish-refs
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
+
+### stage:                         build-linux
+
+build-linux:
+  stage:                           build-linux
+  <<:                              *docker-env
+  <<:                              *collect-artifacts
+  <<:                              *build-refs
   script:
-    - cargo build --release
-  after_script:
-    - mkdir -p ./artifacts/canvas/
-    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas/
+    - time cargo build --release
+    - time cargo test --release --all
+    - mkdir -p ./artifacts/canvas-linux/
+    - cp ${CARGO_TARGET_DIR}/release/canvas ./artifacts/canvas-linux/canvas
+
+### stage:                         build-mac
+
+build-mac:
+  stage:                           build-mac
+  <<:                              *docker-env
+  <<:                              *collect-artifacts
+  # we run the mac build only when we actually want to publish
+  <<:                              *publish-refs
+  before_script:
+    - unset CARGO_TARGET_DIR
+  script:
+    - time cargo build --release
+    - mkdir -p ./artifacts/canvas-mac/
+    - cp target/release/canvas ./artifacts/canvas-mac/canvas
+  tags:
+    - osx
+
+publish:
+  stage:                           publish
+  <<:                              *kubernetes-env
+  image:                           paritytech/tools:latest
+  <<:                              *publish-refs
+  needs:
+    - job: build-linux
+      artifacts: true
+    - job: build-mac
+      artifacts: true
+  script:
+    - git describe --tags
+    - TAG_NAME=`git describe --tags`
+    - echo "tag name ${TAG_NAME}"
+    - tar -czvf ./canvas-linux.tar.gz ./artifacts/canvas-linux/canvas
+    - tar -czvf ./canvas-mac.tar.gz ./artifacts/canvas-mac/canvas
+    - |
+      RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases" \
+         -H "Cookie: logged_in=no" \
+         -H "Authorization: token ${GITHUB_TOKEN}" \
+         -H "Content-Type: application/json; charset=utf-8" \
+         -d $"{
+             \"tag_name\": \"${TAG_NAME}\",
+             \"name\": \"${TAG_NAME}\",
+             \"prerelease\": true
+         }")
+    - echo "api response ${RESP}"
+    - RELEASE_ID=$(echo $RESP | jq -r .id)
+    - echo "release id ${RELEASE_ID}"
+    - |
+      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux.tar.gz" \
+        -H "Cookie: logged_in=no" \
+        -H "Authorization: token ${GITHUB_TOKEN}" \
+        -H "Content-Type: application/octet-stream" \
+        --data-binary @"./canvas-linux.tar.gz"
+    - |
+      curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-mac.tar.gz" \
+        -H "Cookie: logged_in=no" \
+        -H "Authorization: token ${GITHUB_TOKEN}" \
+        -H "Content-Type: application/octet-stream" \
+        --data-binary @"./canvas-mac.tar.gz"
