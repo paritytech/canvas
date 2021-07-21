@@ -92,7 +92,7 @@ build-mac:
   <<:                              *collect-artifacts
   <<:                              *test-refs
   before_script:
-    - unset ${CARGO_TARGET_DIR}
+    - unset CARGO_TARGET_DIR
   script:
     - cargo build --release
   after_script:
