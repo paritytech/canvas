@@ -115,6 +115,8 @@ publish:
       artifacts: true
     - job: build-mac
       artifacts: true
+  variables:
+    GIT_STRATEGY: none
   script:
     - git describe --tags
     - TAG_NAME=`git describe --tags`
@@ -129,7 +131,8 @@ publish:
          -d $"{
              \"tag_name\": \"${TAG_NAME}\",
              \"name\": \"${TAG_NAME}\",
-             \"prerelease\": true
+             \"draft\": true,
+             \"prerelease\": false
          }")
     - echo "api response ${RESP}"
     - RELEASE_ID=$(echo $RESP | jq -r .id)
