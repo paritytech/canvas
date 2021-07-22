@@ -65,6 +65,9 @@ jobs:
         run: |
           ./target/release/canvas --version
 
+      - name: Get the tag name
+         run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+
       - name: Create release from tag
         uses: marvinpinto/action-automatic-releases@latest
         # Creating a release might fail, since there is a GitLab job which
@@ -73,10 +76,10 @@ jobs:
         continue-on-error: true
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ github.ref }}
+          automatic_release_tag: ${{ env.TAG }}
           prerelease: false
           draft: true
-          title: ${{ github.ref }}
+          title: ${{ env.TAG }}
 
       - name: Package and upload windows binary as release asset
         run: |
@@ -85,4 +88,4 @@ jobs:
             -H "Cookie: logged_in=no" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/octet-stream" \
-            --data-binary @"./canvas-windows.tar.gz"
+            -d @./canvas-windows.tar.gz
