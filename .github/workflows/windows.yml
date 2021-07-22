@@ -1,0 +1,71 @@
+name: continuous-intergration/windows
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      # FIXME: remove branch exception
+      - cmichi-release-windows-binary
+    tags:
+      - v*
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  check:
+    name: build-windows
+    strategy:
+      matrix:
+        platform:
+          - windows-latest
+        toolchain:
+          - nightly
+    runs-on: ${{ matrix.platform }}
+    env:
+      RUST_BACKTRACE: full
+    steps:
+
+      - name: Checkout sources & submodules
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Install toolchain
+        id: toolchain
+        uses: actions-rs/toolchain@master
+        with:
+          profile: minimal
+          toolchain: ${{ matrix.toolchain }}
+          components: rust-src
+          target: wasm32-unknown-unknown
+          override: true
+
+      - name:                      Rust Cache
+        uses:                      Swatinem/rust-cache@v1.2.0
+
+      - name: Build windows binary on ${{ matrix.platform }}-${{ matrix.toolchain }}
+        run: |
+          cargo -vV
+          cargo build --release
+          ./target/release/canvas --version
+
+      - name: Create release from tag
+        uses: "marvinpinto/action-automatic-releases@latest"
+        continue-on-error: true
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ github.ref }}
+          prerelease: false
+          draft: true
+          title: ${{ github.ref }}
+
+      - name: Package and upload windows binary as release asset
+        run: |
+          tar -czvf ./canvas-windows.tar.gz ./target/release/canvas
+          curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/${{ github.ref }}/assets?name=canvas-windows.tar.gz" \
+            -H "Cookie: logged_in=no" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @"./canvas-windows.tar.gz"
