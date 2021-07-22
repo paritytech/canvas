@@ -28,14 +28,14 @@ jobs:
       # Required for `librocksb-sys`
       - name: Install LLVM and Clang
         uses: KyleMayes/install-llvm-action@latest
-        if: matrix.config.os == 'windows-latest'
+        if: matrix.platform == 'windows-latest'
         with:
-          version: "11.0"
+          version: "12.0.1"
           directory: ${{ runner.temp }}/llvm
 
       - name: Set LIBCLANG_PATH
         run: echo "LIBCLANG_PATH=$((gcm clang).source -replace "clang.exe")" >> $env:GITHUB_ENV
-        if: matrix.config.os == 'windows-latest'
+        if: matrix.platform == 'windows-latest'
 
       - name: Install toolchain
         id: toolchain
