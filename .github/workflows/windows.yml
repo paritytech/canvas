@@ -27,7 +27,7 @@ jobs:
     steps:
       # Required for `librocksb-sys`
       - name: Install LLVM and Clang
-        uses: KyleMayes/install-llvm-action@32c4866ebb71e0949e8833eb49beeebed48532bd
+        uses: KyleMayes/install-llvm-action@latest
         if: matrix.config.os == 'windows-latest'
         with:
           version: "11.0"
@@ -58,6 +58,7 @@ jobs:
 
       - name: Build windows binary on ${{ matrix.platform }}-${{ matrix.toolchain }}
         run: |
+          set PATH=C:\msys64\mingw64\bin;%PATH%
           cargo -vV
           cargo build --release
 
@@ -66,7 +67,7 @@ jobs:
           ./target/release/canvas --version
 
       - name: Create release from tag
-        uses: "marvinpinto/action-automatic-releases@latest"
+        uses: marvinpinto/action-automatic-releases@latest
         # Creating a release might fail, since there is a GitLab job which
         # does the same thing for Linux & Mac binaries. This GitLab job
         # might already have created the release.
