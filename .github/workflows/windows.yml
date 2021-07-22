@@ -58,7 +58,6 @@ jobs:
 
       - name: Build windows binary on ${{ matrix.platform }}-${{ matrix.toolchain }}
         run: |
-          set PATH=C:\msys64\mingw64\bin;%PATH%
           cargo -vV
           cargo build --release
 
