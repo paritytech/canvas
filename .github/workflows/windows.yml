@@ -84,8 +84,8 @@ jobs:
       - name: Package and upload windows binary as release asset
         run: |
           tar -czvf ./canvas-windows.tar.gz ./target/release/canvas
-          curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/${{ github.ref }}/assets?name=canvas-windows.tar.gz" \
-            -H "Cookie: logged_in=no" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/octet-stream" \
+          curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/${{ github.ref }}/assets?name=canvas-windows.tar.gz" ^
+            -H "Cookie: logged_in=no" ^
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ^
+            -H "Content-Type: application/octet-stream" ^
             -d "@./canvas-windows.tar.gz"
