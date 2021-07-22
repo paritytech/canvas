@@ -88,4 +88,4 @@ jobs:
             -H "Cookie: logged_in=no" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/octet-stream" \
-            -d @./canvas-windows.tar.gz
+            -d "@./canvas-windows.tar.gz"
