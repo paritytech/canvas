@@ -1,14 +1,14 @@
 name: continuous-intergration/windows
 
 on:
-  pull_request:
   push:
     branches:
       - master
       # FIXME: remove branch exception
       - cmichi-release-windows-binary
-    tags:
-      - v*
+    # FIXME: uncomment to filter for tags
+    # tags:
+      # - v*
     paths-ignore:
       - 'README.md'
 
@@ -25,12 +25,17 @@ jobs:
     env:
       RUST_BACKTRACE: full
     steps:
-
-      - name: Checkout sources & submodules
-        uses: actions/checkout@master
+      # Required for `librocksb-sys`
+      - name: Install LLVM and Clang
+        uses: KyleMayes/install-llvm-action@32c4866ebb71e0949e8833eb49beeebed48532bd
+        if: matrix.config.os == 'windows-latest'
         with:
-          fetch-depth: 1
-          submodules: recursive
+          version: "11.0"
+          directory: ${{ runner.temp }}/llvm
+
+      - name: Set LIBCLANG_PATH
+        run: echo "LIBCLANG_PATH=$((gcm clang).source -replace "clang.exe")" >> $env:GITHUB_ENV
+        if: matrix.config.os == 'windows-latest'
 
       - name: Install toolchain
         id: toolchain
@@ -42,6 +47,12 @@ jobs:
           target: wasm32-unknown-unknown
           override: true
 
+      - name: Checkout sources & submodules
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
       - name:                      Rust Cache
         uses:                      Swatinem/rust-cache@v1.2.0
 
@@ -49,10 +60,16 @@ jobs:
         run: |
           cargo -vV
           cargo build --release
+
+      - name: Test canvas binary works
+        run: |
           ./target/release/canvas --version
 
       - name: Create release from tag
         uses: "marvinpinto/action-automatic-releases@latest"
+        # Creating a release might fail, since there is a GitLab job which
+        # does the same thing for Linux & Mac binaries. This GitLab job
+        # might already have created the release.
         continue-on-error: true
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
