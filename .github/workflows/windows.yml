@@ -2,8 +2,6 @@ name: continuous-intergration/windows
 
 on:
   push:
-    branches:
-      - master
     tags:
       - v*
     paths-ignore:
@@ -22,7 +20,7 @@ jobs:
     env:
       RUST_BACKTRACE: full
     steps:
-      # Required for `CI_REF_NAME_SLUG`
+      # Required for `CI_REF_NAME`
       - name: Add GitHub Environment Variables
         uses: FranzDiebold/github-env-vars-action@v2
 
@@ -72,11 +70,11 @@ jobs:
           curl -s https://api.github.com/repos/paritytech/canvas-node/releases `
             -H "Cookie: logged_in=no" `
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" `
-          | jq -r '[.[].tag_name] | any(. == \"${{ Env.CI_REF_NAME_SLUG }}\")'
+          | jq -r '[.[].tag_name] | any(. == \"${{ Env.CI_REF_NAME }}\")'
           $exists = (curl -s https://api.github.com/repos/paritytech/canvas-node/releases `
             -H "Cookie: logged_in=no" `
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" `
-            | jq -r '[.[].tag_name] | any(. == \"${{ Env.CI_REF_NAME_SLUG }}\")')
+            | jq -r '[.[].tag_name] | any(. == \"${{ Env.CI_REF_NAME }}\")')
           echo $exists
           Write-Output "::set-output name=EXISTS::$exists"
 
@@ -89,10 +87,10 @@ jobs:
         continue-on-error: true
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: ${{ Env.CI_REF_NAME_SLUG }}
+          automatic_release_tag: ${{ Env.CI_REF_NAME }}
           prerelease: false
           draft: true
-          title: ${{ Env.CI_REF_NAME_SLUG }}
+          title: ${{ Env.CI_REF_NAME }}
 
       - name: Fetch release id
         id: fetch-id
@@ -100,7 +98,7 @@ jobs:
           $release_id = (curl -s https://api.github.com/repos/paritytech/canvas-node/releases `
             -H "Cookie: logged_in=no" `
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" `
-          | jq -r '.[] | select(.tag_name == \"${{ Env.CI_REF_NAME_SLUG }}\") | .id')
+          | jq -r '.[] | select(.tag_name == \"${{ Env.CI_REF_NAME }}\") | .id')
           echo $release_id
           Write-Output "::set-output name=RELEASE_ID::$release_id"
 
