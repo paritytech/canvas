@@ -117,8 +117,6 @@ publish:
       artifacts: true
     - job: build-mac
       artifacts: true
-  variables:
-    GIT_STRATEGY: none
   script:
     - git describe --tags
     - TAG_NAME=`git describe --tags`
