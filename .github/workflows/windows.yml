@@ -4,11 +4,8 @@ on:
   push:
     branches:
       - master
-      # FIXME: remove branch exception
-      - cmichi-release-windows-binary
-    # FIXME: uncomment to filter for tags
-    # tags:
-      # - v*
+    tags:
+      - v*
     paths-ignore:
       - 'README.md'
 
