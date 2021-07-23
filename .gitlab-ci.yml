@@ -121,18 +121,36 @@ publish:
     - echo "tag name ${TAG_NAME}"
     - tar -czvf ./canvas-linux.tar.gz ./artifacts/canvas-linux/canvas
     - tar -czvf ./canvas-mac.tar.gz ./artifacts/canvas-mac/canvas
-    - 'RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases"
+    - 'curl https://api.github.com/repos/paritytech/canvas-node/releases
+        --fail-with-body
+        -H "Cookie: logged_in=no"
+        -H "Authorization: token ${GITHUB_TOKEN}"'
+    - 'curl https://api.github.com/repos/paritytech/canvas-node/releases
+        --fail-with-body
+        -H "Cookie: logged_in=no"
+        -H "Authorization: token ${GITHUB_TOKEN}" | jq .'
+    - 'RELEASE_ID=$(curl https://api.github.com/repos/paritytech/canvas-node/releases
         --fail-with-body
         -H "Cookie: logged_in=no"
         -H "Authorization: token ${GITHUB_TOKEN}"
-        -H "Content-Type: application/json; charset=utf-8"
-        -d $"{
-            \"tag_name\": \"${TAG_NAME}\",
-            \"name\": \"${TAG_NAME}\",
-            \"prerelease\": true
-        }")'
-    - echo "api response ${RESP}"
-    - RELEASE_ID=$(echo $RESP | jq -r .id)
+        | jq -r ".[] | select(.tag_name == \"$TAG_NAME\") | .id");
+      echo "release id if existent: ${RELEASE_ID}"'
+    - 'if [ -z "$RELEASE_ID" ]; then
+        RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases"
+          --fail-with-body
+          -H "Cookie: logged_in=no"
+          -H "Authorization: token ${GITHUB_TOKEN}"
+          -H "Content-Type: application/json; charset=utf-8"
+          -d $"{
+              \"tag_name\": \"${TAG_NAME}\",
+              \"name\": \"${TAG_NAME}\",
+              \"prerelease\": false,
+              \"draft\": true
+          }");
+          echo "api response ${RESP}";
+          RELEASE_ID=$(echo $RESP | jq -r .id);
+          echo "release id of created release ${RELEASE_ID}";
+        fi'
     - echo "release id ${RELEASE_ID}"
     - 'curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux.tar.gz"
         --fail-with-body
