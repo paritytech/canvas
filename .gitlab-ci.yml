@@ -83,6 +83,7 @@ build-linux:
   <<:                              *collect-artifacts
   <<:                              *build-refs
   script:
+    - echo "foo"
     - time cargo build --release
     - time cargo test --release --all
     - mkdir -p ./artifacts/canvas-linux/
