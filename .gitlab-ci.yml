@@ -123,11 +123,19 @@ publish:
     - echo "tag name ${TAG_NAME}"
     - tar -czvf ./canvas-linux.tar.gz ./artifacts/canvas-linux/canvas
     - tar -czvf ./canvas-mac.tar.gz ./artifacts/canvas-mac/canvas
+    - 'curl https://api.github.com/repos/paritytech/canvas-node/releases
+        --fail-with-body
+        -H "Cookie: logged_in=no"
+        -H "Authorization: token ${GITHUB_TOKEN}"'
+    - 'curl https://api.github.com/repos/paritytech/canvas-node/releases
+        --fail-with-body
+        -H "Cookie: logged_in=no"
+        -H "Authorization: token ${GITHUB_TOKEN}" | jq .'
     - 'RELEASE_ID=$(curl https://api.github.com/repos/paritytech/canvas-node/releases
         --fail-with-body
         -H "Cookie: logged_in=no"
         -H "Authorization: token ${GITHUB_TOKEN}"
-        | jq -r ".[] | select(.tag_name == \"$TAG_NAME\") | .id")
+        | jq -r ".[] | select(.tag_name == \"$TAG_NAME\") | .id");
       echo "release id if existent: ${RELEASE_ID}"'
     - 'if [ -z "$RELEASE_ID" ]; then
         RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases"
