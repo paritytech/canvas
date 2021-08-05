@@ -82,7 +82,7 @@ fmt:
   stage:                           fmt
   <<:                              *docker-env
   script:
-    - cargo fmt --verbose --all -- --check
+    - cargo +nightly fmt --verbose --all -- --check
 
 ### stage:                         build-linux
 
