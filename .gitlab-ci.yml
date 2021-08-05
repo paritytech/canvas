@@ -79,7 +79,7 @@ workflow:
 ### stage:                         fmt
 
 fmt:
-  stage:                           test
+  stage:                           fmt
   <<:                              *docker-env
   script:
     - cargo fmt --verbose --all -- --check
