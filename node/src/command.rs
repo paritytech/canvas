@@ -14,9 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-use crate::{chain_spec, service};
-use crate::cli::{Cli, Subcommand};
-use sc_cli::{SubstrateCli, RuntimeVersion, Role, ChainSpec};
+use crate::{
+	chain_spec,
+	cli::{Cli, Subcommand},
+	service,
+};
+use sc_cli::{ChainSpec, Role, RuntimeVersion, SubstrateCli};
 use sc_service::PartialComponents;
 
 impl SubstrateCli for Cli {
@@ -44,14 +47,12 @@ impl SubstrateCli for Cli {
 		2020
 	}
 
-
 	fn load_spec(&self, id: &str) -> Result<Box<dyn sc_service::ChainSpec>, String> {
 		Ok(match id {
 			"dev" => Box::new(chain_spec::development_config()?),
 			"" => Box::new(chain_spec::testnet_config()?), // default to running on testnet
-			path => Box::new(chain_spec::ChainSpec::from_json_file(
-				std::path::PathBuf::from(path),
-			)?),
+			path =>
+				Box::new(chain_spec::ChainSpec::from_json_file(std::path::PathBuf::from(path))?),
 		})
 	}
 
@@ -73,32 +74,30 @@ pub fn run() -> sc_cli::Result<()> {
 		Some(Subcommand::CheckBlock(cmd)) => {
 			let runner = cli.create_runner(cmd)?;
 			runner.async_run(|config| {
-				let PartialComponents { client, task_manager, import_queue, ..}
-					= service::new_partial(&config)?;
+				let PartialComponents { client, task_manager, import_queue, .. } =
+					service::new_partial(&config)?;
 				Ok((cmd.run(client, import_queue), task_manager))
 			})
 		},
 		Some(Subcommand::ExportBlocks(cmd)) => {
 			let runner = cli.create_runner(cmd)?;
 			runner.async_run(|config| {
-				let PartialComponents { client, task_manager, ..}
-					= service::new_partial(&config)?;
+				let PartialComponents { client, task_manager, .. } = service::new_partial(&config)?;
 				Ok((cmd.run(client, config.database), task_manager))
 			})
 		},
 		Some(Subcommand::ExportState(cmd)) => {
 			let runner = cli.create_runner(cmd)?;
 			runner.async_run(|config| {
-				let PartialComponents { client, task_manager, ..}
-					= service::new_partial(&config)?;
+				let PartialComponents { client, task_manager, .. } = service::new_partial(&config)?;
 				Ok((cmd.run(client, config.chain_spec), task_manager))
 			})
 		},
 		Some(Subcommand::ImportBlocks(cmd)) => {
 			let runner = cli.create_runner(cmd)?;
 			runner.async_run(|config| {
-				let PartialComponents { client, task_manager, import_queue, ..}
-					= service::new_partial(&config)?;
+				let PartialComponents { client, task_manager, import_queue, .. } =
+					service::new_partial(&config)?;
 				Ok((cmd.run(client, import_queue), task_manager))
 			})
 		},
@@ -109,8 +108,8 @@ pub fn run() -> sc_cli::Result<()> {
 		Some(Subcommand::Revert(cmd)) => {
 			let runner = cli.create_runner(cmd)?;
 			runner.async_run(|config| {
-				let PartialComponents { client, task_manager, backend, ..}
-					= service::new_partial(&config)?;
+				let PartialComponents { client, task_manager, backend, .. } =
+					service::new_partial(&config)?;
 				Ok((cmd.run(client, backend), task_manager))
 			})
 		},
@@ -120,8 +119,9 @@ pub fn run() -> sc_cli::Result<()> {
 				match config.role {
 					Role::Light => service::new_light(config),
 					_ => service::new_full(config),
-				}.map_err(sc_cli::Error::Service)
+				}
+				.map_err(sc_cli::Error::Service)
 			})
-		}
+		},
 	}
 }
