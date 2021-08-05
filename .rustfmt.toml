@@ -18,3 +18,5 @@ match_block_trailing_comma = true
 trailing_comma = "Vertical"
 trailing_semicolon = false
 use_field_init_shorthand = true
+# Canvas specific
+license_template_path = "FILE_HEADER"
