@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Helper script which outputs the diff to Substrate's `node-template`.
+#
+# Invoke with `SUBSTRATE_DIR=/path/to/substrate scripts/substrate-diff.sh`.
+
 SUBSTRATE_DIR=${SUBSTRATE_DIR:-~/projects/substrate}
 echo "Comparing with Substrate in directory $SUBSTRATE_DIR"
 
