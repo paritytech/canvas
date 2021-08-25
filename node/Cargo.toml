@@ -1,7 +1,11 @@
 [package]
 name = "canvas-node"
 version = "0.1.0"
-authors = ["Canvas"]
+authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0-only"
+description = "A node implementation for Canvas, a Substrate chain for smart contracts."
+homepage = "https://github.com/paritytech/canvas-node"
+repository = "https://github.com/paritytech/canvas-node"
 build = "build.rs"
 edition = "2018"
 
@@ -32,7 +36,7 @@ sp-runtime = { git = "https://github.com/paritytech/substrate", package = "sp-ru
 sp-timestamp = { git = "https://github.com/paritytech/substrate", package = "sp-timestamp" }
 
 # These dependencies are used for the node's RPCs
-jsonrpc-core = "15.1.0"
+jsonrpc-core = "18.0.0"
 sc-rpc = { git = "https://github.com/paritytech/substrate", package = "sc-rpc" }
 sp-api = { git = "https://github.com/paritytech/substrate", package = "sp-api" }
 sc-rpc-api = { git = "https://github.com/paritytech/substrate", package = "sc-rpc-api" }
