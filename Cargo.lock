@@ -824,6 +824,7 @@ dependencies = [
  "log",
  "pallet-contracts",
  "pallet-contracts-primitives",
+ "pallet-contracts-rpc",
  "pallet-contracts-rpc-runtime-api",
  "pallet-transaction-payment-rpc",
  "parity-scale-codec",
@@ -846,6 +847,7 @@ dependencies = [
  "sc-telemetry",
  "sc-tracing",
  "sc-transaction-pool",
+ "sc-transaction-pool-api",
  "serde",
  "sp-api",
  "sp-block-builder",
@@ -2325,7 +2327,7 @@ dependencies = [
 [[package]]
 name = "frame-metadata"
 version = "14.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "parity-scale-codec",
  "serde",
@@ -2336,7 +2338,7 @@ dependencies = [
 [[package]]
 name = "frame-support"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "bitflags",
  "frame-metadata",
@@ -2362,7 +2364,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "Inflector",
  "frame-support-procedural-tools",
@@ -2374,7 +2376,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "frame-support-procedural-tools-derive",
  "proc-macro-crate 1.0.0",
@@ -2386,7 +2388,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools-derive"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2396,7 +2398,7 @@ dependencies = [
 [[package]]
 name = "frame-system"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "frame-support",
  "impl-trait-for-tuples",
@@ -4866,7 +4868,7 @@ dependencies = [
 [[package]]
 name = "pallet-contracts"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "bitflags",
  "frame-support",
@@ -4889,7 +4891,7 @@ dependencies = [
 [[package]]
 name = "pallet-contracts-primitives"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "bitflags",
  "parity-scale-codec",
@@ -4902,7 +4904,7 @@ dependencies = [
 [[package]]
 name = "pallet-contracts-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4910,9 +4912,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-contracts-rpc"
+version = "4.0.0-dev"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
+dependencies = [
+ "jsonrpc-core",
+ "jsonrpc-core-client",
+ "jsonrpc-derive",
+ "pallet-contracts-primitives",
+ "pallet-contracts-rpc-runtime-api",
+ "parity-scale-codec",
+ "serde",
+ "sp-api",
+ "sp-blockchain",
+ "sp-core",
+ "sp-rpc",
+ "sp-runtime",
+]
+
+[[package]]
 name = "pallet-contracts-rpc-runtime-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "pallet-contracts-primitives",
  "parity-scale-codec",
@@ -9202,7 +9223,7 @@ dependencies = [
 [[package]]
 name = "sp-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "hash-db",
  "log",
@@ -9219,7 +9240,7 @@ dependencies = [
 [[package]]
 name = "sp-api-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "blake2-rfc",
  "proc-macro-crate 1.0.0",
@@ -9231,7 +9252,7 @@ dependencies = [
 [[package]]
 name = "sp-application-crypto"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "parity-scale-codec",
  "serde",
@@ -9243,7 +9264,7 @@ dependencies = [
 [[package]]
 name = "sp-arithmetic"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "integer-sqrt",
  "num-traits",
@@ -9398,7 +9419,7 @@ dependencies = [
 [[package]]
 name = "sp-core"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "base58",
  "blake2-rfc",
@@ -9451,7 +9472,7 @@ dependencies = [
 [[package]]
 name = "sp-debug-derive"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9461,7 +9482,7 @@ dependencies = [
 [[package]]
 name = "sp-externalities"
 version = "0.10.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "environmental",
  "parity-scale-codec",
@@ -9489,7 +9510,7 @@ dependencies = [
 [[package]]
 name = "sp-inherents"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "async-trait",
  "impl-trait-for-tuples",
@@ -9503,7 +9524,7 @@ dependencies = [
 [[package]]
 name = "sp-io"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "futures 0.3.16",
  "hash-db",
@@ -9539,7 +9560,7 @@ dependencies = [
 [[package]]
 name = "sp-keystore"
 version = "0.10.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -9556,7 +9577,7 @@ dependencies = [
 [[package]]
 name = "sp-maybe-compressed-blob"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "ruzstd",
  "zstd",
@@ -9599,7 +9620,7 @@ dependencies = [
 [[package]]
 name = "sp-panic-handler"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "backtrace",
 ]
@@ -9618,7 +9639,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "either",
  "hash256-std-hasher",
@@ -9639,7 +9660,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
@@ -9656,7 +9677,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "Inflector",
  "proc-macro-crate 1.0.0",
@@ -9668,7 +9689,7 @@ dependencies = [
 [[package]]
 name = "sp-sandbox"
 version = "0.10.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "log",
  "parity-scale-codec",
@@ -9704,7 +9725,7 @@ dependencies = [
 [[package]]
 name = "sp-staking"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "parity-scale-codec",
  "sp-runtime",
@@ -9714,7 +9735,7 @@ dependencies = [
 [[package]]
 name = "sp-state-machine"
 version = "0.10.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "hash-db",
  "log",
@@ -9737,12 +9758,12 @@ dependencies = [
 [[package]]
 name = "sp-std"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 
 [[package]]
 name = "sp-storage"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -9785,7 +9806,7 @@ dependencies = [
 [[package]]
 name = "sp-tracing"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "erased-serde",
  "log",
@@ -9827,7 +9848,7 @@ dependencies = [
 [[package]]
 name = "sp-trie"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "hash-db",
  "memory-db",
@@ -9853,7 +9874,7 @@ dependencies = [
 [[package]]
 name = "sp-version"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -9868,7 +9889,7 @@ dependencies = [
 [[package]]
 name = "sp-version-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "parity-scale-codec",
  "proc-macro-crate 1.0.0",
@@ -9880,7 +9901,7 @@ dependencies = [
 [[package]]
 name = "sp-wasm-interface"
 version = "4.0.0-dev"
-source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#4b39d8f58d534889dbeb16c1a6d33c7ee5a14d63"
+source = "git+https://github.com/paritytech/substrate?branch=cmichi-tmp-experiment#6080e7a33e63558bf619c240b1ada2cb08c8b443"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",

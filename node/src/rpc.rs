@@ -23,7 +23,8 @@
 
 use std::sync::Arc;
 
-use canvas_runtime::{opaque::Block, AccountId, Balance, BlockNumber, Hash, Index};
+use canvas_runtime::{AccountId, Balance, BlockNumber, Hash, Index};
+use crate::service::Block;
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 pub use sc_rpc_api::DenyUnsafe;
 use sc_transaction_pool_api::TransactionPool;
@@ -48,8 +49,8 @@ where
 	C: HeaderBackend<Block> + HeaderMetadata<Block, Error = BlockChainError> + 'static,
 	C: Send + Sync + 'static,
 	C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
-	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
 	C::Api: pallet_transaction_payment_rpc::TransactionPaymentRuntimeApi<Block, Balance>,
+	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
 	C::Api: BlockBuilder<Block>,
 	P: TransactionPool + 'static,
 {
