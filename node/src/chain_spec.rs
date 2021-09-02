@@ -62,7 +62,7 @@ where
 pub fn development_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
-	properties.insert("tokenSymbol".into(), "UNIT".into());
+	properties.insert("tokenSymbol".into(), "CAN".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
 	ChainSpec::from_genesis(
@@ -76,10 +76,18 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
 				vec![
-					get_account_id_from_seed::<sr25519::Public>("Alice"),
+                    get_account_id_from_seed::<sr25519::Public>("Alice"),
 					get_account_id_from_seed::<sr25519::Public>("Bob"),
+					get_account_id_from_seed::<sr25519::Public>("Charlie"),
+					get_account_id_from_seed::<sr25519::Public>("Dave"),
+					get_account_id_from_seed::<sr25519::Public>("Eve"),
+					get_account_id_from_seed::<sr25519::Public>("Ferdie"),
 					get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
 					get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Charlie//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Dave//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Eve//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Ferdie//stash"),
 				],
 				id,
 			)
@@ -98,16 +106,19 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
-	properties.insert("tokenSymbol".into(), "UNIT".into());
+	properties.insert("tokenSymbol".into(), "CAN".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
 	ChainSpec::from_genesis(
 		// Name
-		"Local Testnet",
+		"Canvas Testnet",
 		// ID
-		"local_testnet",
+		"canvas_testnet",
 		ChainType::Local,
 		move || {
+            // TODO: Right now these are being left as default values, but in the old `canvas-node`
+            // we had some non-default authorities, as well as accounts for the faucent and
+            // `ink-waterfall`. We'll need to add those back in
 			testnet_genesis(
 				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
@@ -128,10 +139,18 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 				id,
 			)
 		},
+        // Bootnodes
+        // TODO: We'll need some new bootnotes since the old ones from
+        //  the standalone `canvas-node` network won't work anymore
 		Vec::new(),
+        // Telemetry
 		None,
-		None,
-		None,
+        // Protocol ID
+        // TODO: Should this be `rpc`?
+		Some("prc"),
+        // Properties
+		Some(properties),
+        // Extensions
 		Extensions {
 			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
 			para_id: id.into(),
