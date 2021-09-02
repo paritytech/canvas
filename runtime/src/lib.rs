@@ -22,7 +22,7 @@
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
-// use pallet_contracts::weights::WeightInfo; TODO
+use pallet_contracts::weights::WeightInfo;
 use sp_api::impl_runtime_apis;
 use sp_core::{crypto::KeyTypeId, OpaqueMetadata};
 use sp_runtime::{
@@ -477,8 +477,6 @@ parameter_types! {
 	pub UnitWeightCost: Weight = 1_000_000;
 	// One UNIT buys 1 second of weight.
 	pub const WeightPrice: (MultiLocation, u128) = (X1(Parent), UNIT);
- 	// NOTE: This was stolen from Cumulus, not sure what a "good" value is
-  	pub const MaxInstructions: u32 = 100;
 }
 
 match_type! {
@@ -505,7 +503,7 @@ impl Config for XcmConfig {
 	type IsTeleporter = (); // Teleporting is disabled.
 	type LocationInverter = LocationInverter<Ancestry>;
 	type Barrier = Barrier;
-	type Weigher = FixedWeightBounds<UnitWeightCost, Call, MaxInstructions>;
+	type Weigher = FixedWeightBounds<UnitWeightCost, Call>;
 	type Trader = UsingComponents<IdentityFee<Balance>, RelayLocation, AccountId, Balances, ()>;
 	type ResponseHandler = (); // Don't handle responses for now.
 }
@@ -517,7 +515,7 @@ pub type LocalOriginToLocation = SignedToAccountId32<Origin, AccountId, RelayNet
 /// queues.
 pub type XcmRouter = (
 	// Two routers - use UMP to communicate with the relay chain:
-	cumulus_primitives_utility::ParentAsUmp<ParachainSystem, ()>,
+	cumulus_primitives_utility::ParentAsUmp<ParachainSystem>,
 	// ..and XCMP to communicate with the sibling chains.
 	XcmpQueue,
 );
@@ -531,7 +529,7 @@ impl pallet_xcm::Config for Runtime {
 	type XcmExecutor = XcmExecutor<XcmConfig>;
 	type XcmTeleportFilter = Everything;
 	type XcmReserveTransferFilter = ();
-	type Weigher = FixedWeightBounds<UnitWeightCost, Call, MaxInstructions>;
+	type Weigher = FixedWeightBounds<UnitWeightCost, Call>;
 	type LocationInverter = LocationInverter<Ancestry>;
 }
 
