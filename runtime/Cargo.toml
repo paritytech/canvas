@@ -8,85 +8,74 @@ edition = "2018"
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
 
+[build-dependencies]
+substrate-wasm-builder = { git = "https://github.com/paritytech/substrate", branch = "cmichi-tmp-experiment" }
+
 [dependencies]
-codec = { package = "parity-scale-codec", version = "2.1.1", default-features = false, features = ["derive"] }
+codec = { package = 'parity-scale-codec', version = '2.0.0', default-features = false, features = ['derive']}
 log = { version = "0.4.14", default-features = false }
 serde = { version = '1.0.119', optional = true, features = ['derive'] }
 
 # Substrate Dependencies
 ## Substrate Primitive Dependencies
-# TODO: Maybe get rif of `package=...` line
-sp-api = { git = "https://github.com/paritytech/substrate", package = "sp-api", default-features = false }
-sp-block-builder = { git = "https://github.com/paritytech/substrate", package = "sp-block-builder", default-features = false }
-sp-consensus-aura = { git = "https://github.com/paritytech/substrate", package = "sp-consensus-aura", default-features = false }
-sp-core = { git = "https://github.com/paritytech/substrate", package = "sp-core", default-features = false }
-sp-inherents = { git = "https://github.com/paritytech/substrate", package = "sp-inherents", default-features = false }
-sp-io = { git = "https://github.com/paritytech/substrate", default-features = false }
-sp-offchain = { git = "https://github.com/paritytech/substrate", package = "sp-offchain", default-features = false }
-sp-runtime = { git = "https://github.com/paritytech/substrate", package = "sp-runtime", default-features = false }
-sp-session = { git = "https://github.com/paritytech/substrate", package = "sp-session", default-features = false }
-sp-std = { git = "https://github.com/paritytech/substrate", package = "sp-std", default-features = false }
-sp-transaction-pool = { git = "https://github.com/paritytech/substrate", package = "sp-transaction-pool", default-features = false }
-sp-version = { git = "https://github.com/paritytech/substrate", package = "sp-version", default-features = false }
+sp-api = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-block-builder = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-core = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-consensus-aura = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-inherents = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-io = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-offchain = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-runtime = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-session = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-std = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-transaction-pool = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+sp-version = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
 
 ## Substrate FRAME Dependencies
-frame-executive = { git = "https://github.com/paritytech/substrate", package = "frame-executive", default-features = false }
-frame-benchmarking = { git = "https://github.com/paritytech/substrate", package = "frame-benchmarking", default-features = false, optional = true }
-frame-support = { git = "https://github.com/paritytech/substrate", package = "frame-support", default-features = false }
-frame-system = { git = "https://github.com/paritytech/substrate", package = "frame-system", default-features = false }
-frame-system-benchmarking = { git = "https://github.com/paritytech/substrate", package = "frame-system-benchmarking", default-features = false, optional = true }
-frame-system-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "frame-system-rpc-runtime-api", default-features = false }
+frame-executive = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+frame-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , branch = "cmichi-tmp-experiment" }
+frame-support = { git = 'https://github.com/paritytech/substrate', default-features = false, branch = "cmichi-tmp-experiment" }
+frame-system = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+frame-system-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , branch = "cmichi-tmp-experiment" }
+frame-system-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
 
 ## Substrate Pallet Dependencies
-pallet-aura = { git = "https://github.com/paritytech/substrate", package = "pallet-aura", default-features = false }
-pallet-balances = { git = "https://github.com/paritytech/substrate", package = "pallet-balances", default-features = false }
-pallet-randomness-collective-flip = { git = "https://github.com/paritytech/substrate", package = "pallet-randomness-collective-flip", default-features = false }
-pallet-sudo = { git = "https://github.com/paritytech/substrate", package = "pallet-sudo", default-features = false }
-pallet-timestamp = { git = "https://github.com/paritytech/substrate", package = "pallet-timestamp", default-features = false }
-pallet-transaction-payment = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment", default-features = false }
-pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-transaction-payment-rpc-runtime-api", default-features = false }
+pallet-aura = { git = "https://github.com/paritytech/substrate", default-features = false , branch = "cmichi-tmp-experiment" }
+pallet-balances = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+pallet-randomness-collective-flip = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+pallet-sudo = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+pallet-timestamp = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+pallet-transaction-payment = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
+pallet-transaction-payment-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "cmichi-tmp-experiment" }
 
 # Cumulus Dependencies
-cumulus-pallet-aura-ext = { git = "https://github.com/paritytech/cumulus", default-features = false }
-cumulus-pallet-parachain-system = { git = "https://github.com/paritytech/cumulus", default-features = false }
-cumulus-pallet-dmp-queue = { git = "https://github.com/paritytech/cumulus", default-features = false }
-cumulus-pallet-xcm = { git = "https://github.com/paritytech/cumulus", default-features = false }
-cumulus-pallet-xcmp-queue = { git = "https://github.com/paritytech/cumulus", default-features = false }
-cumulus-primitives-core = { git = "https://github.com/paritytech/cumulus", default-features = false }
-cumulus-primitives-timestamp = { git = "https://github.com/paritytech/cumulus", default-features = false }
-cumulus-primitives-utility = { git = "https://github.com/paritytech/cumulus", default-features = false }
-parachain-info = { git = "https://github.com/paritytech/cumulus", default-features = false }
+cumulus-pallet-aura-ext = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-pallet-parachain-system = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-pallet-dmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-pallet-xcm = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-pallet-xcmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-primitives-core = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-primitives-timestamp = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-primitives-utility = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+parachain-info = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
 
 # Polkadot Dependencies
-polkadot-parachain = { git = "https://github.com/paritytech/polkadot", default-features = false }
-xcm = { git = "https://github.com/paritytech/polkadot", default-features = false }
-xcm-builder = { git = "https://github.com/paritytech/polkadot", default-features = false }
-xcm-executor = { git = "https://github.com/paritytech/polkadot", default-features = false }
-pallet-xcm = { git = "https://github.com/paritytech/polkadot", default-features = false }
+polkadot-parachain = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+xcm-builder = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+xcm-executor = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+pallet-xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
 
 # Contracts specific packages
-pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts", default-features = false }
-pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-primitives", default-features = false }
-pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false }
-
-[build-dependencies]
-substrate-wasm-builder =  { git = "https://github.com/paritytech/substrate", package = "substrate-wasm-builder" }
+pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts", default-features = false, branch = "cmichi-tmp-experiment" }
+pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-primitives", default-features = false, branch = "cmichi-tmp-experiment" }
+pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false, branch = "cmichi-tmp-experiment" }
 
 [features]
 default = [
-    "std",
-    # temporarily enable unstable contracts features by default, remove this before using on a production chain.
-    "contracts-unstable-interface",
-]
-runtime-benchmarks = [
-	'sp-runtime/runtime-benchmarks',
-	'frame-benchmarking',
-	'frame-support/runtime-benchmarks',
-	'frame-system-benchmarking',
-	'frame-system/runtime-benchmarks',
-	'pallet-balances/runtime-benchmarks',
-	'pallet-timestamp/runtime-benchmarks',
-    # TODO: Maybe have contract benchmarks here?
+	"std",
+	# temporarily enable unstable contracts features by default, remove this before using on a production chain.
+	"contracts-unstable-interface",
 ]
 std = [
 	"codec/std",
@@ -107,9 +96,6 @@ std = [
 	"frame-executive/std",
 	"frame-system/std",
 	"pallet-balances/std",
-    "pallet-contracts/std",
-    "pallet-contracts-primitives/std",
-    "pallet-contracts-rpc-runtime-api/std",
 	"pallet-randomness-collective-flip/std",
 	"pallet-timestamp/std",
 	"pallet-sudo/std",
@@ -127,9 +113,23 @@ std = [
 	"xcm-executor/std",
 	"pallet-aura/std",
 	"sp-consensus-aura/std",
+	"pallet-contracts/std",
+	"pallet-contracts-primitives/std",
+	"pallet-contracts-rpc-runtime-api/std",
 ]
+
 # Make contract callable functions marked as __unstable__ available. Do not enable
 # on live chains as those are subject to change.
 contracts-unstable-interface = [
-    "pallet-contracts/unstable-interface"
+	"pallet-contracts/unstable-interface"
+]
+
+runtime-benchmarks = [
+	'sp-runtime/runtime-benchmarks',
+	'frame-benchmarking',
+	'frame-support/runtime-benchmarks',
+	'frame-system-benchmarking',
+	'frame-system/runtime-benchmarks',
+	'pallet-balances/runtime-benchmarks',
+	'pallet-timestamp/runtime-benchmarks',
 ]
