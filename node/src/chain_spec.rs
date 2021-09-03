@@ -140,7 +140,7 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 			)
 		},
 		// Bootnodes
-        // These will be configured using the JSON files in the `res` foler
+		// These will be configured using the JSON files in the `res` foler
 		Vec::new(),
 		// Telemetry
 		None,
