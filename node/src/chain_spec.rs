@@ -140,14 +140,12 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 			)
 		},
 		// Bootnodes
-		// TODO: We'll need some new bootnotes since the old ones from
-		//  the standalone `canvas-node` network won't work anymore
+        // These will be configured using the JSON files in the `res` foler
 		Vec::new(),
 		// Telemetry
 		None,
 		// Protocol ID
-		// TODO: Should this be `rpc`?
-		Some("prc"),
+		Some("canvas-rococo"),
 		// Properties
 		Some(properties),
 		// Extensions

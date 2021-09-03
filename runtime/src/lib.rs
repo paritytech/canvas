@@ -180,9 +180,6 @@ pub const MILLISECS_PER_BLOCK: u64 = 12000;
 //       Attempting to do so will brick block production.
 pub const SLOT_DURATION: u64 = MILLISECS_PER_BLOCK;
 
-// TODO: Figure out if this is a good length
-pub const EPOCH_DURATION_IN_BLOCKS: u32 = 10 * MINUTES;
-
 // Time is measured by number of blocks.
 pub const MINUTES: BlockNumber = 60_000 / (MILLISECS_PER_BLOCK as BlockNumber);
 pub const HOURS: BlockNumber = MINUTES * 60;
@@ -222,7 +219,7 @@ const NORMAL_DISPATCH_RATIO: Perbill = Perbill::from_percent(75);
 const MAXIMUM_BLOCK_WEIGHT: Weight = WEIGHT_PER_SECOND / 2;
 
 parameter_types! {
-	pub const BlockHashCount: BlockNumber = 250; //2400; TODO: Is this too low?
+	pub const BlockHashCount: BlockNumber = 250;
 	pub const Version: RuntimeVersion = VERSION;
 
 	// This part is copied from Substrate's `bin/node/runtime/src/lib.rs`.
@@ -288,7 +285,7 @@ impl frame_system::Config for Runtime {
 	/// What to do if an account is fully reaped from the system.
 	type OnKilledAccount = ();
 	/// The weight of database operations that the runtime can invoke.
-	type DbWeight = RocksDbWeight; // TODO: Why was this unit in template?
+	type DbWeight = RocksDbWeight;
 	/// The basic call filter to use in dispatchable.
 	type BaseCallFilter = Everything;
 	/// Weight information for the extrinsics of this pallet.
@@ -310,16 +307,16 @@ parameter_types! {
 impl pallet_timestamp::Config for Runtime {
 	/// A timestamp: milliseconds since the unix epoch.
 	type Moment = u64;
-	type OnTimestampSet = Aura; // TODO: Unit in template
+	type OnTimestampSet = ();
 	type MinimumPeriod = MinimumPeriod;
 	type WeightInfo = ();
 }
 
 parameter_types! {
-	pub const ExistentialDeposit: u128 = 1 * MILLIUNIT; // TODO: This is a lot higher now
+	pub const ExistentialDeposit: u128 = 1 * MILLIUNIT;
 	pub const TransferFee: u128 = 1 * MILLIUNIT;
 	pub const CreationFee: u128 = 1 * MILLIUNIT;
-	pub const TransactionByteFee: u128 = 1 * MICROUNIT; // TODO: This used to be `953,674`
+	pub const TransactionByteFee: u128 = 1 * MICROUNIT;
 	pub const MaxLocks: u32 = 50;
 	pub const MaxReserves: u32 = 50;
 }
