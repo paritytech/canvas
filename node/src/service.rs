@@ -20,8 +20,9 @@
 use std::sync::Arc;
 
 // Local Runtime Types
-use canvas_runtime::RuntimeApi;
-use canvas_runtime::{AccountId, Balance, BlockNumber, Hash, Index as Nonce, opaque::Block};
+use canvas_runtime::{
+	opaque::Block, AccountId, Balance, BlockNumber, Hash, Index as Nonce, RuntimeApi,
+};
 
 // Cumulus Imports
 use cumulus_client_consensus_aura::{
@@ -46,7 +47,6 @@ use sp_consensus::SlotData;
 use sp_keystore::SyncCryptoStorePtr;
 use sp_runtime::traits::BlakeTwo256;
 use substrate_prometheus_endpoint::Registry;
-
 
 // Native executor instance.
 native_executor_instance!(
@@ -211,7 +211,7 @@ where
 	) -> Result<Box<dyn ParachainConsensus<Block>>, sc_service::Error>,
 {
 	if matches!(parachain_config.role, Role::Light) {
-		return Err("Light client not supported!".into());
+		return Err("Light client not supported!".into())
 	}
 
 	let parachain_config = prepare_node_config(parachain_config);

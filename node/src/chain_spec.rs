@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-use cumulus_primitives_core::ParaId;
 use canvas_runtime::{AccountId, AuraId, Signature};
+use cumulus_primitives_core::ParaId;
 use sc_chain_spec::{ChainSpecExtension, ChainSpecGroup};
 use sc_service::ChainType;
 use serde::{Deserialize, Serialize};
@@ -76,7 +76,7 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
 				vec![
-                    get_account_id_from_seed::<sr25519::Public>("Alice"),
+					get_account_id_from_seed::<sr25519::Public>("Alice"),
 					get_account_id_from_seed::<sr25519::Public>("Bob"),
 					get_account_id_from_seed::<sr25519::Public>("Charlie"),
 					get_account_id_from_seed::<sr25519::Public>("Dave"),
@@ -116,9 +116,9 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		"canvas_testnet",
 		ChainType::Local,
 		move || {
-            // TODO: Right now these are being left as default values, but in the old `canvas-node`
-            // we had some non-default authorities, as well as accounts for the faucent and
-            // `ink-waterfall`. We'll need to add those back in
+			// TODO: Right now these are being left as default values, but in the old `canvas-node`
+			// we had some non-default authorities, as well as accounts for the faucent and
+			// `ink-waterfall`. We'll need to add those back in
 			testnet_genesis(
 				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
@@ -139,18 +139,18 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 				id,
 			)
 		},
-        // Bootnodes
-        // TODO: We'll need some new bootnotes since the old ones from
-        //  the standalone `canvas-node` network won't work anymore
+		// Bootnodes
+		// TODO: We'll need some new bootnotes since the old ones from
+		//  the standalone `canvas-node` network won't work anymore
 		Vec::new(),
-        // Telemetry
+		// Telemetry
 		None,
-        // Protocol ID
-        // TODO: Should this be `rpc`?
+		// Protocol ID
+		// TODO: Should this be `rpc`?
 		Some("prc"),
-        // Properties
+		// Properties
 		Some(properties),
-        // Extensions
+		// Extensions
 		Extensions {
 			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
 			para_id: id.into(),
