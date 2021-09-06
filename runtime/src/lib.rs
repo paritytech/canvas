@@ -354,7 +354,7 @@ parameter_types! {
 		1,
 		<pallet_contracts::Pallet<Runtime>>::contract_info_size(),
 	);
-	
+
 	// NOTE: These are all set to `0` since we're planning on getting rid
 	// of state-rent with an upcoming Substrate release.
 	//

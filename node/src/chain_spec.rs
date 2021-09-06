@@ -116,7 +116,7 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		"canvas_local",
 		ChainType::Local,
 		move || {
-			// TODO: Right now these are being left as default values, but in the old `canvas-node`
+			// TODO [#76]: Right now these are being left as default values, but in the old `canvas-node`
 			// we had some non-default authorities, as well as accounts for the faucent and
 			// `ink-waterfall`. We'll need to add those back in
 			testnet_genesis(
