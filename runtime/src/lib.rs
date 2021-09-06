@@ -350,16 +350,20 @@ impl pallet_sudo::Config for Runtime {
 }
 
 parameter_types! {
+	pub TombstoneDeposit: Balance = deposit(
+		1,
+		<pallet_contracts::Pallet<Runtime>>::contract_info_size(),
+	);
+	
 	// NOTE: These are all set to `0` since we're planning on getting rid
 	// of state-rent with an upcoming Substrate release.
 	//
 	// See: https://github.com/paritytech/substrate/pull/9669
-	pub TombstoneDeposit: Balance = TombstoneDeposit::get();
-	pub DepositPerContract: Balance = TombstoneDeposit::get();
-	pub const DepositPerStorageByte: Balance = deposit(0, 0);
-	pub const DepositPerStorageItem: Balance = deposit(0, 0);
-	pub RentFraction: Perbill = Perbill::from_rational(0u32, 0 * DAYS);
-	pub const SurchargeReward: Balance = 0 * MILLIUNIT;
+	pub DepositPerContract: Balance = 0;
+	pub const DepositPerStorageByte: Balance = 0;
+	pub const DepositPerStorageItem: Balance = 0;
+	pub const RentFraction: Perbill = Perbill::zero();
+	pub const SurchargeReward: Balance = 0;
 	pub const SignedClaimHandicap: u32 = 0;
 
 	// The lazy deletion runs inside on_initialize.
