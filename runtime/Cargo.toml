@@ -67,9 +67,9 @@ xcm-executor = { git = 'https://github.com/paritytech/polkadot', default-feature
 pallet-xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
 
 # Contracts specific packages
-pallet-contracts = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts", default-features = false, branch = "cmichi-tmp-experiment" }
-pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-primitives", default-features = false, branch = "cmichi-tmp-experiment" }
-pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", package = "pallet-contracts-rpc-runtime-api", default-features = false, branch = "cmichi-tmp-experiment" }
+pallet-contracts = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "cmichi-tmp-experiment" }
+pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "cmichi-tmp-experiment" }
+pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "cmichi-tmp-experiment" }
 
 [features]
 default = [
