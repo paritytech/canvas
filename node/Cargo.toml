@@ -21,6 +21,7 @@ path = 'src/main.rs'
 
 [features]
 runtime-benchmarks = ['canvas-runtime/runtime-benchmarks']
+contracts-unstable-interface = ['canvas-runtime/contracts-unstable-interface']
 
 [dependencies]
 derive_more = '0.99.2'

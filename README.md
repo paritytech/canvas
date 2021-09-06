@@ -31,6 +31,13 @@ most recent working version of Substrate will be used.
 The latest confirmed working Substrate commit which will then be used is
 [ed702e8246d5c4f82e686fb044ac6c2e6cd269cf](https://github.com/paritytech/substrate/tree/ed702e8246d5c4f82e686fb044ac6c2e6cd269cf).
 
+### Unstable Features
+If you're the type of person that likes to drink your soup before it cools, you might
+also be wondering about how to activate unstable `pallet-contracts` features. To do this
+you can run the previous installation command with the following flag: 
+
+`--features contracts-unstable-interface`.
+
 ## Usage
 
 To run a local dev node execute

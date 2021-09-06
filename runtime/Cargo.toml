@@ -74,8 +74,6 @@ pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substr
 [features]
 default = [
 	"std",
-	# temporarily enable unstable contracts features by default, remove this before using on a production chain.
-	"contracts-unstable-interface",
 ]
 std = [
 	"codec/std",
