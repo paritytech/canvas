@@ -9,7 +9,7 @@ pallet.
 
 ## Note
 
-Note: This used to be a standalone smart contract node used for the ink! workshop. We
+This used to be a standalone smart contract node used for the ink! workshop. We
 have moved the standalone node to [substrate-contracts-node](https://github.com/paritytech/substrate-contracts-node/).
 
 ## Installation

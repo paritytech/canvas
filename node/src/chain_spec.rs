@@ -70,7 +70,7 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 		"Development",
 		// ID
 		"dev",
-		ChainType::Local,
+		ChainType::Development,
 		move || {
 			testnet_genesis(
 				get_account_id_from_seed::<sr25519::Public>("Alice"),
@@ -111,9 +111,9 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 
 	ChainSpec::from_genesis(
 		// Name
-		"Canvas Testnet",
+		"Canvas Local",
 		// ID
-		"canvas_testnet",
+		"canvas_local",
 		ChainType::Local,
 		move || {
 			// TODO: Right now these are being left as default values, but in the old `canvas-node`
