@@ -54,12 +54,6 @@ canvas --dev --tmp
 The `--tmp` implies that a new chain will be created each time the command
 is executed. If you want to persist chain state across runs leave it away.
 
-To run `testnet-1` execute
-
-```
-canvas --chain=./res/testnet-1.json
-```
-
 ## Running as a parachain
 
 To simplify your life you'll want to use the
