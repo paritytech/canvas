@@ -1,17 +1,16 @@
 # canvas-node
 
 This is a node implementation for Canvas, a [Substrate](https://github.com/paritytech/substrate)
-chain for smart contracts.
+parachain for smart contracts.
 
 It uses Substrate's smart contract module ‒ the
 [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
 pallet.
 
-
 ## Note
 
-The master branch is currently tracking Substrate master in order to include
-various fixes. Therefore, it may not build if there are breaking changes.
+Note: This used to be a standalone smart contract node used for the ink! workshop. We
+have moved the standalone node to [substrate-contracts-node](https://github.com/paritytech/substrate-contracts-node/).
 
 ## Installation
 
@@ -28,8 +27,16 @@ If it fails to build/install, add the cargo `--locked` flag. The installation pr
 will then use the same versions as the `Cargo.lock` in this repository to ensure that the
 most recent working version of Substrate will be used.
 
+### Substrate Compatibility
+
 The latest confirmed working Substrate commit which will then be used is
-[ed702e8246d5c4f82e686fb044ac6c2e6cd269cf](https://github.com/paritytech/substrate/tree/ed702e8246d5c4f82e686fb044ac6c2e6cd269cf).
+[6080e7a33e63558bf619c240b1ada2cb08c8b443](https://github.com/paritytech/substrate/commit/6080e7a33e63558bf619c240b1ada2cb08c8b443).
+
+It tracks a modified `polkadot-v0.9.9` branches across:
+[`substrate`](https://github.com/paritytech/substrate/tree/cmichi-tmp-experiment),
+[`grandpa-bridge-gadget`](https://github.com/paritytech/grandpa-bridge-gadget/tree/hc-contract-experiment-patched-v0.9.9),
+[`polkadot`](https://github.com/paritytech/polkadot/tree/hc-contract-experiment-patched-v0.9.9) and 
+[`cumulus`](https://github.com/paritytech/cumulus/tree/hc-contract-experiment-patched-v0.9.9).
 
 ### Unstable Features
 If you're the type of person that likes to drink your soup before it cools, you might
@@ -55,10 +62,6 @@ canvas --chain=./res/testnet-1.json
 
 ## Running as a parachain
 
-The [`rococo-v1`](https://github.com/paritytech/canvas-node/tree/rococo-v1) branch
-contains an experimental implementation which allows running `canvas-node` as a parachain.
-
-It tracks the `rococo-v1` branches of
-[`substrate`](https://github.com/paritytech/substrate/tree/rococo-v1), 
-[`polkadot`](https://github.com/paritytech/polkadot/tree/rococo-v1) and 
-[`cumulus`](https://github.com/paritytech/cumulus/tree/rococo-v1).
+To simplify your life you'll want to use the
+[`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool. More
+instructions to come!
