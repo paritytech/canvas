@@ -17,6 +17,7 @@ substrate-build-script-utils = { git = 'https://github.com/paritytech/substrate'
 
 [[bin]]
 name = 'canvas'
+path = 'src/main.rs'
 
 [features]
 runtime-benchmarks = ['canvas-runtime/runtime-benchmarks']
