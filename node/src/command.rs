@@ -40,6 +40,7 @@ fn load_spec(
 ) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
 	Ok(match id {
 		"dev" => Box::new(chain_spec::development_config(para_id)),
+		"canvas-rococo" => Box::new(chain_spec::rococo_testnet_config(para_id)),
 		"" | "local" => Box::new(chain_spec::local_testnet_config(para_id)),
 		path => Box::new(chain_spec::ChainSpec::from_json_file(std::path::PathBuf::from(path))?),
 	})
@@ -47,7 +48,7 @@ fn load_spec(
 
 impl SubstrateCli for Cli {
 	fn impl_name() -> String {
-		"Canvas Node".into()
+		"Canvas".into()
 	}
 
 	fn impl_version() -> String {
