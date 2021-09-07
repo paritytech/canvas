@@ -104,11 +104,60 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 	)
 }
 
-pub fn local_testnet_root() -> AccountId {
+pub fn local_testnet_config(id: ParaId) -> ChainSpec {
+	// Give your base currency a unit name and decimal places
+	let mut properties = sc_chain_spec::Properties::new();
+	properties.insert("tokenSymbol".into(), "CAN".into());
+	properties.insert("tokenDecimals".into(), 12.into());
+
+	ChainSpec::from_genesis(
+		// Name
+		"Canvas",
+		// ID
+		"canvas_rococo",
+		ChainType::Local,
+		move || {
+			testnet_genesis(
+				get_account_id_from_seed::<sr25519::Public>("Alice"),
+				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
+				vec![
+					get_account_id_from_seed::<sr25519::Public>("Alice"),
+					get_account_id_from_seed::<sr25519::Public>("Bob"),
+					get_account_id_from_seed::<sr25519::Public>("Charlie"),
+					get_account_id_from_seed::<sr25519::Public>("Dave"),
+					get_account_id_from_seed::<sr25519::Public>("Eve"),
+					get_account_id_from_seed::<sr25519::Public>("Ferdie"),
+					get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Charlie//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Dave//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Eve//stash"),
+					get_account_id_from_seed::<sr25519::Public>("Ferdie//stash"),
+				],
+				id,
+			)
+		},
+		// Bootnodes
+		vec![],
+		// Telemetry
+		None,
+		// Protocol ID
+		Some("canvas-local"),
+		// Properties
+		Some(properties),
+		// Extensions
+		Extensions {
+			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
+			para_id: id.into(),
+		},
+	)
+}
+
+pub fn rococo_testnet_root() -> AccountId {
 	hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into()
 }
 
-pub fn local_testnet_authorities() -> Vec<AuraId> {
+pub fn rococo_testnet_authorities() -> Vec<AuraId> {
 	use sp_core::crypto::UncheckedInto;
 
 	// ./scripts/prepare-test-net.sh 2
@@ -135,7 +184,7 @@ pub fn local_testnet_authorities() -> Vec<AuraId> {
 	initial_authorities.into_iter().map(|(_, _, aura_id)| aura_id).collect()
 }
 
-pub fn local_testnet_config(id: ParaId) -> ChainSpec {
+pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
 	properties.insert("tokenSymbol".into(), "CAN".into());
@@ -143,16 +192,16 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 
 	ChainSpec::from_genesis(
 		// Name
-		"Canvas Local",
+		"Canvas",
 		// ID
-		"canvas_local",
-		ChainType::Local,
+		"canvas_rococo",
+		ChainType::Live,
 		move || {
 			testnet_genesis(
-				local_testnet_root(),
-				local_testnet_authorities(),
+				rococo_testnet_root(),
+				rococo_testnet_authorities(),
 				vec![
-					local_testnet_root(),
+					rococo_testnet_root(),
 					// AccountId of the Canvas Testnet faucet
 					hex!("18c64aa111a8a0e6e4eed41d6d906c7614d745e48be3cfc13b6128e1d51f4405").into(),
 					// AccountId of an account which `ink-waterfall` uses for automated testing
@@ -184,7 +233,7 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		Some(properties),
 		// Extensions
 		Extensions {
-			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
+			relay_chain: "rococo".into(), // You MUST set this to the correct network!
 			para_id: id.into(),
 		},
 	)
