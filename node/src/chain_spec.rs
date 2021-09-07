@@ -114,7 +114,7 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		// Name
 		"Canvas",
 		// ID
-		"canvas_rococo",
+		"canvas-rococo",
 		ChainType::Local,
 		move || {
 			testnet_genesis(
