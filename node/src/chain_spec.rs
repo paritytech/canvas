@@ -202,8 +202,6 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 				rococo_testnet_authorities(),
 				vec![
 					rococo_testnet_root(),
-					// AccountId of the Canvas Testnet faucet
-					hex!("18c64aa111a8a0e6e4eed41d6d906c7614d745e48be3cfc13b6128e1d51f4405").into(),
 					// AccountId of an account which `ink-waterfall` uses for automated testing
 					hex!("0e47e2344d523c3cc5c34394b0d58b9a4200e813a038e6c5a6163cc07d70b069").into(),
 				],
