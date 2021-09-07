@@ -199,6 +199,9 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 				// any endowed accounts here, otherwise it'll be minting extra native tokens
 				// from the relay chain on the parachain.
 				vec![
+					// TODO: Remove endowed accounts if deployed on other relay chains.
+					// Endowed accounts
+					hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into(),
 					// AccountId of an account which `ink-waterfall` uses for automated testing
 					hex!("0e47e2344d523c3cc5c34394b0d58b9a4200e813a038e6c5a6163cc07d70b069").into(),
 				],
@@ -228,7 +231,7 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		Some(properties),
 		// Extensions
 		Extensions {
-			relay_chain: "rococo".into(), // You MUST set this to the correct network!
+			relay_chain: "rococo".into(),
 			para_id: id.into(),
 		},
 	)
@@ -247,7 +250,7 @@ fn testnet_genesis(
 			changes_trie_config: Default::default(),
 		},
 		balances: canvas_runtime::BalancesConfig {
-			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
+			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(), //TODO Remove in production
 		},
 		parachain_info: canvas_runtime::ParachainInfoConfig { parachain_id: id },
 		aura: canvas_runtime::AuraConfig { authorities: initial_authorities },
