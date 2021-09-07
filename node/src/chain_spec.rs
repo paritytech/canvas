@@ -142,7 +142,7 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		// Telemetry
 		None,
 		// Protocol ID
-		None,
+		Some("canvas-local"),
 		// Properties
 		Some(properties),
 		// Extensions
@@ -229,7 +229,7 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		// Telemetry
 		None,
 		// Protocol ID
-		None,
+		Some("canvas-rococo"),
 		// Properties
 		Some(properties),
 		// Extensions
