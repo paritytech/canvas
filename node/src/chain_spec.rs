@@ -200,6 +200,9 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 			testnet_genesis(
 				rococo_testnet_root(),
 				rococo_testnet_authorities(),
+				// Warning: The configuration for a production chain should not contain
+				// any endowed accounts here, otherwise it'll be minting extra native tokens
+				// from the relay chain on the parachain.
 				vec![
 					rococo_testnet_root(),
 					// AccountId of an account which `ink-waterfall` uses for automated testing
