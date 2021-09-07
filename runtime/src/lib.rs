@@ -150,8 +150,8 @@ impl frame_support::traits::OnRuntimeUpgrade for OnRuntimeUpgrade {
 /// node's balance type.
 ///
 /// This should typically create a mapping between the following ranges:
-///   - [0, MAXIMUM_BLOCK_WEIGHT]
-///   - [Balance::min, Balance::max]
+///   - `[0, MAXIMUM_BLOCK_WEIGHT]`
+///   - `[Balance::min, Balance::max]`
 ///
 /// Yet, it can be used for any other sort of change to weight-fee. Some examples being:
 ///   - Setting it to `0` will essentially disable the weight fee.
@@ -244,7 +244,7 @@ pub const DOLLARS: Balance = UNITS;
 pub const CENTS: Balance = UNITS / 100;
 pub const MILLICENTS: Balance = CENTS / 1_000;
 
-/// The existential deposit. Set to 1/10 of its parent Relay Chain (v9020).
+/// The existential deposit. Set to 1/10 of its parent Relay Chain.
 pub const EXISTENTIAL_DEPOSIT: Balance = CENTS / 10;
 
 /// The version information used to identify this runtime when compiled natively.

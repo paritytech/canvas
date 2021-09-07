@@ -153,10 +153,6 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 	)
 }
 
-pub fn rococo_testnet_root() -> AccountId {
-	hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into()
-}
-
 pub fn rococo_testnet_authorities() -> Vec<AuraId> {
 	use sp_core::crypto::UncheckedInto;
 
@@ -198,13 +194,11 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		ChainType::Live,
 		move || {
 			testnet_genesis(
-				rococo_testnet_root(),
 				rococo_testnet_authorities(),
 				// Warning: The configuration for a production chain should not contain
 				// any endowed accounts here, otherwise it'll be minting extra native tokens
 				// from the relay chain on the parachain.
 				vec![
-					rococo_testnet_root(),
 					// AccountId of an account which `ink-waterfall` uses for automated testing
 					hex!("0e47e2344d523c3cc5c34394b0d58b9a4200e813a038e6c5a6163cc07d70b069").into(),
 				],
