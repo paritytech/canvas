@@ -15,6 +15,7 @@ substrate-wasm-builder = { git = "https://github.com/paritytech/substrate", bran
 codec = { package = 'parity-scale-codec', version = '2.0.0', default-features = false, features = ['derive']}
 log = { version = "0.4.14", default-features = false }
 serde = { version = '1.0.119', optional = true, features = ['derive'] }
+smallvec = "1.6.1"
 
 # Substrate Dependencies
 ## Substrate Primitive Dependencies
@@ -61,6 +62,7 @@ parachain-info = { git = 'https://github.com/paritytech/cumulus', default-featur
 
 # Polkadot Dependencies
 polkadot-parachain = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+polkadot-runtime-common = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "hc-contract-experiment-patched-v0.9.9" }
 xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
 xcm-builder = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
 xcm-executor = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
@@ -114,6 +116,8 @@ std = [
 	"pallet-contracts/std",
 	"pallet-contracts-primitives/std",
 	"pallet-contracts-rpc-runtime-api/std",
+	"polkadot-runtime-common/std",
+	"polkadot-parachain/std",
 ]
 
 # Make contract callable functions marked as __unstable__ available. Do not enable

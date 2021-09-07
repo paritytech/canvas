@@ -62,8 +62,9 @@ where
 pub fn development_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
-	properties.insert("tokenSymbol".into(), "CAN".into());
+	properties.insert("tokenSymbol".into(), "ROC".into());
 	properties.insert("tokenDecimals".into(), 12.into());
+	properties.insert("ss58Format".into(), 42.into());
 
 	ChainSpec::from_genesis(
 		// Name
@@ -73,7 +74,6 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 		ChainType::Development,
 		move || {
 			testnet_genesis(
-				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
 				vec![
 					get_account_id_from_seed::<sr25519::Public>("Alice"),
@@ -106,8 +106,9 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
-	properties.insert("tokenSymbol".into(), "CAN".into());
+	properties.insert("tokenSymbol".into(), "ROC".into());
 	properties.insert("tokenDecimals".into(), 12.into());
+	properties.insert("ss58Format".into(), 42.into());
 
 	ChainSpec::from_genesis(
 		// Name
@@ -120,7 +121,6 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 			// we had some non-default authorities, as well as accounts for the faucent and
 			// `ink-waterfall`. We'll need to add those back in
 			testnet_genesis(
-				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
 				vec![
 					get_account_id_from_seed::<sr25519::Public>("Alice"),
@@ -157,7 +157,6 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 }
 
 fn testnet_genesis(
-	root_key: AccountId,
 	initial_authorities: Vec<AuraId>,
 	endowed_accounts: Vec<AccountId>,
 	id: ParaId,
@@ -172,7 +171,6 @@ fn testnet_genesis(
 		balances: canvas_runtime::BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
 		},
-		sudo: canvas_runtime::SudoConfig { key: root_key },
 		parachain_info: canvas_runtime::ParachainInfoConfig { parachain_id: id },
 		aura: canvas_runtime::AuraConfig { authorities: initial_authorities },
 		aura_ext: Default::default(),
