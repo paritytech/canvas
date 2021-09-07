@@ -47,15 +47,6 @@ you can run the previous installation command with the following flag:
 
 ## Usage
 
-To run a local dev node execute
-```
-canvas --dev --tmp
-```
-The `--tmp` implies that a new chain will be created each time the command
-is executed. If you want to persist chain state across runs leave it away.
-
-## Running as a parachain
-
 To simplify your life you'll want to use the
 [`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool. More
 instructions to come!
