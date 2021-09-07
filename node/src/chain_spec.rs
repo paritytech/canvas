@@ -114,7 +114,7 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		// Name
 		"Canvas",
 		// ID
-		"canvas-rococo",
+		"canvas_rococo",
 		ChainType::Local,
 		move || {
 			testnet_genesis(
@@ -142,7 +142,7 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		// Telemetry
 		None,
 		// Protocol ID
-		Some("canvas-local"),
+		None,
 		// Properties
 		Some(properties),
 		// Extensions
@@ -229,7 +229,7 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		// Telemetry
 		None,
 		// Protocol ID
-		Some("canvas-rococo"),
+		None,
 		// Properties
 		Some(properties),
 		// Extensions
