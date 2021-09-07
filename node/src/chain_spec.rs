@@ -194,7 +194,7 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		// Name
 		"Canvas",
 		// ID
-		"canvas-rococo",
+		"canvas_rococo",
 		ChainType::Live,
 		move || {
 			testnet_genesis(
