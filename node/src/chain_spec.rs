@@ -230,10 +230,7 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		// Properties
 		Some(properties),
 		// Extensions
-		Extensions {
-			relay_chain: "rococo".into(),
-			para_id: id.into(),
-		},
+		Extensions { relay_chain: "rococo".into(), para_id: id.into() },
 	)
 }
 
@@ -250,7 +247,7 @@ fn testnet_genesis(
 			changes_trie_config: Default::default(),
 		},
 		balances: canvas_runtime::BalancesConfig {
-			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(), //TODO Remove in production
+			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(), /* TODO Remove in production */
 		},
 		parachain_info: canvas_runtime::ParachainInfoConfig { parachain_id: id },
 		aura: canvas_runtime::AuraConfig { authorities: initial_authorities },
