@@ -34,7 +34,7 @@ Starting this project is best done using the [`polkadot-launch`](https://github.
 it starts Polkadot and registers the Canvas parachain on it automatically.
 
 1. Install it: `yarn global add polkadot-launch` or `npm i polkadot-launch -g`.
-1. Check that the paths in `polkadot-launch/config.json` point to the `polkadot` and `canvas` executable.
+1. Check that the paths in `polkadot-launch/config.json` point to the `polkadot` and `canvas` executables.
 1. `polkadot-launch polkadot-launch/config.json`
 
 ## Building from source
@@ -45,7 +45,9 @@ to set up all Substrate prerequisites.
 Afterwards you can install this node via
 
 ```bash
-cargo install canvas-node --git https://github.com/paritytech/canvas-node.git --force
+git clone https://github.com/paritytech/canvas-node.git 
+cd canvas-node/
+cargo build --release --locked 
 ```
 
 ### Substrate Compatibility
