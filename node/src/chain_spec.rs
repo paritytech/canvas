@@ -247,7 +247,7 @@ fn testnet_genesis(
 			changes_trie_config: Default::default(),
 		},
 		balances: canvas_runtime::BalancesConfig {
-			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(), /* TODO Remove in production */
+			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
 		},
 		parachain_info: canvas_runtime::ParachainInfoConfig { parachain_id: id },
 		aura: canvas_runtime::AuraConfig { authorities: initial_authorities },
