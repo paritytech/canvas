@@ -33,6 +33,9 @@ in those repositories ‒ ensuring that the last known-to-work version of the de
 Starting this project is best done using the [`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool ‒
 it starts Polkadot and registers the Canvas parachain on it automatically.
 
+1. Ensure that you are using at least node.js v14.x.x.
+1. Mac OS users: make sure your machines firewall is disabled.  
+Choose "System Preferences", click "Security & Privacy", then click "Firewall" and make sure it is off.
 1. Install it: `yarn global add polkadot-launch` or `npm i polkadot-launch -g`.
 1. Check that the paths in `polkadot-launch/config.json` point to the `polkadot` and `canvas` executables.
 1. `polkadot-launch polkadot-launch/config.json`
