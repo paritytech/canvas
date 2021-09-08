@@ -63,8 +63,9 @@ where
 pub fn development_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
-	properties.insert("tokenSymbol".into(), "CAN".into());
+	properties.insert("tokenSymbol".into(), "ROC".into());
 	properties.insert("tokenDecimals".into(), 12.into());
+	properties.insert("ss58Format".into(), 42.into());
 
 	ChainSpec::from_genesis(
 		// Name
@@ -74,7 +75,6 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 		ChainType::Development,
 		move || {
 			testnet_genesis(
-				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
 				vec![
 					get_account_id_from_seed::<sr25519::Public>("Alice"),
@@ -107,8 +107,9 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
-	properties.insert("tokenSymbol".into(), "CAN".into());
+	properties.insert("tokenSymbol".into(), "ROC".into());
 	properties.insert("tokenDecimals".into(), 12.into());
+	properties.insert("ss58Format".into(), 42.into());
 
 	ChainSpec::from_genesis(
 		// Name
@@ -118,7 +119,6 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		ChainType::Local,
 		move || {
 			testnet_genesis(
-				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				vec![get_from_seed::<AuraId>("Alice"), get_from_seed::<AuraId>("Bob")],
 				vec![
 					get_account_id_from_seed::<sr25519::Public>("Alice"),
@@ -151,10 +151,6 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 			para_id: id.into(),
 		},
 	)
-}
-
-pub fn rococo_testnet_root() -> AccountId {
-	hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into()
 }
 
 pub fn rococo_testnet_authorities() -> Vec<AuraId> {
@@ -198,13 +194,14 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		ChainType::Live,
 		move || {
 			testnet_genesis(
-				rococo_testnet_root(),
 				rococo_testnet_authorities(),
 				// Warning: The configuration for a production chain should not contain
 				// any endowed accounts here, otherwise it'll be minting extra native tokens
 				// from the relay chain on the parachain.
 				vec![
-					rococo_testnet_root(),
+					// NOTE: Remove endowed accounts if deployed on other relay chains.
+					// Endowed accounts
+					hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into(),
 					// AccountId of an account which `ink-waterfall` uses for automated testing
 					hex!("0e47e2344d523c3cc5c34394b0d58b9a4200e813a038e6c5a6163cc07d70b069").into(),
 				],
@@ -233,15 +230,11 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		// Properties
 		Some(properties),
 		// Extensions
-		Extensions {
-			relay_chain: "rococo".into(), // You MUST set this to the correct network!
-			para_id: id.into(),
-		},
+		Extensions { relay_chain: "rococo".into(), para_id: id.into() },
 	)
 }
 
 fn testnet_genesis(
-	root_key: AccountId,
 	initial_authorities: Vec<AuraId>,
 	endowed_accounts: Vec<AccountId>,
 	id: ParaId,
@@ -256,7 +249,6 @@ fn testnet_genesis(
 		balances: canvas_runtime::BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
 		},
-		sudo: canvas_runtime::SudoConfig { key: root_key },
 		parachain_info: canvas_runtime::ParachainInfoConfig { parachain_id: id },
 		aura: canvas_runtime::AuraConfig { authorities: initial_authorities },
 		aura_ext: Default::default(),
