@@ -160,9 +160,9 @@ pub struct WeightToFee;
 impl WeightToFeePolynomial for WeightToFee {
 	type Balance = Balance;
 	fn polynomial() -> WeightToFeeCoefficients<Self::Balance> {
-		// in Rococo, extrinsic base weight (smallest non-zero weight) is mapped to 1/10 CENT:
-		// in Canvas, we map to 1/10 of that, or 1/100 CENT
-		let p = CENTS;
+		// in Rococo, extrinsic base weight (smallest non-zero weight) is mapped to 1 MILLIUNIT:
+		// in Canvas, we map to 1/10 of that, or 1/10 MILLIUNIT
+		let p = MILLIUNIT / 10;
 		let q = 100 * Balance::from(ExtrinsicBaseWeight::get());
 		smallvec![WeightToFeeCoefficient {
 			degree: 1,
@@ -201,10 +201,10 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	impl_name: create_runtime_str!("canvas"),
 	authoring_version: 1,
 	// The version of the runtime specification. A full node will not attempt to use its native
-	//   runtime in substitute for the on-chain Wasm runtime unless all of `spec_name`,
-	//   `spec_version`, and `authoring_version` are the same between Wasm and native.
+	// runtime in substitute for the on-chain Wasm runtime unless all of `spec_name`,
+	// `spec_version`, and `authoring_version` are the same between Wasm and native.
 	// This value is set to 1 to notify Polkadot-JS App (https://polkadot.js.org/apps) to use
-	//   the compatible custom types.
+	// the compatible custom types.
 	spec_version: 1,
 	impl_version: 0,
 	apis: RUNTIME_API_VERSIONS,
@@ -232,20 +232,22 @@ pub const DAYS: BlockNumber = HOURS * 24;
 // started with `-lruntime::contracts=debug`.
 pub const CONTRACTS_DEBUG_OUTPUT: bool = true;
 
+// Unit = the base number of indivisible units for balances
+pub const UNIT: Balance = 1_000_000_000_000;
+pub const MILLIUNIT: Balance = 1_000_000_000;
+pub const MICROUNIT: Balance = 1_000_000;
+
+/// The existential deposit. Set to 1/10 of the Rococo Relay Chain.
+pub const EXISTENTIAL_DEPOSIT: Balance = 1 * MILLIUNIT; 
+
 const fn deposit(items: u32, bytes: u32) -> Balance {
-	items as Balance * 15 * UNITS + (bytes as Balance) * 6 * UNITS
+	// This is a 1/10 of the deposit on the Rococo Relay Chain
+	(items as Balance * 1 * UNIT + (bytes as Balance) * (5 * MILLIUNIT / 100)) / 10
+
 }
 
 // 1 in 4 blocks (on average, not counting collisions) will be primary babe blocks.
 pub const PRIMARY_PROBABILITY: (u64, u64) = (1, 4);
-
-pub const UNITS: Balance = 10_000_000_000;
-pub const DOLLARS: Balance = UNITS;
-pub const CENTS: Balance = UNITS / 100;
-pub const MILLICENTS: Balance = CENTS / 1_000;
-
-/// The existential deposit. Set to 1/10 of its parent Relay Chain.
-pub const EXISTENTIAL_DEPOSIT: Balance = CENTS / 10;
 
 /// The version information used to identify this runtime when compiled natively.
 #[cfg(feature = "std")]
@@ -379,7 +381,7 @@ impl pallet_balances::Config for Runtime {
 
 parameter_types! {
 	/// Relay Chain `TransactionByteFee` / 10
-	pub const TransactionByteFee: Balance = 1 * MILLICENTS;
+	pub const TransactionByteFee: Balance = 10 * MICROUNIT;
 }
 
 impl pallet_transaction_payment::Config for Runtime {
