@@ -238,12 +238,11 @@ pub const MILLIUNIT: Balance = 1_000_000_000;
 pub const MICROUNIT: Balance = 1_000_000;
 
 /// The existential deposit. Set to 1/10 of the Rococo Relay Chain.
-pub const EXISTENTIAL_DEPOSIT: Balance = 1 * MILLIUNIT; 
+pub const EXISTENTIAL_DEPOSIT: Balance = 1 * MILLIUNIT;
 
 const fn deposit(items: u32, bytes: u32) -> Balance {
 	// This is a 1/10 of the deposit on the Rococo Relay Chain
 	(items as Balance * 1 * UNIT + (bytes as Balance) * (5 * MILLIUNIT / 100)) / 10
-
 }
 
 // 1 in 4 blocks (on average, not counting collisions) will be primary babe blocks.
