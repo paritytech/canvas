@@ -199,7 +199,7 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 				// any endowed accounts here, otherwise it'll be minting extra native tokens
 				// from the relay chain on the parachain.
 				vec![
-					// TODO: Remove endowed accounts if deployed on other relay chains.
+					// NOTE: Remove endowed accounts if deployed on other relay chains.
 					// Endowed accounts
 					hex!("baa78c7154c7f82d6d377177e20bcab65d327eca0086513f9964f5a0f6bdad56").into(),
 					// AccountId of an account which `ink-waterfall` uses for automated testing
