@@ -3,9 +3,9 @@ name = "canvas-node"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 license = "GPL-3.0-only"
-description = "A node implementation for Canvas, a Substrate chain for smart contracts."
-homepage = "https://github.com/paritytech/canvas-node"
-repository = "https://github.com/paritytech/canvas-node"
+description = "A node implementation for Canvas, a Substrate parachain for smart contracts."
+homepage = "https://github.com/paritytech/canvas"
+repository = "https://github.com/paritytech/canvas"
 build = "build.rs"
 edition = "2018"
 
