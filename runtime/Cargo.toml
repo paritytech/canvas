@@ -21,8 +21,8 @@ smallvec = "1.6.1"
 ## Substrate Primitive Dependencies
 sp-api = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 sp-block-builder = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
-sp-core = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 sp-consensus-aura = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-core = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 sp-inherents = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 sp-io = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 sp-offchain = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
@@ -33,8 +33,8 @@ sp-transaction-pool = { git = 'https://github.com/paritytech/substrate', default
 sp-version = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 
 ## Substrate FRAME Dependencies
-frame-executive = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 frame-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+frame-executive = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 frame-support = { git = 'https://github.com/paritytech/substrate', default-features = false, rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 frame-system = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 frame-system-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
@@ -44,15 +44,14 @@ frame-system-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate'
 pallet-aura = { git = "https://github.com/paritytech/substrate", default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 pallet-balances = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 pallet-randomness-collective-flip = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
-pallet-sudo = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 pallet-timestamp = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 pallet-transaction-payment = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 pallet-transaction-payment-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 
 # Cumulus Dependencies
 cumulus-pallet-aura-ext = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
-cumulus-pallet-parachain-system = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
 cumulus-pallet-dmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-pallet-parachain-system = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
 cumulus-pallet-xcm = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
 cumulus-pallet-xcmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
 cumulus-primitives-core = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
@@ -82,42 +81,43 @@ std = [
 	"serde",
 	"log/std",
 	"sp-api/std",
-	"sp-std/std",
-	"sp-io/std",
-	"sp-core/std",
-	"sp-runtime/std",
-	"sp-version/std",
-	"sp-offchain/std",
-	"sp-session/std",
 	"sp-block-builder/std",
-	"sp-transaction-pool/std",
+	"sp-consensus-aura/std",
+	"sp-core/std",
 	"sp-inherents/std",
-	"frame-support/std",
+	"sp-io/std",
+	"sp-offchain/std",
+	"sp-runtime/std",
+	"sp-session/std",
+	"sp-std/std",
+	"sp-transaction-pool/std",
+	"sp-version/std",
 	"frame-executive/std",
+	"frame-support/std",
 	"frame-system/std",
+	"pallet-aura/std",
 	"pallet-balances/std",
+	"pallet-contracts-primitives/std",
+	"pallet-contracts-rpc-runtime-api/std",
+	"pallet-contracts/std",
 	"pallet-randomness-collective-flip/std",
 	"pallet-timestamp/std",
-	"pallet-sudo/std",
 	"pallet-transaction-payment/std",
-	"parachain-info/std",
+	"pallet-transaction-payment-rpc-runtime-api/std",
 	"cumulus-pallet-aura-ext/std",
+    "cumulus-pallet-dmp-queue/std",
 	"cumulus-pallet-parachain-system/std",
-	"cumulus-pallet-xcmp-queue/std",
 	"cumulus-pallet-xcm/std",
+	"cumulus-pallet-xcmp-queue/std",
 	"cumulus-primitives-core/std",
 	"cumulus-primitives-timestamp/std",
 	"cumulus-primitives-utility/std",
+	"parachain-info/std",
+	"polkadot-parachain/std",
+	"polkadot-runtime-common/std",
 	"xcm/std",
 	"xcm-builder/std",
 	"xcm-executor/std",
-	"pallet-aura/std",
-	"sp-consensus-aura/std",
-	"pallet-contracts/std",
-	"pallet-contracts-primitives/std",
-	"pallet-contracts-rpc-runtime-api/std",
-	"polkadot-runtime-common/std",
-	"polkadot-parachain/std",
 ]
 
 # Make contract callable functions marked as __unstable__ available. Do not enable
