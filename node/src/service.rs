@@ -244,7 +244,7 @@ where
 	) -> Result<Box<dyn ParachainConsensus<Block>>, sc_service::Error>,
 {
 	if matches!(parachain_config.role, Role::Light) {
-		return Err("Light client not supported!".into());
+		return Err("Light client not supported!".into())
 	}
 
 	let parachain_config = prepare_node_config(parachain_config);
@@ -309,7 +309,7 @@ where
 		transaction_pool: transaction_pool.clone(),
 		task_manager: &mut task_manager,
 		config: parachain_config,
-        keystore: params.keystore_container.sync_keystore(),
+		keystore: params.keystore_container.sync_keystore(),
 		backend: backend.clone(),
 		network: network.clone(),
 		system_rpc_tx,
@@ -368,24 +368,14 @@ where
 
 /// Build the import queue for the parachain runtime.
 pub fn parachain_build_import_queue(
-	client: Arc<
-		TFullClient<
-			Block,
-			RuntimeApi,
-			NativeElseWasmExecutor<CanvasRuntimeExecutor>,
-		>,
-	>,
+	client: Arc<TFullClient<Block, RuntimeApi, NativeElseWasmExecutor<CanvasRuntimeExecutor>>>,
 	config: &Configuration,
 	telemetry: Option<TelemetryHandle>,
 	task_manager: &TaskManager,
 ) -> Result<
 	sc_consensus::DefaultImportQueue<
 		Block,
-		TFullClient<
-			Block,
-			RuntimeApi,
-			NativeElseWasmExecutor<CanvasRuntimeExecutor>,
-		>,
+		TFullClient<Block, RuntimeApi, NativeElseWasmExecutor<CanvasRuntimeExecutor>>,
 	>,
 	sc_service::Error,
 > {
@@ -428,13 +418,7 @@ pub async fn start_parachain_node(
 	id: ParaId,
 ) -> sc_service::error::Result<(
 	TaskManager,
-	Arc<
-		TFullClient<
-			Block,
-			RuntimeApi,
-			NativeElseWasmExecutor<CanvasRuntimeExecutor>,
-		>,
-	>,
+	Arc<TFullClient<Block, RuntimeApi, NativeElseWasmExecutor<CanvasRuntimeExecutor>>>,
 )> {
 	start_node_impl::<RuntimeApi, CanvasRuntimeExecutor, _, _, _>(
 		parachain_config,
