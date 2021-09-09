@@ -1,10 +1,11 @@
-# canvas-node
+# Canvas
 
 This is a node implementation for Canvas, a [Substrate](https://github.com/paritytech/substrate)
 parachain for smart contracts.
 
-It uses Substrate's smart contract module ‒ the
-[`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
+It is based on the
+[`substrate-parachain-template`](https://github.com/substrate-developer-hub/substrate-parachain-template/),
+which we modified to use Substrate's smart contract module ‒ the [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
 pallet.
 
 **Note:** This used to be a standalone smart contract node used for the ink! workshop. We
@@ -14,16 +15,16 @@ have moved the standalone node to [substrate-contracts-node](https://github.com/
 
 ### Installation 
 
-You need to have executables of both Polkadot, as well as `canvas-node`.
+You need to have executables of both Polkadot, as well as Canvas.
 
 Binary releases can be found here:
 [Polkadot releases](https://github.com/paritytech/polkadot/releases),
-[Canvas releases](https://github.com/paritytech/canvas-node/releases).
+[Canvas releases](https://github.com/paritytech/canvas/releases).
 
 Alternatively you can install (or build) the projects yourself:
 
-* `cargo install polkadot-node --git https://github.com/paritytech/polkadot.git --force --locked`
-* `cargo install canvas-node --git https://github.com/paritytech/canvas-node.git --force --locked`
+* `cargo install --git https://github.com/paritytech/polkadot.git --force --locked`
+* `cargo install --git https://github.com/paritytech/canvas.git --force --locked`
 
 The `--locked` flag makes the installation (or build) use the same versions as the `Cargo.lock`
 in those repositories ‒ ensuring that the last known-to-work version of the dependencies is used.
@@ -54,8 +55,8 @@ to set up all Substrate prerequisites.
 Afterwards you can install this node via
 
 ```bash
-git clone https://github.com/paritytech/canvas-node.git 
-cd canvas-node/
+git clone https://github.com/paritytech/canvas.git 
+cd canvas/
 cargo build --release --locked 
 ```
 
