@@ -9,7 +9,7 @@ edition = "2018"
 targets = ["x86_64-unknown-linux-gnu"]
 
 [build-dependencies]
-substrate-wasm-builder = { git = "https://github.com/paritytech/substrate", branch = "hc-contract-experiment-patched-v0.9.9" }
+substrate-wasm-builder = { git = "https://github.com/paritytech/substrate", rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 
 [dependencies]
 codec = { package = 'parity-scale-codec', version = '2.0.0', default-features = false, features = ['derive']}
@@ -19,59 +19,59 @@ smallvec = "1.6.1"
 
 # Substrate Dependencies
 ## Substrate Primitive Dependencies
-sp-api = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-block-builder = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-core = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-consensus-aura = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-inherents = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-io = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-offchain = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-runtime = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-session = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-std = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-transaction-pool = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-sp-version = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+sp-api = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-block-builder = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-core = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-consensus-aura = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-inherents = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-io = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-offchain = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-runtime = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-session = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-std = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-transaction-pool = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+sp-version = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 
 ## Substrate FRAME Dependencies
-frame-executive = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-frame-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , branch = "hc-contract-experiment-patched-v0.9.9" }
-frame-support = { git = 'https://github.com/paritytech/substrate', default-features = false, branch = "hc-contract-experiment-patched-v0.9.9" }
-frame-system = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-frame-system-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , branch = "hc-contract-experiment-patched-v0.9.9" }
-frame-system-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+frame-executive = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+frame-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+frame-support = { git = 'https://github.com/paritytech/substrate', default-features = false, rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+frame-system = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+frame-system-benchmarking = { git = 'https://github.com/paritytech/substrate', default-features = false, optional = true , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+frame-system-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 
 ## Substrate Pallet Dependencies
-pallet-aura = { git = "https://github.com/paritytech/substrate", default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-balances = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-randomness-collective-flip = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-sudo = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-timestamp = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-transaction-payment = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-transaction-payment-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+pallet-aura = { git = "https://github.com/paritytech/substrate", default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-balances = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-randomness-collective-flip = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-sudo = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-timestamp = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-transaction-payment = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-transaction-payment-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 
 # Cumulus Dependencies
-cumulus-pallet-aura-ext = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-cumulus-pallet-parachain-system = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-cumulus-pallet-dmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-cumulus-pallet-xcm = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-cumulus-pallet-xcmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-cumulus-primitives-core = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-cumulus-primitives-timestamp = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-cumulus-primitives-utility = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-parachain-info = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+cumulus-pallet-aura-ext = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-pallet-parachain-system = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-pallet-dmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-pallet-xcm = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-pallet-xcmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-primitives-core = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-primitives-timestamp = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+cumulus-primitives-utility = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
+parachain-info = { git = 'https://github.com/paritytech/cumulus', default-features = false , rev = "6c8f1f7b3cabef9c724772c76fb9adcb12c09506" }
 
 # Polkadot Dependencies
-polkadot-parachain = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-polkadot-runtime-common = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "hc-contract-experiment-patched-v0.9.9" }
-xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-xcm-builder = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-xcm-executor = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "hc-contract-experiment-patched-v0.9.9" }
+polkadot-parachain = { git = 'https://github.com/paritytech/polkadot', default-features = false , rev = "977ad94ca034c504b12965ba739290f5c9f8effd" }
+polkadot-runtime-common = { git = "https://github.com/paritytech/polkadot", default-features = false, rev = "977ad94ca034c504b12965ba739290f5c9f8effd" }
+xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , rev = "977ad94ca034c504b12965ba739290f5c9f8effd" }
+xcm-builder = { git = 'https://github.com/paritytech/polkadot', default-features = false , rev = "977ad94ca034c504b12965ba739290f5c9f8effd" }
+xcm-executor = { git = 'https://github.com/paritytech/polkadot', default-features = false , rev = "977ad94ca034c504b12965ba739290f5c9f8effd" }
+pallet-xcm = { git = 'https://github.com/paritytech/polkadot', default-features = false , rev = "977ad94ca034c504b12965ba739290f5c9f8effd" }
 
 # Contracts specific packages
-pallet-contracts = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "hc-contract-experiment-patched-v0.9.9" }
-pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "hc-contract-experiment-patched-v0.9.9" }
+pallet-contracts = { git = "https://github.com/paritytech/substrate", default-features = false, rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-contracts-primitives = { git = "https://github.com/paritytech/substrate", default-features = false, rev = "f708278335e30667af1434e19872a862c54ebf8b" }
+pallet-contracts-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", default-features = false, rev = "f708278335e30667af1434e19872a862c54ebf8b" }
 
 [features]
 default = [
