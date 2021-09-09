@@ -67,11 +67,11 @@ jobs:
       - name: Check if release already exists
         id: check-exists
         run: |
-          curl -s https://api.github.com/repos/paritytech/canvas-node/releases `
+          curl -s https://api.github.com/repos/paritytech/canvas/releases `
             -H "Cookie: logged_in=no" `
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" `
           | jq -r '[.[].tag_name] | any(. == \"${{ Env.CI_REF_NAME }}\")'
-          $exists = (curl -s https://api.github.com/repos/paritytech/canvas-node/releases `
+          $exists = (curl -s https://api.github.com/repos/paritytech/canvas/releases `
             -H "Cookie: logged_in=no" `
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" `
             | jq -r '[.[].tag_name] | any(. == \"${{ Env.CI_REF_NAME }}\")')
@@ -95,7 +95,7 @@ jobs:
       - name: Fetch release id
         id: fetch-id
         run: |
-          $release_id = (curl -s https://api.github.com/repos/paritytech/canvas-node/releases `
+          $release_id = (curl -s https://api.github.com/repos/paritytech/canvas/releases `
             -H "Cookie: logged_in=no" `
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" `
           | jq -r '.[] | select(.tag_name == \"${{ Env.CI_REF_NAME }}\") | .id')
@@ -104,7 +104,7 @@ jobs:
 
       - name: Upload windows binary as release asset
         run: |
-          $URI = -join("https://uploads.github.com/repos/paritytech/canvas-node/releases/", "${{ steps.fetch-id.outputs.RELEASE_ID }}", "/assets?name=canvas.exe");
+          $URI = -join("https://uploads.github.com/repos/paritytech/canvas/releases/", "${{ steps.fetch-id.outputs.RELEASE_ID }}", "/assets?name=canvas.exe");
           echo $URI
           curl -X "POST" $URI  `
             --fail-early `

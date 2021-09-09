@@ -1,6 +1,6 @@
 # .gitlab-ci.yml
 #
-# canvas-node
+# canvas
 #
 # pipelines can be triggered manually in the web
 
@@ -138,22 +138,22 @@ publish:
     - echo "tag name ${TAG_NAME}"
     - tar -czvf ./canvas-linux.tar.gz ./artifacts/canvas-linux/canvas
     - tar -czvf ./canvas-mac.tar.gz ./artifacts/canvas-mac/canvas
-    - 'curl https://api.github.com/repos/paritytech/canvas-node/releases
+    - 'curl https://api.github.com/repos/paritytech/canvas/releases
         --fail-with-body
         -H "Cookie: logged_in=no"
         -H "Authorization: token ${GITHUB_TOKEN}"'
-    - 'curl https://api.github.com/repos/paritytech/canvas-node/releases
+    - 'curl https://api.github.com/repos/paritytech/canvas/releases
         --fail-with-body
         -H "Cookie: logged_in=no"
         -H "Authorization: token ${GITHUB_TOKEN}" | jq .'
-    - 'RELEASE_ID=$(curl https://api.github.com/repos/paritytech/canvas-node/releases
+    - 'RELEASE_ID=$(curl https://api.github.com/repos/paritytech/canvas/releases
         --fail-with-body
         -H "Cookie: logged_in=no"
         -H "Authorization: token ${GITHUB_TOKEN}"
         | jq -r ".[] | select(.tag_name == \"$TAG_NAME\") | .id");
       echo "release id if existent: ${RELEASE_ID}"'
     - 'if [ -z "$RELEASE_ID" ]; then
-        RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas-node/releases"
+        RESP=$(curl -X "POST" "https://api.github.com/repos/paritytech/canvas/releases"
           --fail-with-body
           -H "Cookie: logged_in=no"
           -H "Authorization: token ${GITHUB_TOKEN}"
@@ -169,13 +169,13 @@ publish:
           echo "release id of created release ${RELEASE_ID}";
         fi'
     - echo "release id ${RELEASE_ID}"
-    - 'curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-linux.tar.gz"
+    - 'curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas/releases/$RELEASE_ID/assets?name=canvas-linux.tar.gz"
         --fail-with-body
         -H "Cookie: logged_in=no"
         -H "Authorization: token ${GITHUB_TOKEN}"
         -H "Content-Type: application/octet-stream"
         --data-binary @"./canvas-linux.tar.gz"'
-    - 'curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas-node/releases/$RELEASE_ID/assets?name=canvas-mac.tar.gz"
+    - 'curl -X "POST" "https://uploads.github.com/repos/paritytech/canvas/releases/$RELEASE_ID/assets?name=canvas-mac.tar.gz"
         --fail-with-body
         -H "Cookie: logged_in=no"
         -H "Authorization: token ${GITHUB_TOKEN}"
