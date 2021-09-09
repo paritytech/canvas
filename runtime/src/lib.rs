@@ -22,8 +22,8 @@
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
-use smallvec::smallvec;
 use pallet_contracts::weights::WeightInfo;
+use smallvec::smallvec;
 use sp_api::impl_runtime_apis;
 use sp_core::{crypto::KeyTypeId, OpaqueMetadata};
 use sp_runtime::{
@@ -53,8 +53,8 @@ use frame_system::{
 	limits::{BlockLength, BlockWeights},
 	EnsureOneOf, EnsureRoot,
 };
-pub use sp_runtime::{MultiAddress, Perbill, Permill};
 pub use sp_consensus_aura::sr25519::AuthorityId as AuraId;
+pub use sp_runtime::{MultiAddress, Perbill, Permill};
 
 #[cfg(any(feature = "std", test))]
 pub use sp_runtime::BuildStorage;
@@ -63,7 +63,6 @@ pub use sp_runtime::BuildStorage;
 use pallet_xcm::{EnsureXcm, IsMajorityOfBody, XcmPassthrough};
 use polkadot_parachain::primitives::Sibling;
 use polkadot_runtime_common::{BlockHashCount, RocksDbWeight, SlowAdjustingFeeUpdate};
-
 
 // XCM Imports
 use xcm::latest::prelude::*;
@@ -258,10 +257,7 @@ const MAXIMUM_BLOCK_WEIGHT: Weight = WEIGHT_PER_SECOND / 2;
 /// The version information used to identify this runtime when compiled natively.
 #[cfg(feature = "std")]
 pub fn native_version() -> NativeVersion {
-	NativeVersion {
-		runtime_version: VERSION,
-		can_author_with: Default::default(),
-	}
+	NativeVersion { runtime_version: VERSION, can_author_with: Default::default() }
 }
 
 parameter_types! {
@@ -360,7 +356,7 @@ impl pallet_timestamp::Config for Runtime {
 // parameter_types! {
 // 	pub const UncleGenerations: u32 = 0;
 // }
-// 
+//
 // impl pallet_authorship::Config for Runtime {
 // 	type FindAuthor = pallet_session::FindAccountFromAuthorIndex<Self, Aura>;
 // 	type UncleGenerations = UncleGenerations;
@@ -421,8 +417,8 @@ impl pallet_randomness_collective_flip::Config for Runtime {}
 parameter_types! {
 	pub ContractDeposit: Balance = deposit(
 		1,
-	  	<pallet_contracts::Pallet<Runtime>>::contract_info_size(),
-    );
+		  <pallet_contracts::Pallet<Runtime>>::contract_info_size(),
+	);
 	// The lazy deletion runs inside on_initialize.
 	pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
 		RuntimeBlockWeights::get().max_block;
@@ -617,7 +613,7 @@ impl cumulus_pallet_dmp_queue::Config for Runtime {
 // 	pub const Offset: u32 = 0;
 // 	pub const MaxAuthorities: u32 = 100_000;
 // }
-// 
+//
 // impl pallet_session::Config for Runtime {
 // 	type Event = Event;
 // 	type ValidatorId = <Self as frame_system::Config>::AccountId;
@@ -695,9 +691,9 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment::{Pallet, Storage} = 11,
 
 		// Collator support. The order of these 4 are important and shall not change.
-        //
-        // TODO: Do we want to add these yet?
-        //
+		//
+		// TODO: Do we want to add these yet?
+		//
 		// Authorship: pallet_authorship::{Pallet, Call, Storage} = 20,
 		// CollatorSelection: pallet_collator_selection::{Pallet, Call, Storage, Event<T>, Config<T>} = 21,
 		// Session: pallet_session::{Pallet, Call, Storage, Event, Config<T>} = 22,
