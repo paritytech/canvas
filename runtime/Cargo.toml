@@ -51,15 +51,15 @@ pallet-transaction-payment-rpc-runtime-api = { git = 'https://github.com/parityt
 pallet-sudo = { git = "https://github.com/paritytech/substrate", default-features = false , branch = "master" }
 
 # Cumulus Dependencies
-cumulus-pallet-aura-ext = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-cumulus-pallet-dmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-cumulus-pallet-parachain-system = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-cumulus-pallet-xcm = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-cumulus-pallet-xcmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-cumulus-primitives-core = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-cumulus-primitives-timestamp = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-cumulus-primitives-utility = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
-parachain-info = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
+cumulus-pallet-aura-ext = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+cumulus-pallet-dmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+cumulus-pallet-parachain-system = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+cumulus-pallet-xcm = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+cumulus-pallet-xcmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+cumulus-primitives-core = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+cumulus-primitives-timestamp = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+cumulus-primitives-utility = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
+parachain-info = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "hc-bump-dependencies-2021-09-10" }
 
 # Polkadot Dependencies
 polkadot-parachain = { git = 'https://github.com/paritytech/polkadot', default-features = false , branch = "master" }
