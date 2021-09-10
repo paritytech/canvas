@@ -48,6 +48,8 @@ pallet-timestamp = { git = 'https://github.com/paritytech/substrate', default-fe
 pallet-transaction-payment = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "master" }
 pallet-transaction-payment-rpc-runtime-api = { git = 'https://github.com/paritytech/substrate', default-features = false , branch = "master" }
 
+pallet-sudo = { git = "https://github.com/paritytech/substrate", default-features = false , branch = "master" }
+
 # Cumulus Dependencies
 cumulus-pallet-aura-ext = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
 cumulus-pallet-dmp-queue = { git = 'https://github.com/paritytech/cumulus', default-features = false , branch = "master" }
@@ -96,6 +98,7 @@ std = [
 	"frame-support/std",
 	"frame-system/std",
 	"pallet-aura/std",
+	"pallet-sudo/std",
 	"pallet-balances/std",
 	"pallet-contracts-primitives/std",
 	"pallet-contracts-rpc-runtime-api/std",
