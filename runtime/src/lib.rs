@@ -38,16 +38,15 @@ use sp_std::prelude::*;
 use sp_version::NativeVersion;
 use sp_version::RuntimeVersion;
 
-use codec::{Decode, Encode, MaxEncodedLen};
 use frame_support::{
 	construct_runtime, match_type, parameter_types,
-	traits::{Contains, Everything, InstanceFilter},
+	traits::Everything,
 	weights::{
 		constants::{BlockExecutionWeight, ExtrinsicBaseWeight, WEIGHT_PER_SECOND},
 		DispatchClass, IdentityFee, Weight, WeightToFeeCoefficient, WeightToFeeCoefficients,
 		WeightToFeePolynomial,
 	},
-	PalletId, RuntimeDebug,
+	PalletId,
 };
 use frame_system::{
 	limits::{BlockLength, BlockWeights},
@@ -328,7 +327,7 @@ impl frame_system::Config for Runtime {
 	/// The weight of database operations that the runtime can invoke.
 	type DbWeight = RocksDbWeight;
 	/// The basic call filter to use in dispatchable.
-	type BaseCallFilter = frame_support::traits::Everything;
+	type BaseCallFilter = Everything;
 	/// Weight information for the extrinsics of this pallet.
 	type SystemWeightInfo = ();
 	/// Block & extrinsics weights: base values and limits.
@@ -350,19 +349,19 @@ impl pallet_timestamp::Config for Runtime {
 	type Moment = u64;
 	type OnTimestampSet = ();
 	type MinimumPeriod = MinimumPeriod;
-	type WeightInfo = (); // TODO: Should this have a weight?
+	type WeightInfo = (); // TODO: Add benchmarked weights.
 }
 
-// parameter_types! {
-// 	pub const UncleGenerations: u32 = 0;
-// }
-//
-// impl pallet_authorship::Config for Runtime {
-// 	type FindAuthor = pallet_session::FindAccountFromAuthorIndex<Self, Aura>;
-// 	type UncleGenerations = UncleGenerations;
-// 	type FilterUncle = ();
-// 	type EventHandler = (CollatorSelection,);
-// }
+parameter_types! {
+	pub const UncleGenerations: u32 = 0;
+}
+
+impl pallet_authorship::Config for Runtime {
+	type FindAuthor = pallet_session::FindAccountFromAuthorIndex<Self, Aura>;
+	type UncleGenerations = UncleGenerations;
+	type FilterUncle = ();
+	type EventHandler = (CollatorSelection,);
+}
 
 parameter_types! {
 	pub const ExistentialDeposit: Balance = EXISTENTIAL_DEPOSIT;
@@ -543,12 +542,11 @@ impl Config for XcmConfig {
 	type AssetTransactor = LocalAssetTransactor;
 	type OriginConverter = XcmOriginToTransactDispatchOrigin;
 	type IsReserve = NativeAsset;
-	type IsTeleporter = NativeAsset; // Should be enough to allow teleportation of KSM
+	type IsTeleporter = NativeAsset; // Should be enough to allow teleportation of ROC
 	type LocationInverter = LocationInverter<Ancestry>;
 	type Barrier = Barrier;
 	type Weigher = FixedWeightBounds<UnitWeightCost, Call, MaxInstructions>;
 	type Trader = UsingComponents<IdentityFee<Balance>, RocLocation, AccountId, Balances, ()>;
-	// TODO: Is this correct?
 	type ResponseHandler = PolkadotXcm;
 	type AssetTrap = PolkadotXcm;
 	type AssetClaims = PolkadotXcm;
@@ -607,30 +605,26 @@ impl cumulus_pallet_dmp_queue::Config for Runtime {
 	type ExecuteOverweightOrigin = EnsureRoot<AccountId>;
 }
 
-// parameter_types! {
-// 	pub const DisabledValidatorsThreshold: Perbill = Perbill::from_percent(33);
-// 	pub const Period: u32 = 6 * HOURS;
-// 	pub const Offset: u32 = 0;
-// 	pub const MaxAuthorities: u32 = 100_000;
-// }
-//
-// impl pallet_session::Config for Runtime {
-// 	type Event = Event;
-// 	type ValidatorId = <Self as frame_system::Config>::AccountId;
-// 	// we don't have stash and controller, thus we don't need the convert as well.
-// 	type ValidatorIdOf = pallet_collator_selection::IdentityCollator;
-// 	type ShouldEndSession = pallet_session::PeriodicSessions<Period, Offset>;
-// 	type NextSessionRotation = pallet_session::PeriodicSessions<Period, Offset>;
-// 	type SessionManager = CollatorSelection;
-// 	// Essentially just Aura, but lets be pedantic.
-// 	type SessionHandler = <SessionKeys as sp_runtime::traits::OpaqueKeys>::KeyTypeIdProviders;
-// 	type Keys = SessionKeys;
-// 	type DisabledValidatorsThreshold = DisabledValidatorsThreshold;
-// 	type WeightInfo = weights::pallet_session::WeightInfo<Runtime>;
-// }
-
 parameter_types! {
+	pub const DisabledValidatorsThreshold: Perbill = Perbill::from_percent(33);
+	pub const Period: u32 = 6 * HOURS;
+	pub const Offset: u32 = 0;
 	pub const MaxAuthorities: u32 = 100_000;
+}
+
+impl pallet_session::Config for Runtime {
+	type Event = Event;
+	type ValidatorId = <Self as frame_system::Config>::AccountId;
+	// we don't have stash and controller, thus we don't need the convert as well.
+	type ValidatorIdOf = pallet_collator_selection::IdentityCollator;
+	type ShouldEndSession = pallet_session::PeriodicSessions<Period, Offset>;
+	type NextSessionRotation = pallet_session::PeriodicSessions<Period, Offset>;
+	type SessionManager = CollatorSelection;
+	// Essentially just Aura, but lets be pedantic.
+	type SessionHandler = <SessionKeys as sp_runtime::traits::OpaqueKeys>::KeyTypeIdProviders;
+	type Keys = SessionKeys;
+	type DisabledValidatorsThreshold = DisabledValidatorsThreshold;
+	type WeightInfo = (); // TODO: Add benchmarked weights.
 }
 
 impl pallet_aura::Config for Runtime {
@@ -639,36 +633,37 @@ impl pallet_aura::Config for Runtime {
 	type MaxAuthorities = MaxAuthorities;
 }
 
-// parameter_types! {
-// 	pub const PotId: PalletId = PalletId(*b"PotStake");
-// 	pub const MaxCandidates: u32 = 1000;
-// 	pub const MinCandidates: u32 = 5;
-// 	pub const SessionLength: BlockNumber = 6 * HOURS;
-// 	pub const MaxInvulnerables: u32 = 100;
-// }
+parameter_types! {
+	pub const PotId: PalletId = PalletId(*b"PotStake");
+	pub const MaxCandidates: u32 = 1000;
+	pub const MinCandidates: u32 = 5;
+	pub const SessionLength: BlockNumber = 6 * HOURS;
+	pub const MaxInvulnerables: u32 = 100;
+	pub const ExecutiveBody: BodyId = BodyId::Executive;
+}
 
-/// We allow root and the Relay Chain council to execute privileged collator selection operations.
-// pub type CollatorSelectionUpdateOrigin = EnsureOneOf<
-// 	AccountId,
-// 	EnsureRoot<AccountId>,
-// 	EnsureXcm<IsMajorityOfBody<RocLocation, ExecutiveBody>>,
-// >;
+// We allow root and the Relay Chain council to execute privileged collator selection operations.
+pub type CollatorSelectionUpdateOrigin = EnsureOneOf<
+	AccountId,
+	EnsureRoot<AccountId>,
+	EnsureXcm<IsMajorityOfBody<RocLocation, ExecutiveBody>>,
+>;
 
-// impl pallet_collator_selection::Config for Runtime {
-// 	type Event = Event;
-// 	type Currency = Balances;
-// 	type UpdateOrigin = CollatorSelectionUpdateOrigin;
-// 	type PotId = PotId;
-// 	type MaxCandidates = MaxCandidates;
-// 	type MinCandidates = MinCandidates;
-// 	type MaxInvulnerables = MaxInvulnerables;
-// 	// should be a multiple of session or things will get inconsistent
-// 	type KickThreshold = Period;
-// 	type ValidatorId = <Self as frame_system::Config>::AccountId;
-// 	type ValidatorIdOf = pallet_collator_selection::IdentityCollator;
-// 	type ValidatorRegistration = Session;
-// 	type WeightInfo = weights::pallet_collator_selection::WeightInfo<Runtime>;
-// }
+impl pallet_collator_selection::Config for Runtime {
+	type Event = Event;
+	type Currency = Balances;
+	type UpdateOrigin = CollatorSelectionUpdateOrigin;
+	type PotId = PotId;
+	type MaxCandidates = MaxCandidates;
+	type MinCandidates = MinCandidates;
+	type MaxInvulnerables = MaxInvulnerables;
+	// should be a multiple of session or things will get inconsistent
+	type KickThreshold = Period;
+	type ValidatorId = <Self as frame_system::Config>::AccountId;
+	type ValidatorIdOf = pallet_collator_selection::IdentityCollator;
+	type ValidatorRegistration = Session;
+	type WeightInfo = (); // TODO: Add benchmarked weights.
+}
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
@@ -691,12 +686,9 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment::{Pallet, Storage} = 11,
 
 		// Collator support. The order of these 4 are important and shall not change.
-		//
-		// TODO: Do we want to add these yet?
-		//
-		// Authorship: pallet_authorship::{Pallet, Call, Storage} = 20,
-		// CollatorSelection: pallet_collator_selection::{Pallet, Call, Storage, Event<T>, Config<T>} = 21,
-		// Session: pallet_session::{Pallet, Call, Storage, Event, Config<T>} = 22,
+		Authorship: pallet_authorship::{Pallet, Call, Storage} = 20,
+		CollatorSelection: pallet_collator_selection::{Pallet, Call, Storage, Event<T>, Config<T>} = 21,
+		Session: pallet_session::{Pallet, Call, Storage, Event, Config<T>} = 22,
 		Aura: pallet_aura::{Pallet, Storage, Config<T>} = 23,
 		AuraExt: cumulus_pallet_aura_ext::{Pallet, Storage, Config} = 24,
 
@@ -860,14 +852,14 @@ impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, B
 			use frame_benchmarking::{list_benchmark, Benchmarking, BenchmarkList};
 			use frame_support::traits::StorageInfoTrait;
 			use frame_system_benchmarking::Pallet as SystemBench;
-			// use cumulus_pallet_session_benchmarking::Pallet as SessionBench;
+			use cumulus_pallet_session_benchmarking::Pallet as SessionBench;
 
 			let mut list = Vec::<BenchmarkList>::new();
 
 			list_benchmark!(list, extra, frame_system, SystemBench::<Runtime>);
 			list_benchmark!(list, extra, pallet_balances, Balances);
 			list_benchmark!(list, extra, pallet_timestamp, Timestamp);
-			// list_benchmark!(list, extra, pallet_collator_selection, CollatorSelection);
+			list_benchmark!(list, extra, pallet_collator_selection, CollatorSelection);
 
 			let storage_info = AllPalletsWithSystem::storage_info();
 
@@ -882,8 +874,8 @@ impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, B
 			use frame_system_benchmarking::Pallet as SystemBench;
 			impl frame_system_benchmarking::Config for Runtime {}
 
-			// use cumulus_pallet_session_benchmarking::Pallet as SessionBench;
-			// impl cumulus_pallet_session_benchmarking::Config for Runtime {}
+			use cumulus_pallet_session_benchmarking::Pallet as SessionBench;
+			impl cumulus_pallet_session_benchmarking::Config for Runtime {}
 
 			let whitelist: Vec<TrackedStorageKey> = vec![
 				// Block Number
@@ -903,9 +895,9 @@ impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, B
 
 			add_benchmark!(params, batches, frame_system, SystemBench::<Runtime>);
 			add_benchmark!(params, batches, pallet_balances, Balances);
-			// add_benchmark!(params, batches, pallet_session, SessionBench::<Runtime>);
+			add_benchmark!(params, batches, pallet_session, SessionBench::<Runtime>);
 			add_benchmark!(params, batches, pallet_timestamp, Timestamp);
-			// add_benchmark!(params, batches, pallet_collator_selection, CollatorSelection);
+			add_benchmark!(params, batches, pallet_collator_selection, CollatorSelection);
 
 			if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
 			Ok(batches)
