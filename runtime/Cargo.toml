@@ -51,8 +51,6 @@ pallet-timestamp = { git = "https://github.com/paritytech/substrate", default-fe
 pallet-transaction-payment = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
 pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
 
-pallet-sudo = { git = "https://github.com/paritytech/substrate", default-features = false, branch = "master" }
-
 # Cumulus Dependencies
 cumulus-pallet-aura-ext = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
 cumulus-pallet-dmp-queue = { git = "https://github.com/paritytech/cumulus", default-features = false, branch = "master" }
@@ -104,7 +102,6 @@ std = [
 	"frame-system/std",
 	"pallet-authorship/std",
 	"pallet-aura/std",
-	"pallet-sudo/std",
 	"pallet-balances/std",
 	"pallet-collator-selection/std",
 	"pallet-contracts-primitives/std",
@@ -138,7 +135,6 @@ contracts-unstable-interface = [
 ]
 
 runtime-benchmarks = [
-	"cumulus-pallet-session-benchmarking/runtime-benchmarks",
 	"hex-literal",
 	"sp-runtime/runtime-benchmarks",
 	"xcm-builder/runtime-benchmarks",
@@ -147,6 +143,7 @@ runtime-benchmarks = [
 	"frame-support/runtime-benchmarks",
 	"frame-system/runtime-benchmarks",
 	"pallet-balances/runtime-benchmarks",
+	"cumulus-pallet-session-benchmarking/runtime-benchmarks",
 	"pallet-timestamp/runtime-benchmarks",
 	"pallet-xcm/runtime-benchmarks",
 	"pallet-collator-selection/runtime-benchmarks",

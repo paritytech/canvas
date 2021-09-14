@@ -20,7 +20,11 @@ name = "canvas"
 path = "src/main.rs"
 
 [features]
-runtime-benchmarks = ["canvas-runtime/runtime-benchmarks"]
+default = []
+runtime-benchmarks = [
+	"polkadot-service/runtime-benchmarks",
+	"canvas-runtime/runtime-benchmarks",
+]
 contracts-unstable-interface = ["canvas-runtime/contracts-unstable-interface"]
 
 [dependencies]
