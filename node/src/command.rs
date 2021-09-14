@@ -17,7 +17,7 @@
 use crate::{
 	chain_spec,
 	cli::{Cli, RelayChainCli, Subcommand},
-	service::{new_partial, ParachainRuntimeExecutor},
+	service::{new_partial, CanvasRuntimeExecutor},
 };
 use canvas_runtime::{Block, RuntimeApi};
 use codec::Encode;
@@ -140,7 +140,7 @@ macro_rules! construct_async_run {
 		runner.async_run(|$config| {
 			let $components = new_partial::<
 				RuntimeApi,
-				ParachainRuntimeExecutor,
+				CanvasRuntimeExecutor,
 				_
 			>(
 				&$config,
@@ -256,7 +256,7 @@ pub fn run() -> Result<()> {
 			if cfg!(feature = "runtime-benchmarks") {
 				let runner = cli.create_runner(cmd)?;
 
-				runner.sync_run(|config| cmd.run::<Block, ParachainRuntimeExecutor>(config))
+				runner.sync_run(|config| cmd.run::<Block, CanvasRuntimeExecutor>(config))
 			} else {
 				Err("Benchmarking wasn't enabled when building the node. \
 				You can enable it with `--features runtime-benchmarks`."
@@ -295,7 +295,7 @@ pub fn run() -> Result<()> {
 				info!("Parachain genesis state: {}", genesis_state);
 				info!("Is collating: {}", if config.role.is_authority() { "yes" } else { "no" });
 
-				crate::service::start_node(config, polkadot_config, id)
+				crate::service::start_parachain_node(config, polkadot_config, id)
 					.await
 					.map(|r| r.0)
 					.map_err(Into::into)
@@ -394,10 +394,6 @@ impl CliConfiguration<Self> for RelayChainCli {
 
 	fn rpc_cors(&self, is_dev: bool) -> Result<Option<Vec<String>>> {
 		self.base.base.rpc_cors(is_dev)
-	}
-
-	fn telemetry_external_transport(&self) -> Result<Option<sc_service::config::ExtTransport>> {
-		self.base.base.telemetry_external_transport()
 	}
 
 	fn default_heap_pages(&self) -> Result<Option<u64>> {
