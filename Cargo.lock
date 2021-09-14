@@ -1034,6 +1034,7 @@ dependencies = [
  "pallet-contracts-rpc-runtime-api",
  "pallet-randomness-collective-flip",
  "pallet-session",
+ "pallet-sudo",
  "pallet-timestamp",
  "pallet-transaction-payment",
  "pallet-transaction-payment-rpc-runtime-api",
