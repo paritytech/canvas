@@ -858,8 +858,10 @@ impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, B
 
 			list_benchmark!(list, extra, frame_system, SystemBench::<Runtime>);
 			list_benchmark!(list, extra, pallet_balances, Balances);
+			list_benchmark!(list, extra, pallet_session, SessionBench::<Runtime>);
 			list_benchmark!(list, extra, pallet_timestamp, Timestamp);
 			list_benchmark!(list, extra, pallet_collator_selection, CollatorSelection);
+			list_benchmark!(list, extra, pallet_contracts, Contracts);
 
 			let storage_info = AllPalletsWithSystem::storage_info();
 
@@ -898,6 +900,7 @@ impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, B
 			add_benchmark!(params, batches, pallet_session, SessionBench::<Runtime>);
 			add_benchmark!(params, batches, pallet_timestamp, Timestamp);
 			add_benchmark!(params, batches, pallet_collator_selection, CollatorSelection);
+			add_benchmark!(params, batches, pallet_contracts, Contracts);
 
 			if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
 			Ok(batches)

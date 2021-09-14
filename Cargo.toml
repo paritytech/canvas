@@ -2,9 +2,9 @@ resolver = "2"
 
 [workspace]
 members = [
-    'node',
-    'runtime',
+    "node",
+    "runtime",
 ]
 
 [profile.release]
-panic = 'unwind'
+panic = "unwind"
