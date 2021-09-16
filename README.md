@@ -1,21 +1,60 @@
-# Canvas
+# Canvas ‒ A Smart Contracts Parachain
+
+[![linux][a1]][a2] [![matrix][k1]][k2] [![discord][l1]][l2]
+
+[a1]: https://gitlab.parity.io/parity/canvas/badges/master/pipeline.svg
+[a2]: https://gitlab.parity.io/parity/canvas/pipelines?ref=master
+[k1]: https://img.shields.io/badge/matrix-chat-brightgreen.svg?style=flat
+[k2]: https://riot.im/app/#/room/#ink:matrix.parity.io
+[l1]: https://img.shields.io/discord/722223075629727774?style=flat-square&label=discord
+[l2]: https://discord.com/invite/wGUDt2p
 
 This is a node implementation for Canvas, a [Substrate](https://github.com/paritytech/substrate)
 parachain for smart contracts.
 
-It is based on the
-[`substrate-parachain-template`](https://github.com/substrate-developer-hub/substrate-parachain-template/),
-which we modified to use Substrate's smart contract module ‒ the [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
-pallet.
+If you have any questions, feel free to talk to us on [Element][k2] or on [Discord][l2]
+in the [`ink_smart-contracts`](https://discord.com/channels/722223075629727774/765280480609828864) channel.
 
 **Note:** This used to be a standalone smart contract node used for the ink! workshop. We
 have moved the standalone node to [substrate-contracts-node](https://github.com/paritytech/substrate-contracts-node/).
 
-## Quickstart
+
+## Developing Smart Contracts for Canvas
+
+<div align="center">
+    <img src="./.images/how-it-works.svg" alt="How it works" height="520" />
+</div>
+
+This node is based on the
+[`substrate-parachain-template`](https://github.com/substrate-developer-hub/substrate-parachain-template/),
+which we configured to use Substrate's smart contract module ‒ the [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
+pallet.
+This `contracts` pallet takes smart contracts as WebAssembly blobs and has defined an API
+for everything a smart contract needs (storage access, …).
+So as long as a programming language compiles to WebAssembly and implements this API, it is
+possible to write a smart contract for this pallet ‒ and thus for Canvas.
+
+There are a number of smart contract languages you can choose from:
+
+* [Parity's ink!](https://github.com/paritytech/ink) for Rust
+* [ask!](https://github.com/patractlabs/ask) for Assembly Script
+* [Solang](https://github.com/hyperledger-labs/solang) for Solidity
+
+There are also different user interfaces and command-line tools you can use to deploy
+or interact with contracts:
+
+* [Canvas UI](https://paritytech.github.io/canvas-ui/)
+* [polkadot-js](https://polkadot.js.org/apps/)
+
+If you are looking for a quickstart we can recommend
+[ink!'s Guided Tutorial for Beginners](https://substrate.dev/substrate-contracts-workshop/#/0/building-your-contract).
+
+
+## Run it Locally
 
 ### Installation 
 
-You need to have executables of both Polkadot, as well as Canvas.
+You need to have executables of both Polkadot and Canvas.
 
 Binary releases can be found here:
 [Polkadot releases](https://github.com/paritytech/polkadot/releases),
