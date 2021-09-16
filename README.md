@@ -13,7 +13,7 @@ This is a node implementation for Canvas, a [Substrate](https://github.com/parit
 parachain for smart contracts.
 
 If you have any questions, feel free to talk to us on [Element][k2] or on [Discord][l2]
-in the [`ink_smart-contracts`](https://discord.com/channels/722223075629727774/765280480609828864) channel.
+(in the [`ink_smart-contracts`](https://discord.com/channels/722223075629727774/765280480609828864) channel).
 
 **Note:** This used to be a standalone smart contract node used for the ink! workshop. We
 have moved the standalone node to [substrate-contracts-node](https://github.com/paritytech/substrate-contracts-node/).
@@ -29,12 +29,13 @@ This node is based on the
 [`substrate-parachain-template`](https://github.com/substrate-developer-hub/substrate-parachain-template/),
 which we configured to use Substrate's smart contract module ‒ the [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
 pallet.
-This `contracts` pallet takes smart contracts as WebAssembly blobs and has defined an API
+This `contracts` pallet takes smart contracts as WebAssembly blobs and defines an API
 for everything a smart contract needs (storage access, …).
-So as long as a programming language compiles to WebAssembly and implements this API, it is
-possible to write a smart contract for this pallet ‒ and thus for Canvas.
+So as long as a programming language compiles to WebAssembly and there exists an implementation
+of this API in it, you can write a smart contract for this pallet ‒ and thus for Canvas ‒ in
+that language.
 
-There are a number of smart contract languages you can choose from:
+This is a list of smart contract languages you can currently choose from:
 
 * [Parity's ink!](https://github.com/paritytech/ink) for Rust
 * [ask!](https://github.com/patractlabs/ask) for Assembly Script
