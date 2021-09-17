@@ -289,7 +289,7 @@ fn canvas_genesis(
 				.map(|(acc, aura)| {
 					(
 						acc.clone(),               // account id
-						acc.clone(),               // validator id
+						acc,                       // validator id
 						canvas_session_keys(aura), // session keys
 					)
 				})
