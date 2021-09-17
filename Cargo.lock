@@ -5344,12 +5344,13 @@ dependencies = [
 [[package]]
 name = "pallet-xcm"
 version = "0.9.9"
-source = "git+https://github.com/paritytech/polkadot?branch=master#7229ab87acf5bc5d4d10655ad1a9819a1e317442"
+source = "git+https://github.com/paritytech/polkadot?branch=master#d26815243a2af9547568f13eadd226de3df07479"
 dependencies = [
  "frame-support",
  "frame-system",
  "log",
  "parity-scale-codec",
+ "scale-info",
  "serde",
  "sp-core",
  "sp-runtime",
@@ -5809,7 +5810,7 @@ dependencies = [
 [[package]]
 name = "polkadot-cli"
 version = "0.9.9"
-source = "git+https://github.com/paritytech/polkadot?branch=master#7229ab87acf5bc5d4d10655ad1a9819a1e317442"
+source = "git+https://github.com/paritytech/polkadot?branch=master#d26815243a2af9547568f13eadd226de3df07479"
 dependencies = [
  "frame-benchmarking-cli",
  "futures 0.3.17",
@@ -6770,7 +6771,7 @@ dependencies = [
 [[package]]
 name = "polkadot-test-runtime"
 version = "0.9.9"
-source = "git+https://github.com/paritytech/polkadot?branch=master#7229ab87acf5bc5d4d10655ad1a9819a1e317442"
+source = "git+https://github.com/paritytech/polkadot?branch=master#d26815243a2af9547568f13eadd226de3df07479"
 dependencies = [
  "beefy-primitives",
  "bitvec 0.20.4",
@@ -6804,6 +6805,7 @@ dependencies = [
  "polkadot-runtime-common",
  "polkadot-runtime-parachains",
  "rustc-hex",
+ "scale-info",
  "serde",
  "serde_derive",
  "smallvec",
@@ -6830,7 +6832,7 @@ dependencies = [
 [[package]]
 name = "polkadot-test-service"
 version = "0.9.9"
-source = "git+https://github.com/paritytech/polkadot?branch=master#7229ab87acf5bc5d4d10655ad1a9819a1e317442"
+source = "git+https://github.com/paritytech/polkadot?branch=master#d26815243a2af9547568f13eadd226de3df07479"
 dependencies = [
  "frame-benchmarking",
  "frame-system",
@@ -6876,6 +6878,7 @@ dependencies = [
  "sp-state-machine",
  "substrate-test-client",
  "tempfile",
+ "tokio",
  "tracing",
 ]
 
@@ -10998,7 +11001,7 @@ dependencies = [
 [[package]]
 name = "xcm-builder"
 version = "0.9.9"
-source = "git+https://github.com/paritytech/polkadot?branch=master#7229ab87acf5bc5d4d10655ad1a9819a1e317442"
+source = "git+https://github.com/paritytech/polkadot?branch=master#d26815243a2af9547568f13eadd226de3df07479"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -11006,6 +11009,7 @@ dependencies = [
  "pallet-transaction-payment",
  "parity-scale-codec",
  "polkadot-parachain",
+ "scale-info",
  "sp-arithmetic",
  "sp-io",
  "sp-runtime",
