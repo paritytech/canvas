@@ -15,7 +15,7 @@ parachain for smart contracts.
 If you have any questions, feel free to talk to us on [Element][k2] or on [Discord][l2]
 (in the [`ink_smart-contracts`](https://discord.com/channels/722223075629727774/765280480609828864) channel).
 
-**Note:** This used to be a standalone smart contract node used for the ink! workshop. We
+**Note:** This used to be a standalone smart contracts node used for the ink! workshop. We
 have moved the standalone node to [substrate-contracts-node](https://github.com/paritytech/substrate-contracts-node/).
 
 
@@ -27,19 +27,19 @@ have moved the standalone node to [substrate-contracts-node](https://github.com/
 
 This node is based on the
 [`substrate-parachain-template`](https://github.com/substrate-developer-hub/substrate-parachain-template/),
-which we configured to use Substrate's smart contract module ‒ the [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
+which we configured to use Substrate's smart contracts module ‒ the [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
 pallet.
 This `contracts` pallet takes smart contracts as WebAssembly blobs and defines an API
 for everything a smart contract needs (storage access, …).
-So as long as a programming language compiles to WebAssembly and there exists an implementation
+As long as a programming language compiles to WebAssembly and there exists an implementation
 of this API in it, you can write a smart contract for this pallet ‒ and thus for Canvas ‒ in
 that language.
 
-This is a list of smart contract languages you can currently choose from:
+This is a list of languages you can currently choose from:
 
 * [Parity's ink!](https://github.com/paritytech/ink) for Rust
 * [ask!](https://github.com/patractlabs/ask) for Assembly Script
-* [Solang](https://github.com/hyperledger-labs/solang) for Solidity
+* The [Solang](https://github.com/hyperledger-labs/solang) compiler for Solidity
 
 There are also different user interfaces and command-line tools you can use to deploy
 or interact with contracts:
@@ -47,7 +47,7 @@ or interact with contracts:
 * [Canvas UI](https://paritytech.github.io/canvas-ui/)
 * [polkadot-js](https://polkadot.js.org/apps/)
 
-If you are looking for a quickstart we can recommend
+If you are looking for a quickstart, we can recommend
 [ink!'s Guided Tutorial for Beginners](https://substrate.dev/substrate-contracts-workshop/#/0/building-your-contract).
 
 
