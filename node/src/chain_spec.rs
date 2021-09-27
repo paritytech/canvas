@@ -201,24 +201,40 @@ pub fn rococo_testnet_config(id: ParaId) -> ChainSpec {
 		ChainType::Live,
 		move || {
 			canvas_genesis(
-				// initial collators.
+				// Initial collators.
+				//
+				// Generated with: ./canvas_setup.sh 4.
+				//
+				// Note that these are SR25519 Aura public keys.
+				//
+				// Ask DevOps team for the $SECRET 🤫.
 				vec![
-					(
-						hex!["4ad2d854d1bc5bbfdf93b689cb1aa3986684126c2b16d86924019de6798b0971"]
-							.into(),
-						hex!["4ad2d854d1bc5bbfdf93b689cb1aa3986684126c2b16d86924019de6798b0971"]
-							.unchecked_into(),
-					),
-					(
-						hex!["526d7d3d5357d20e4cd75d1a452bd5b4903caf160f55d6bd19807efbdf165319"]
-							.into(),
-						hex!["526d7d3d5357d20e4cd75d1a452bd5b4903caf160f55d6bd19807efbdf165319"]
-							.unchecked_into(),
-					),
+					// 5GKFbTTgrVS4Vz1UWWHPqMZQNFWZtqo7H2KpCDyYhEL3aS26
 					(
 						hex!["bc09354c12c054c8f6b3da208485eacec4ac648bad348895273b37bab5a0937c"]
 							.into(),
 						hex!["bc09354c12c054c8f6b3da208485eacec4ac648bad348895273b37bab5a0937c"]
+							.unchecked_into(),
+					),
+					// 5EPRJHm2GpABVWcwnAujcrhnrjFZyDGd5TwKFzkBoGgdRyv2
+					(
+						hex!["66be63b7bcbfb91040e5248e2d1ceb822cf219c57848c5924ffa3a1f8e67ba72"]
+							.into(),
+						hex!["66be63b7bcbfb91040e5248e2d1ceb822cf219c57848c5924ffa3a1f8e67ba72"]
+							.unchecked_into(),
+					),
+					// 5GH62vrJrVZxLREcHzm2PR5uTLAT5RQMJitoztCGyaP4o3uM
+					(
+						hex!["ba62886472a0a9f66b5e39f1469ce1c5b3d8cad6be39078daf16f111e89d1e44"]
+							.into(),
+						hex!["ba62886472a0a9f66b5e39f1469ce1c5b3d8cad6be39078daf16f111e89d1e44"]
+							.unchecked_into(),
+					),
+					// 5FHfoJDLdjRYX5KXLRqMDYBbWrwHLMtti21uK4QByUoUAbJF
+					(
+						hex!["8e97f65cda001976311df9bed39e8d0c956089093e94a75ef76fe9347a0eda7b"]
+							.into(),
+						hex!["8e97f65cda001976311df9bed39e8d0c956089093e94a75ef76fe9347a0eda7b"]
 							.unchecked_into(),
 					),
 				],
