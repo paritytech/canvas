@@ -73,11 +73,13 @@ workflow:
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
     - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
 
-.build-refs-pr-only:                       &build-refs-pr-only
+.docker-refs:                      &docker-refs
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "schedule"
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+    - if: $CI_COMMIT_REF_NAME == "master"
+    - if: $CI_COMMIT_REF_NAME == "tags"
+    - if: $CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+.*$/              # i.e. v1.0, v2.1rc1
 
 .publish-refs:                     &publish-refs
   rules:
@@ -128,7 +130,7 @@ build-mac:
 ### stage:                         publish
 
 .build-push-docker-image:          &build-push-docker-image
-  <<:                              *publish-refs
+  <<:                              *docker-refs
   <<:                              *kubernetes-env
   image:                           quay.io/buildah/stable
   variables:                       &docker-build-vars
@@ -149,8 +151,8 @@ build-mac:
   before_script:
     - if [[ "${CI_COMMIT_TAG}" ]]; then
         VERSION=${CI_COMMIT_TAG};
-      elif [[ "${CI_COMMIT_REF_NAME}" ]]; then
-        VERSION=$(echo ${CI_COMMIT_REF_NAME} | sed -r 's#/+#-#g');
+      elif [[ "${CI_COMMIT_SHORT_SHA}" ]]; then
+        VERSION=${CI_COMMIT_SHORT_SHA};
       fi
     - echo "Effective tags = ${VERSION} sha-${CI_COMMIT_SHORT_SHA} latest"
   script:
@@ -172,15 +174,6 @@ build-mac:
     - buildah push --format=v2s2 "$IMAGE_NAME:latest"
   after_script:
     - buildah logout --all
-
-
-publish-docker-pr:
-  stage:                           publish
-  <<:                              *build-push-docker-image
-  <<:                              *build-refs-pr-only
-  variables:
-    <<:                            *docker-build-vars
-    IMAGE_NAME:                    docker.io/paritypr/canvas
 
 
 publish-docker:
