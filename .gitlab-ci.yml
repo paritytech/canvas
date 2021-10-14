@@ -153,7 +153,8 @@ build-mac:
       fi
     - echo "Effective tags = ${VERSION} sha-${CI_COMMIT_SHORT_SHA} latest"
   script:
-    - cp ./artifacts/canvas-linux/canvas ./scripts/dockerfiles/
+    - ls -la
+    - cp ./artifacts/canvas-linux/canvas ./scripts/dockerfiles/canvas
     - test "$DOCKER_HUB_USER" -a "$DOCKER_HUB_PASS" ||
         ( echo "no docker credentials provided"; exit 1 )
     - buildah bud
