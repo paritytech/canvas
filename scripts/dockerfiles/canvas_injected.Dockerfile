@@ -22,16 +22,9 @@ LABEL io.parity.image.title="canvas" \
 ENV RUST_BACKTRACE 1
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN set -eux; \
-	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates && \
-    update-ca-certificates && \
-	groupadd -g 1000 user && \
-	useradd -u 1000 -g user -s /bin/sh -m user && \
-	# apt clean up
-	apt-get autoremove -y && \
-	apt-get clean && \
-	rm -rf /var/lib/apt/lists/*
+# add non-root user
+RUN groupadd -g 1000 user && \
+	useradd -u 1000 -g user -s /bin/sh -m user
 
 # switch to non-root user
 USER user
@@ -40,5 +33,6 @@ COPY --chown=root:root ./canvas /usr/local/bin/
 
 # check if executable works in this container
 RUN /usr/local/bin/canvas --version
+
 EXPOSE 30333 9933 9944
 ENTRYPOINT ["/usr/local/bin/canvas"]

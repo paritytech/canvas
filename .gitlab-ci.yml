@@ -133,7 +133,7 @@ build-mac:
   <<:                              *docker-refs
   <<:                              *kubernetes-env
   image:                           quay.io/buildah/stable
-  variables:                       &docker-build-vars
+  variables:
     <<:                            *default-vars
     GIT_STRATEGY:                  none
     DOCKERFILE:                    canvas_injected.Dockerfile
