@@ -40,5 +40,5 @@ COPY --chown=root:root ./canvas /usr/local/bin/
 
 # check if executable works in this container
 RUN /usr/local/bin/canvas --version
-
+EXPOSE 30333 9933 9944
 ENTRYPOINT ["/usr/local/bin/canvas"]
