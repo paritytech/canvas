@@ -386,6 +386,7 @@ impl pallet_balances::Config for Runtime {
 parameter_types! {
 	/// Relay Chain `TransactionByteFee` / 10
 	pub const TransactionByteFee: Balance = 10 * MICROUNIT;
+	pub const OperationalFeeMultiplier: u8 = 5;
 }
 
 impl pallet_transaction_payment::Config for Runtime {
@@ -393,6 +394,7 @@ impl pallet_transaction_payment::Config for Runtime {
 	type TransactionByteFee = TransactionByteFee;
 	type WeightToFee = WeightToFee;
 	type FeeMultiplierUpdate = SlowAdjustingFeeUpdate<Self>;
+	type OperationalFeeMultiplier = OperationalFeeMultiplier;
 }
 
 parameter_types! {
@@ -606,7 +608,6 @@ impl cumulus_pallet_dmp_queue::Config for Runtime {
 }
 
 parameter_types! {
-	pub const DisabledValidatorsThreshold: Perbill = Perbill::from_percent(33);
 	pub const Period: u32 = 6 * HOURS;
 	pub const Offset: u32 = 0;
 	pub const MaxAuthorities: u32 = 100_000;
@@ -623,7 +624,6 @@ impl pallet_session::Config for Runtime {
 	// Essentially just Aura, but lets be pedantic.
 	type SessionHandler = <SessionKeys as sp_runtime::traits::OpaqueKeys>::KeyTypeIdProviders;
 	type Keys = SessionKeys;
-	type DisabledValidatorsThreshold = DisabledValidatorsThreshold;
 	type WeightInfo = (); // TODO: Add benchmarked weights.
 }
 
