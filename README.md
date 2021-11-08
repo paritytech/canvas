@@ -103,7 +103,7 @@ cargo build --release --locked
 ### Substrate Compatibility
 
 The latest confirmed working Substrate commit which will then be used is
-[c000780dba99a611fadbf83873073e024be1be0b](https://github.com/paritytech/substrate/commit/c000780dba99a611fadbf83873073e024be1be0b).
+[a9465729e2c5d2ef8d87ac404da27e5e10adde8a](https://github.com/paritytech/substrate/commit/a9465729e2c5d2ef8d87ac404da27e5e10adde8a).
 
 ### Unstable Features
 
