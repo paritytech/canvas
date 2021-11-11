@@ -23,6 +23,11 @@ use serde::{Deserialize, Serialize};
 use sp_core::{crypto::UncheckedInto, sr25519, Pair, Public};
 use sp_runtime::traits::{IdentifyAccount, Verify};
 
+/// The ID of this Parachain as registered on the Relay Chain.
+///
+/// TODO: When we register as a common good parachain this will need to change.
+pub const PARA_ID: u32 = 12648430;
+
 /// Specialized `ChainSpec` for the normal parachain runtime.
 pub type ChainSpec = sc_service::GenericChainSpec<canvas_runtime::GenesisConfig, Extensions>;
 
@@ -114,7 +119,7 @@ pub fn development_config() -> ChainSpec {
 					get_account_id_from_seed::<sr25519::Public>("Eve//stash"),
 					get_account_id_from_seed::<sr25519::Public>("Ferdie//stash"),
 				],
-				1234.into(),
+				PARA_ID.into(),
 			)
 		},
 		vec![],
@@ -123,7 +128,7 @@ pub fn development_config() -> ChainSpec {
 		None,
 		Extensions {
 			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
-			para_id: 1234,
+			para_id: PARA_ID,
 		},
 	)
 }
@@ -168,7 +173,7 @@ pub fn local_testnet_config() -> ChainSpec {
 					get_account_id_from_seed::<sr25519::Public>("Eve//stash"),
 					get_account_id_from_seed::<sr25519::Public>("Ferdie//stash"),
 				],
-				1234.into(),
+				PARA_ID.into(),
 			)
 		},
 		// Bootnodes
@@ -182,7 +187,7 @@ pub fn local_testnet_config() -> ChainSpec {
 		// Extensions
 		Extensions {
 			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
-			para_id: 1234,
+			para_id: PARA_ID,
 		},
 	)
 }
@@ -248,7 +253,7 @@ pub fn rococo_testnet_config() -> ChainSpec {
 					// AccountId of an account which `ink-waterfall` uses for automated testing
 					hex!["0e47e2344d523c3cc5c34394b0d58b9a4200e813a038e6c5a6163cc07d70b069"].into(),
 				],
-				1234.into(),
+				PARA_ID.into(),
 			)
 		},
 		// Bootnodes
@@ -273,7 +278,7 @@ pub fn rococo_testnet_config() -> ChainSpec {
 		// Properties
 		Some(properties),
 		// Extensions
-		Extensions { relay_chain: "rococo".into(), para_id: 1234 },
+		Extensions { relay_chain: "rococo".into(), para_id: PARA_ID },
 	)
 }
 
