@@ -26,7 +26,7 @@ use sp_runtime::traits::{IdentifyAccount, Verify};
 /// The ID of this Parachain as registered on the Relay Chain.
 ///
 /// TODO: When we register as a common good parachain this will need to change.
-pub const PARA_ID: u32 = 12648430;
+pub const PARA_ID: u32 = 1002;
 
 /// Specialized `ChainSpec` for the normal parachain runtime.
 pub type ChainSpec = sc_service::GenericChainSpec<canvas_runtime::GenesisConfig, Extensions>;
