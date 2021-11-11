@@ -1,23 +1,35 @@
 {
 	"relaychain": {
-		"bin": "../../polkadot/target/release/polkadot",
+		"bin": "../../polkadot-mbp/target/release/polkadot",
 		"chain": "rococo-local",
 		"nodes": [
 			{
 				"name": "alice",
 				"wsPort": 9944,
-				"port": 30444
+				"port": 30444,
+                "flags": [
+                    "--rpc-cors=all",
+                    "--unsafe-rpc-external",
+                    "--unsafe-ws-external",
+                    "--execution=wasm"
+                ]
 			},
 			{
 				"name": "bob",
 				"wsPort": 9955,
-				"port": 30555
+				"port": 30555,
+                "flags": [
+                    "--rpc-cors=all",
+                    "--unsafe-rpc-external",
+                    "--unsafe-ws-external",
+                    "--execution=wasm"
+                ]
 			}
 		]
 	},
 	"parachains": [
 		{
-			"bin": "../target/release/canvas",
+			"bin": "./target/release/canvas",
 			"id": "200",
 			"balance": "1000000000000000000000",
 			"nodes": [
@@ -27,7 +39,10 @@
 					"port": 31200,
 					"flags": [
 						"--",
-						"--execution=wasm"
+                        "--rpc-cors=all",
+                        "--unsafe-rpc-external",
+                        "--unsafe-ws-external",
+                        "--execution=wasm"
 					]
 				}
 			]
