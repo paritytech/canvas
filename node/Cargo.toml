@@ -7,7 +7,7 @@ description = "A node implementation for Canvas, a Substrate parachain for smart
 homepage = "https://github.com/paritytech/canvas"
 repository = "https://github.com/paritytech/canvas"
 build = "build.rs"
-edition = "2018"
+edition = "2021"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
