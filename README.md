@@ -50,10 +50,43 @@ or interact with contracts:
 If you are looking for a quickstart, we can recommend
 [ink!'s Guided Tutorial for Beginners](https://substrate.dev/substrate-contracts-workshop/#/0/building-your-contract).
 
+## Rococo Deployment
+
+We currently have a live deployment of the Canvas parachain on Rococo, Polkadot's
+parachain testnet. You can access the network through Polkadot JS Apps by [clicking here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcanvas-rpc.parity.io#/explorer).
+
+The Canvas parachain uses Rococo's native token (ROC) instead of having its own token.
+Due to this you'll need ROC in order to deploy contracts on Canvas.
+
+You can get ROC testnet tokens through the [Rococo Faucet Channel on Element](https://matrix.to/#/#rococo-faucet:matrix.org).
+Once you have ROC tokens on Rococo, you'll need to use XCM to teleport them over into the
+Canvas parachain.
+
+Right now there's no easy way to do that, so you'll need to craft the XCM yourself using
+Polkadot JS Apps. However, below is a screenshot to help guide you.
+
+![ROC-to-CAN-XCM](./.images/roc-to-can-xcm.png)
+
+A few notes:
+- To get to where the screenshot was taken, navigate to the "Developer > Extrinsics" tab
+  and choose `xcmPallet` as the extrinsic you want to submit.
+- If using the Polkadot JS Apps extension, set your network preferences to "Allow use on
+  any network".
+- Change the `AccountId32` argument to your own address.
+- When specifying the `MultiAsset` amount to send (`Fungible: Compact<u128>`), the units
+  are in [`planks`](https://support.polkadot.network/support/solutions/articles/65000168663-how-many-planck-are-in-a-dot-).
+  This means that to send 1 ROC you need to set this value to 1,000,000,000,000.
+- The `feeAssetItem` field is set to `0` to indicate that we want to pay fees in the
+  Native token of the network (ROC).
+
+Once you have ROC on Canvas you can deploy a contract as you would normally.
+
+(If you're unsure about that last step, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/) 
+will clarify that for you in no time.)
 
 ## Run it Locally
 
-### Installation 
+### Installation
 
 You need to have executables of both Polkadot and Canvas.
 
@@ -89,13 +122,13 @@ to connect to the Polkadot relay chain nodes as well as the Canvas collator.
 
 ## Building from source
 
-Follow the [official installation steps](https://substrate.dev/docs/en/knowledgebase/getting-started/) 
+Follow the [official installation steps](https://substrate.dev/docs/en/knowledgebase/getting-started/)
 to set up all Substrate prerequisites.
 
 Afterwards you can install this node via
 
 ```bash
-git clone https://github.com/paritytech/canvas.git 
+git clone https://github.com/paritytech/canvas.git
 cd canvas/
 cargo build --release --locked 
 ```
