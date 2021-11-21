@@ -8,6 +8,7 @@ homepage = "https://github.com/paritytech/canvas"
 repository = "https://github.com/paritytech/canvas"
 build = "build.rs"
 edition = "2021"
+rust-version = "1.56.1"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
