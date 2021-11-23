@@ -59,8 +59,8 @@ You can access the network through Polkadot JS Apps,
 The Canvas parachain uses the Rococo relaychain's native token (ROC) instead of having its own token.
 Due to this you'll need ROC in order to deploy contracts on Canvas.
 
-As a first step, you should create an account, [see here for a guide](https://wiki.polkadot.network/docs/learn-account-generation).
-The shortcut is to just use `subkey generate`.
+As a first step, you should create an account. See [here](https://wiki.polkadot.network/docs/learn-account-generation)
+for a detailed guide. The shortcut is to just use `subkey generate`.
 
 As a second step, you have to get ROC testnet tokens through the [Rococo Faucet](https://wiki.polkadot.network/docs/learn-DOT#getting-rococo-tokens).
 Once you have ROC tokens on Rococo, you'll need to use XCM to teleport them over into the
