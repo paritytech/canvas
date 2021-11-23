@@ -52,13 +52,17 @@ If you are looking for a quickstart, we can recommend
 
 ## Rococo Deployment
 
-We currently have a live deployment of the Canvas parachain on Rococo, Polkadot's
-parachain testnet. You can access the network through Polkadot JS Apps by [clicking here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcanvas-rpc.parity.io#/explorer).
+We have a live deployment of the Canvas parachain on Rococo ‒ a testnet for Polkadot and Kusama parachains.
+You can access the network through Polkadot JS Apps,
+[click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcanvas-rpc.parity.io#/explorer).
 
-The Canvas parachain uses Rococo's native token (ROC) instead of having its own token.
+The Canvas parachain uses the Rococo relaychain's native token (ROC) instead of having its own token.
 Due to this you'll need ROC in order to deploy contracts on Canvas.
 
-You can get ROC testnet tokens through the [Rococo Faucet Channel on Element](https://matrix.to/#/#rococo-faucet:matrix.org).
+As a first step, you should create an account, [see here for a guide](https://wiki.polkadot.network/docs/learn-account-generation).
+The shortcut is to just use `subkey generate`.
+
+As a second step, you have to get ROC testnet tokens through the [Rococo Faucet](https://wiki.polkadot.network/docs/learn-DOT#getting-rococo-tokens).
 Once you have ROC tokens on Rococo, you'll need to use XCM to teleport them over into the
 Canvas parachain.
 
@@ -68,21 +72,26 @@ Polkadot JS Apps. However, below is a screenshot to help guide you.
 ![ROC-to-CAN-XCM](./.images/roc-to-can-xcm.png)
 
 A few notes:
-- To get to where the screenshot was taken, navigate to the "Developer > Extrinsics" tab
-  and choose `xcmPallet` as the extrinsic you want to submit.
 - If using the Polkadot JS Apps extension, set your network preferences to "Allow use on
-  any network".
+  any network". This way your account will be usable under Rococo as well as under Canvas.
+- To get to where the screenshot was taken, navigate to the ["Developer > Extrinsics"](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics)
+  tab and choose `xcmPallet` as the extrinsic you want to submit.
 - Change the `AccountId32` argument to your own address.
 - When specifying the `MultiAsset` amount to send (`Fungible: Compact<u128>`), the units
   are in [`planks`](https://support.polkadot.network/support/solutions/articles/65000168663-how-many-planck-are-in-a-dot-).
   This means that to send 1 ROC you need to set this value to 1,000,000,000,000.
+  So in case you want to e.g. teleport 10 ROC set the value to `10000000000000`.
 - The `feeAssetItem` field is set to `0` to indicate that we want to pay fees in the
   Native token of the network (ROC).
+- Click "Submit Transaction" when you're ready.
+
+If everything worked out the teleported ROC tokens will show up under [the "Accounts" tab for Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcanvas-rpc.parity.io#/accounts).
 
 Once you have ROC on Canvas you can deploy a contract as you would normally.
+If you're unsure about this, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/) 
+will clarify that for you in no time.
 
-(If you're unsure about that last step, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/) 
-will clarify that for you in no time.)
+As an endowment for our examples contracts 1-2 ROC tokens should do.
 
 ## Run it Locally
 
