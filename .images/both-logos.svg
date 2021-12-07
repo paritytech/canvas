@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="600.05286"
+   height="354.39792"
+   viewBox="0 0 600.05286 354.39792"
+   fill="none"
+   version="1.1"
+   id="svg1019"
+   sodipodi:docname="both-logos.svg"
+   inkscape:export-filename="/home/michi/projects/canvas/.images/logos.png"
+   inkscape:export-xdpi="230.38"
+   inkscape:export-ydpi="230.38"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1023" />
+  <sodipodi:namedview
+     id="namedview1021"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:lockguides="true"
+     fit-margin-top="50"
+     fit-margin-left="50"
+     fit-margin-right="50"
+     fit-margin-bottom="50"
+     inkscape:zoom="0.5"
+     inkscape:cx="305"
+     inkscape:cy="90"
+     inkscape:window-width="1918"
+     inkscape:window-height="1055"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1019" />
+  <rect
+     style="fill:#ffffff;stroke-width:11.3386;stroke-linejoin:round"
+     id="rect6473"
+     width="1109.7535"
+     height="615.73962"
+     x="-109.87097"
+     y="-158.85181" />
+  <circle
+     cx="150"
+     cy="150"
+     r="100"
+     fill="#000000"
+     id="circle1009" />
+  <rect
+     x="105"
+     y="105"
+     width="41.111099"
+     height="41.111099"
+     fill="#ffffff"
+     id="rect1011" />
+  <rect
+     x="105"
+     y="153.88901"
+     width="41.111099"
+     height="41.111099"
+     fill="#ffffff"
+     id="rect1013" />
+  <path
+     d="m 154.111,105 h 41.111 c 0,22.705 -18.406,41.1111 -41.111,41.1111 z"
+     fill="#ffffff"
+     id="path1015" />
+  <path
+     d="m 154.111,153.889 c 22.705,0 41.111,18.406 41.111,41.111 h -41.111 z"
+     fill="#ffffff"
+     id="path1017" />
+  <circle
+     cx="450.05286"
+     cy="150"
+     r="100"
+     fill="#000000"
+     id="circle2" />
+  <path
+     d="m 404.05287,146.1111 c 0,-22.705 18.4061,-41.1111 41.1111,-41.1111 v 0 41.1111 z"
+     fill="#ffffff"
+     id="path4" />
+  <path
+     d="m 404.05287,153.889 h 41.1111 V 195 v 0 c -22.705,0 -41.1111,-18.406 -41.1111,-41.111 z"
+     fill="#ffffff"
+     id="path6" />
+  <path
+     d="m 455.16387,105 h 41.111 v 0 c 0,22.705 -18.406,41.1111 -41.111,41.1111 v 0 z"
+     fill="#ffffff"
+     id="path8" />
+  <path
+     d="m 455.16387,153.889 v 0 c 22.705,0 41.111,18.406 41.111,41.111 v 0 h -41.111 z"
+     fill="#ffffff"
+     id="path10" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="84.939949"
+     y="303.67792"
+     id="text2994"><tspan
+       sodipodi:role="line"
+       id="tspan2992"
+       x="84.939949"
+       y="303.67792"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans'">Kanvas</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="386.57285"
+     y="303.91791"
+     id="text2994-4"><tspan
+       sodipodi:role="line"
+       id="tspan2992-5"
+       x="386.57285"
+       y="303.91791"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans'">Canvas</tspan></text>
+</svg>
