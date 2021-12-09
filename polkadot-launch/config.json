@@ -18,7 +18,6 @@
 	"parachains": [
 		{
 			"bin": "../target/release/canvas",
-			"id": "200",
 			"balance": "1000000000000000000000",
 			"nodes": [
 				{

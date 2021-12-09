@@ -48,7 +48,7 @@ or interact with contracts:
 * [polkadot-js](https://polkadot.js.org/apps/)
 
 If you are looking for a quickstart, we can recommend
-[ink!'s Guided Tutorial for Beginners](https://substrate.dev/substrate-contracts-workshop/#/0/building-your-contract).
+[ink!'s Guided Tutorial for Beginners](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/).
 
 ## Rococo Deployment
 
@@ -131,7 +131,7 @@ to connect to the Polkadot relay chain nodes as well as the Canvas collator.
 
 ## Building from source
 
-Follow the [official installation steps](https://substrate.dev/docs/en/knowledgebase/getting-started/)
+Follow the [official installation steps](https://docs.substrate.io/v3/getting-started/installation/)
 to set up all Substrate prerequisites.
 
 Afterwards you can install this node via

@@ -32,7 +32,7 @@ pub const PARA_ID: u32 = 1002;
 pub type ChainSpec = sc_service::GenericChainSpec<canvas_runtime::GenesisConfig, Extensions>;
 
 /// Helper function to generate a crypto pair from seed
-pub fn get_pair_from_seed<TPublic: Public>(seed: &str) -> <TPublic::Pair as Pair>::Public {
+pub fn get_public_from_seed<TPublic: Public>(seed: &str) -> <TPublic::Pair as Pair>::Public {
 	TPublic::Pair::from_string(&format!("//{}", seed), None)
 		.expect("static values are valid; qed")
 		.public()
@@ -61,7 +61,7 @@ type AccountPublic = <Signature as Verify>::Signer;
 ///
 /// This function's return type must always match the session keys of the chain in tuple format.
 pub fn get_collator_keys_from_seed(seed: &str) -> AuraId {
-	get_pair_from_seed::<AuraId>(seed)
+	get_public_from_seed::<AuraId>(seed)
 }
 
 /// Helper function to generate an account ID from seed
@@ -69,7 +69,7 @@ pub fn get_account_id_from_seed<TPublic: Public>(seed: &str) -> AccountId
 where
 	AccountPublic: From<<TPublic::Pair as Pair>::Public>,
 {
-	AccountPublic::from(get_pair_from_seed::<TPublic>(seed)).into_account()
+	AccountPublic::from(get_public_from_seed::<TPublic>(seed)).into_account()
 }
 
 /// Generate the session keys from individual elements.
@@ -122,7 +122,7 @@ pub fn development_config() -> ChainSpec {
 				PARA_ID.into(),
 			)
 		},
-		vec![],
+		Vec::new(),
 		None,
 		None,
 		None,
@@ -177,7 +177,7 @@ pub fn local_testnet_config() -> ChainSpec {
 			)
 		},
 		// Bootnodes
-		vec![],
+		Vec::new(),
 		// Telemetry
 		None,
 		// Protocol ID
@@ -292,7 +292,6 @@ fn canvas_genesis(
 			code: canvas_runtime::WASM_BINARY
 				.expect("WASM binary was not build, please build it!")
 				.to_vec(),
-			changes_trie_config: Default::default(),
 		},
 		balances: canvas_runtime::BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
@@ -305,8 +304,7 @@ fn canvas_genesis(
 		},
 		session: canvas_runtime::SessionConfig {
 			keys: invulnerables
-				.iter()
-				.cloned()
+				.into_iter()
 				.map(|(acc, aura)| {
 					(
 						acc.clone(),               // account id

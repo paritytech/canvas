@@ -29,7 +29,10 @@ use sc_cli::{
 	ChainSpec, CliConfiguration, DefaultConfigurationValues, ImportParams, KeystoreParams,
 	NetworkParams, Result, RuntimeVersion, SharedParams, SubstrateCli,
 };
-use sc_service::config::{BasePath, PrometheusConfig};
+use sc_service::{
+	config::{BasePath, PrometheusConfig},
+	TaskManager,
+};
 use sp_core::hexdisplay::HexDisplay;
 use sp_runtime::traits::Block as BlockT;
 use std::{io::Write, net::SocketAddr};
@@ -56,8 +59,8 @@ impl SubstrateCli for Cli {
 		format!(
 			"Canvas Node\n\nThe command-line arguments provided first will be \
 		passed to the parachain node, while the arguments provided after -- will be passed \
-		to the relaychain node.\n\n\
-		{} [parachain-args] -- [relaychain-args]",
+		to the relay chain node.\n\n\
+		{} <parachain-args> -- <relay-chain-args>",
 			Self::executable_name()
 		)
 	}
@@ -184,7 +187,7 @@ pub fn run() -> Result<()> {
 			runner.sync_run(|config| {
 				let polkadot_cli = RelayChainCli::new(
 					&config,
-					[RelayChainCli::executable_name()].iter().chain(cli.relaychain_args.iter()),
+					[RelayChainCli::executable_name()].iter().chain(cli.relay_chain_args.iter()),
 				);
 
 				let polkadot_config = SubstrateCli::create_configuration(
@@ -255,6 +258,22 @@ pub fn run() -> Result<()> {
 				You can enable it with `--features runtime-benchmarks`."
 					.into())
 			},
+		Some(Subcommand::TryRuntime(cmd)) =>
+			if cfg!(feature = "try-runtime") {
+				let runner = cli.create_runner(cmd)?;
+
+				// grab the task manager.
+				let registry = &runner.config().prometheus_config.as_ref().map(|cfg| &cfg.registry);
+				let task_manager =
+					TaskManager::new(runner.config().tokio_handle.clone(), *registry)
+						.map_err(|e| format!("Error: {:?}", e))?;
+
+				runner.async_run(|config| {
+					Ok((cmd.run::<Block, CanvasRuntimeExecutor>(config), task_manager))
+				})
+			} else {
+				Err("Try-runtime must be enabled by `--features try-runtime`.".into())
+			},
 		None => {
 			let runner = cli.create_runner(&cli.run.normalize())?;
 
@@ -262,11 +281,11 @@ pub fn run() -> Result<()> {
 				let _ = &cli;
 				let para_id = chain_spec::Extensions::try_get(&*config.chain_spec)
 					.map(|e| e.para_id)
-					.ok_or("Could not find parachain extension for chain-spec.")?;
+					.ok_or("Could not find parachain ID in chain-spec.")?;
 
 				let polkadot_cli = RelayChainCli::new(
 					&config,
-					[RelayChainCli::executable_name()].iter().chain(cli.relaychain_args.iter()),
+					[RelayChainCli::executable_name()].iter().chain(cli.relay_chain_args.iter()),
 				);
 
 				let id = ParaId::from(para_id);
