@@ -50,7 +50,7 @@ use frame_support::{
 };
 use frame_system::{
 	limits::{BlockLength, BlockWeights},
-	EnsureRoot,
+	EnsureOneOf, EnsureRoot,
 };
 pub use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 pub use sp_runtime::{MultiAddress, Perbill, Permill};
@@ -59,7 +59,7 @@ pub use sp_runtime::{MultiAddress, Perbill, Permill};
 pub use sp_runtime::BuildStorage;
 
 // Polkadot Imports
-use pallet_xcm::XcmPassthrough;
+use pallet_xcm::{EnsureXcm, IsMajorityOfBody, XcmPassthrough};
 use polkadot_parachain::primitives::Sibling;
 use polkadot_runtime_common::{BlockHashCount, RocksDbWeight, SlowAdjustingFeeUpdate};
 
@@ -630,7 +630,7 @@ parameter_types! {
 pub type CollatorSelectionUpdateOrigin = EnsureOneOf<
 	AccountId,
 	EnsureRoot<AccountId>,
-	EnsureXcm<IsMajorityOfBody<RocLocation, ExecutiveBody>>,
+	EnsureXcm<IsMajorityOfBody<RelayLocation, ExecutiveBody>>,
 >;
 
 impl pallet_collator_selection::Config for Runtime {
