@@ -54,7 +54,7 @@ If you are looking for a quickstart, we can recommend
 
 We have a live deployment of the Canvas parachain on Rococo ‒ a testnet for Polkadot and Kusama parachains.
 You can access the network through Polkadot JS Apps,
-[click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcanvas-rpc.parity.io#/explorer).
+[click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/explorer).
 
 The Canvas parachain uses the Rococo relaychain's native token (ROC) instead of having its own token.
 Due to this you'll need ROC in order to deploy contracts on Canvas.
@@ -85,7 +85,7 @@ A few notes:
   Native token of the network (ROC).
 - Click "Submit Transaction" when you're ready.
 
-If everything worked out the teleported ROC tokens will show up under [the "Accounts" tab for Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcanvas-rpc.parity.io#/accounts).
+If everything worked out the teleported ROC tokens will show up under [the "Accounts" tab for Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/accounts).
 
 Once you have ROC on Canvas you can deploy a contract as you would normally.
 If you're unsure about this, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/) 
