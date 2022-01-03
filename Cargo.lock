@@ -3326,6 +3326,101 @@ dependencies = [
 ]
 
 [[package]]
+name = "kusama-runtime"
+version = "0.9.13"
+source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
+dependencies = [
+ "beefy-primitives",
+ "bitvec",
+ "frame-election-provider-support",
+ "frame-executive",
+ "frame-support",
+ "frame-system",
+ "frame-system-rpc-runtime-api",
+ "frame-try-runtime",
+ "kusama-runtime-constants",
+ "log",
+ "pallet-authority-discovery",
+ "pallet-authorship",
+ "pallet-babe",
+ "pallet-bags-list",
+ "pallet-balances",
+ "pallet-bounties",
+ "pallet-collective",
+ "pallet-democracy",
+ "pallet-election-provider-multi-phase",
+ "pallet-elections-phragmen",
+ "pallet-gilt",
+ "pallet-grandpa",
+ "pallet-identity",
+ "pallet-im-online",
+ "pallet-indices",
+ "pallet-membership",
+ "pallet-mmr-primitives",
+ "pallet-multisig",
+ "pallet-nicks",
+ "pallet-offences",
+ "pallet-preimage",
+ "pallet-proxy",
+ "pallet-recovery",
+ "pallet-scheduler",
+ "pallet-session",
+ "pallet-society",
+ "pallet-staking",
+ "pallet-staking-reward-fn",
+ "pallet-timestamp",
+ "pallet-tips",
+ "pallet-transaction-payment",
+ "pallet-transaction-payment-rpc-runtime-api",
+ "pallet-treasury",
+ "pallet-utility",
+ "pallet-vesting",
+ "pallet-xcm",
+ "parity-scale-codec",
+ "polkadot-primitives",
+ "polkadot-runtime-common",
+ "polkadot-runtime-parachains",
+ "rustc-hex",
+ "scale-info",
+ "serde",
+ "serde_derive",
+ "smallvec",
+ "sp-api",
+ "sp-arithmetic",
+ "sp-authority-discovery",
+ "sp-block-builder",
+ "sp-consensus-babe",
+ "sp-core",
+ "sp-inherents",
+ "sp-io",
+ "sp-npos-elections",
+ "sp-offchain",
+ "sp-runtime",
+ "sp-session",
+ "sp-staking",
+ "sp-std",
+ "sp-transaction-pool",
+ "sp-version",
+ "static_assertions",
+ "substrate-wasm-builder",
+ "xcm",
+ "xcm-builder",
+ "xcm-executor",
+]
+
+[[package]]
+name = "kusama-runtime-constants"
+version = "0.9.13"
+source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
+dependencies = [
+ "frame-support",
+ "polkadot-primitives",
+ "polkadot-runtime-common",
+ "smallvec",
+ "sp-runtime",
+]
+
+[[package]]
 name = "kv-log-macro"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4949,6 +5044,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-gilt"
+version = "4.0.0-dev"
+source = "git+https://github.com/paritytech/substrate?branch=master#a798e290628030d9fcba9293994f3d66beba44af"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "scale-info",
+ "sp-arithmetic",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "pallet-grandpa"
 version = "4.0.0-dev"
 source = "git+https://github.com/paritytech/substrate?branch=master#a798e290628030d9fcba9293994f3d66beba44af"
@@ -5180,6 +5290,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-recovery"
+version = "4.0.0-dev"
+source = "git+https://github.com/paritytech/substrate?branch=master#a798e290628030d9fcba9293994f3d66beba44af"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "scale-info",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "pallet-scheduler"
 version = "4.0.0-dev"
 source = "git+https://github.com/paritytech/substrate?branch=master#a798e290628030d9fcba9293994f3d66beba44af"
@@ -5217,6 +5341,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-society"
+version = "4.0.0-dev"
+source = "git+https://github.com/paritytech/substrate?branch=master#a798e290628030d9fcba9293994f3d66beba44af"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "rand_chacha 0.2.2",
+ "scale-info",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "pallet-staking"
 version = "4.0.0-dev"
 source = "git+https://github.com/paritytech/substrate?branch=master#a798e290628030d9fcba9293994f3d66beba44af"
@@ -5246,6 +5384,15 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "pallet-staking-reward-fn"
+version = "4.0.0-dev"
+source = "git+https://github.com/paritytech/substrate?branch=master#a798e290628030d9fcba9293994f3d66beba44af"
+dependencies = [
+ "log",
+ "sp-arithmetic",
 ]
 
 [[package]]
@@ -5838,15 +5985,18 @@ dependencies = [
 [[package]]
 name = "polkadot-cli"
 version = "0.9.13"
-source = "git+https://github.com/paritytech/polkadot?branch=master#a6e1f37694b2b46b7132216181af4568017a23ca"
+source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
 dependencies = [
  "frame-benchmarking-cli",
  "futures 0.3.19",
  "log",
  "polkadot-node-core-pvf",
+ "polkadot-node-metrics",
+ "polkadot-performance-test",
  "polkadot-service",
  "sc-cli",
  "sc-service",
+ "sc-tracing",
  "sp-core",
  "sp-trie",
  "structopt",
@@ -6444,6 +6594,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "polkadot-performance-test"
+version = "0.9.13"
+source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
+dependencies = [
+ "env_logger 0.9.0",
+ "kusama-runtime",
+ "log",
+ "polkadot-erasure-coding",
+ "polkadot-node-core-pvf",
+ "polkadot-node-primitives",
+ "quote",
+ "thiserror",
+]
+
+[[package]]
 name = "polkadot-primitives"
 version = "0.9.13"
 source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
@@ -6822,7 +6987,7 @@ dependencies = [
 [[package]]
 name = "polkadot-test-runtime"
 version = "0.9.13"
-source = "git+https://github.com/paritytech/polkadot?branch=master#a6e1f37694b2b46b7132216181af4568017a23ca"
+source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
 dependencies = [
  "beefy-primitives",
  "bitvec",
@@ -6875,6 +7040,7 @@ dependencies = [
  "sp-transaction-pool",
  "sp-version",
  "substrate-wasm-builder",
+ "test-runtime-constants",
  "xcm",
  "xcm-builder",
  "xcm-executor",
@@ -6883,7 +7049,7 @@ dependencies = [
 [[package]]
 name = "polkadot-test-service"
 version = "0.9.13"
-source = "git+https://github.com/paritytech/polkadot?branch=master#a6e1f37694b2b46b7132216181af4568017a23ca"
+source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
 dependencies = [
  "frame-benchmarking",
  "frame-system",
@@ -6929,6 +7095,7 @@ dependencies = [
  "sp-state-machine",
  "substrate-test-client",
  "tempfile",
+ "test-runtime-constants",
  "tokio",
  "tracing",
 ]
@@ -9992,6 +10159,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "test-runtime-constants"
+version = "0.9.13"
+source = "git+https://github.com/paritytech/polkadot?branch=master#9de0185558bbe130575afecd3a27485a1e1404af"
+dependencies = [
+ "frame-support",
+ "polkadot-primitives",
+ "polkadot-runtime-common",
+ "smallvec",
+ "sp-runtime",
+]
+
+[[package]]
 name = "textwrap"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -10259,7 +10438,7 @@ dependencies = [
  "chrono",
  "lazy_static",
  "matchers",
- "parking_lot 0.11.2",
+ "parking_lot 0.10.2",
  "regex",
  "serde",
  "serde_json",
