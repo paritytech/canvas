@@ -436,6 +436,7 @@ impl pallet_contracts::Config for Runtime {
 	type DeletionWeightLimit = DeletionWeightLimit;
 	type Schedule = Schedule;
 	type CallStack = [pallet_contracts::Frame<Self>; 31];
+	type AddressGenerator = pallet_contracts::DefaultAddressGenerator;
 }
 
 impl pallet_randomness_collective_flip::Config for Runtime {}
