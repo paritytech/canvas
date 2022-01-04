@@ -193,7 +193,7 @@ publish:
       artifacts: true
   secrets:
     GITHUB_TOKEN:
-      vault:                       cicd/gitlab/$CI_PROJECT_PATH/GITHUB_TOKEN@kv
+      vault:                       cicd/gitlab/parity/GITHUB_TOKEN@kv
       file:                        false
   script:
     - git describe --tags
