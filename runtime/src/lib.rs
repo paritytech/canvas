@@ -331,6 +331,8 @@ impl frame_system::Config for Runtime {
 	type SS58Prefix = SS58Prefix;
 	/// The action to take on a Runtime Upgrade
 	type OnSetCode = cumulus_pallet_parachain_system::ParachainSetCode<Self>;
+	/// The maximum number of consumers (e.g locks) system accounts can have.
+	type MaxConsumers = frame_support::traits::ConstU32<16>;
 }
 
 parameter_types! {
