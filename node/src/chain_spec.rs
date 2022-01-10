@@ -126,6 +126,7 @@ pub fn development_config() -> ChainSpec {
 		None,
 		None,
 		None,
+		None,
 		Extensions {
 			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
 			para_id: PARA_ID,
@@ -182,6 +183,8 @@ pub fn local_testnet_config() -> ChainSpec {
 		None,
 		// Protocol ID
 		Some("canvas-local"),
+		// Fork ID
+		None,
 		// Properties
 		Some(properties),
 		// Extensions
@@ -275,6 +278,8 @@ pub fn rococo_testnet_config() -> ChainSpec {
 		None,
 		// Protocol ID
 		Some("canvas-rococo"),
+		// Fork ID
+		None,
 		// Properties
 		Some(properties),
 		// Extensions
