@@ -31,11 +31,11 @@
      fit-margin-left="50"
      fit-margin-right="50"
      fit-margin-bottom="50"
-     inkscape:zoom="0.5"
-     inkscape:cx="305"
-     inkscape:cy="90"
-     inkscape:window-width="1918"
-     inkscape:window-height="1055"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="118.08683"
+     inkscape:cy="185.96908"
+     inkscape:window-width="1458"
+     inkscape:window-height="1080"
      inkscape:window-x="0"
      inkscape:window-y="23"
      inkscape:window-maximized="1"
@@ -47,12 +47,6 @@
      height="615.73962"
      x="-109.87097"
      y="-158.85181" />
-  <circle
-     cx="150"
-     cy="150"
-     r="100"
-     fill="#000000"
-     id="circle1009" />
   <rect
      x="105"
      y="105"
@@ -75,12 +69,6 @@
      d="m 154.111,153.889 c 22.705,0 41.111,18.406 41.111,41.111 h -41.111 z"
      fill="#ffffff"
      id="path1017" />
-  <circle
-     cx="450.05286"
-     cy="150"
-     r="100"
-     fill="#000000"
-     id="circle2" />
   <path
      d="m 404.05287,146.1111 c 0,-22.705 18.4061,-41.1111 41.1111,-41.1111 v 0 41.1111 z"
      fill="#ffffff"
@@ -119,4 +107,68 @@
        x="386.57285"
        y="303.91791"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans'">Canvas</tspan></text>
+  <g
+     id="g1278"
+     transform="translate(1434,1122)">
+    <circle
+       cx="-984"
+       cy="-972"
+       r="100"
+       fill="#000000"
+       id="circle1018" />
+    <path
+       d="m -1004,-952 h 40 v 40 h -40 z"
+       fill="#ffffff"
+       id="path1020" />
+    <path
+       d="m -1004,-1032 h 40 v 40 h -40 z"
+       fill="#ffffff"
+       id="path1022" />
+    <path
+       d="m -1044,-992 h 40 v 40 h -40 z"
+       fill="#ffffff"
+       id="path1024" />
+    <path
+       d="m -924,-992 c 0,-5.2529 -1.035,-10.4543 -3.045,-15.3073 -2.01,-4.8531 -4.956,-9.2626 -8.671,-12.977 -3.714,-3.7143 -8.124,-6.6607 -12.977,-8.6709 -4.853,-2.0102 -10.054,-3.0448 -15.307,-3.0448 v 40 z"
+       fill="#ffffff"
+       id="path1026" />
+    <path
+       d="m -964,-912 c 5.253,0 10.454,-1.035 15.307,-3.045 4.853,-2.01 9.263,-4.956 12.977,-8.671 3.715,-3.714 6.661,-8.124 8.671,-12.977 2.01,-4.853 3.045,-10.054 3.045,-15.307 h -40 z"
+       fill="#ffffff"
+       id="path1028" />
+  </g>
+  <g
+     id="g1481"
+     transform="translate(-2.9234009,250.20593)">
+    <circle
+       cx="152.9234"
+       cy="-100.20593"
+       r="100"
+       fill="#000000"
+       id="circle941" />
+    <path
+       d="m 132.9234,-120.20593 h -40 v -40 h 40 z"
+       fill="#ffffff"
+       id="path943" />
+    <path
+       d="m 132.9234,-40.205933 h -40 v -40 h 40 z"
+       fill="#ffffff"
+       id="path945" />
+    <path
+       d="m 172.9234,-80.205933 h -40 v -39.999997 h 40 z"
+       fill="#ffffff"
+       id="path947" />
+    <path
+       d="m 132.9234,-80.205933 h -40 v -39.999997 h 40 z"
+       fill="#ffffff"
+       id="path949" />
+    <path
+       d="m 172.9234,-120.20593 c 5.253,0 10.454,-1.0346 15.307,-3.0448 4.853,-2.0102 9.263,-4.9566 12.977,-8.6709 3.715,-3.7144 6.661,-8.1239 8.671,-12.977 2.01,-4.853 3.045,-10.0544 3.045,-15.3073 h -40 z"
+       fill="#ffffff"
+       id="path951" />
+    <path
+       d="m 212.9234,-40.205933 c 0,-5.253 -1.035,-10.454 -3.045,-15.307 -2.01,-4.853 -4.956,-9.263 -8.671,-12.977 -3.714,-3.715 -8.124,-6.661 -12.977,-8.671 -4.853,-2.01 -10.054,-3.045 -15.307,-3.045 v 40 z"
+       fill="#ffffff"
+       id="path953" />
+  </g>
 </svg>
