@@ -26,7 +26,7 @@ have moved the standalone node to [substrate-contracts-node](https://github.com/
 </div>
 
 This node is based on the
-[`substrate-parachain-template`](https://github.com/substrate-developer-hub/substrate-parachain-template/),
+[`cumulus/parachain-template`](https://github.com/paritytech/cumulus/tree/master/parachain-template),
 which we configured to use Substrate's smart contracts module ‒ the [`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts)
 pallet.
 This `contracts` pallet takes smart contracts as WebAssembly blobs and defines an API
