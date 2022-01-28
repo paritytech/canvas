@@ -318,6 +318,8 @@ where
 		Arc::new(move |hash, data| network.announce_block(hash, data))
 	};
 
+	let relay_chain_slot_duration = Duration::from_secs(6);
+
 	if validator {
 		let parachain_consensus = build_consensus(
 			client.clone(),
@@ -344,7 +346,7 @@ where
 			parachain_consensus,
 			import_queue,
 			collator_key,
-			slot_duration: Duration::from_secs(6),
+			relay_chain_slot_duration,
 		};
 
 		start_collator(params).await?;
@@ -355,6 +357,8 @@ where
 			task_manager: &mut task_manager,
 			para_id: id,
 			relay_chain_interface,
+			relay_chain_slot_duration,
+			import_queue,
 		};
 
 		start_full_node(params)?;
@@ -449,14 +453,15 @@ pub async fn start_parachain_node(
 				BuildAuraConsensusParams {
 					proposer_factory,
 					create_inherent_data_providers: move |_, (relay_parent, validation_data)| {
-						let parachain_inherent =
+						let relay_chain_interface = relay_chain_interface.clone();
+						async move {
+							let parachain_inherent =
 							cumulus_primitives_parachain_inherent::ParachainInherentData::create_at(
 								relay_parent,
 								&relay_chain_interface,
 								&validation_data,
 								id,
-							);
-						async move {
+							).await;
 							let time = sp_timestamp::InherentDataProvider::from_system_time();
 
 							let slot =

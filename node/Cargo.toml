@@ -23,12 +23,13 @@ path = 'src/main.rs'
 [features]
 runtime-benchmarks = ['canvas-runtime/runtime-benchmarks']
 contracts-unstable-interface = ['canvas-runtime/contracts-unstable-interface']
+try-runtime = ["canvas-runtime/try-runtime"]
 
 [dependencies]
+clap = { version = "3.0", features = ["derive"] }
 derive_more = '0.99.2'
 log = '0.4.14'
 codec = { package = 'parity-scale-codec', version = '2.0.0' }
-structopt = '0.3.8'
 serde = { version = '1.0.119', features = ['derive'] }
 hex-literal = "0.3.1"
 
@@ -59,7 +60,7 @@ sc-network = { git = 'https://github.com/paritytech/substrate', branch = "master
 sc-keystore = { git = 'https://github.com/paritytech/substrate', branch = "master" }
 sc-rpc = { git = 'https://github.com/paritytech/substrate', branch = "master" }
 sc-rpc-api = { git = 'https://github.com/paritytech/substrate', branch = "master" }
-sc-service = { git = 'https://github.com/paritytech/substrate', features = ['wasmtime'] , branch = "master" }
+sc-service = { git = 'https://github.com/paritytech/substrate', features = ['wasmtime'], branch = "master" }
 sc-telemetry = { git = 'https://github.com/paritytech/substrate', branch = "master" }
 sc-transaction-pool = { git = 'https://github.com/paritytech/substrate', branch = "master" }
 sc-transaction-pool-api = { git = 'https://github.com/paritytech/substrate', branch = "master" }
@@ -97,6 +98,7 @@ polkadot-cli = { git = 'https://github.com/paritytech/polkadot', branch = "maste
 polkadot-parachain = { git = 'https://github.com/paritytech/polkadot', branch = "master" }
 polkadot-primitives = { git = 'https://github.com/paritytech/polkadot', branch = "master" }
 polkadot-service = { git = 'https://github.com/paritytech/polkadot', branch = "master" }
+xcm = { git = "https://github.com/paritytech/polkadot", default-features = false, branch = "master" }
 polkadot-test-service = { git = 'https://github.com/paritytech/polkadot', branch = "master" }
 
 # Contracts specific packages
