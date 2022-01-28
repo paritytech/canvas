@@ -188,8 +188,8 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("canvas"),
 	impl_name: create_runtime_str!("canvas"),
 	authoring_version: 1,
-	spec_version: 14,
-	impl_version: 0,
+	spec_version: 15,
+	impl_version: 1,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
 	// Since Canvas is a "live" chain (on Rococo anyways), we need to set this to `0` until a

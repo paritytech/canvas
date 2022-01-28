@@ -747,7 +747,7 @@ dependencies = [
 
 [[package]]
 name = "canvas-node"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "canvas-runtime",
  "clap",
@@ -813,7 +813,7 @@ dependencies = [
 
 [[package]]
 name = "canvas-runtime"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "cumulus-pallet-aura-ext",
  "cumulus-pallet-dmp-queue",
