@@ -15,9 +15,6 @@ parachain for smart contracts.
 If you have any questions, feel free to talk to us on [Element][k2] or on [Discord][l2]
 (in the [`ink_smart-contracts`](https://discord.com/channels/722223075629727774/765280480609828864) channel).
 
-**Note:** This used to be a standalone smart contracts node used for the ink! workshop. We
-have moved the standalone node to [substrate-contracts-node](https://github.com/paritytech/substrate-contracts-node/).
-
 
 ## Developing Smart Contracts for Canvas
 
@@ -53,7 +50,7 @@ If you are looking for a quickstart, we can recommend
 ## Rococo Deployment
 
 We have a live deployment of the Canvas parachain on Rococo ‒ a testnet for Polkadot and Kusama parachains.
-You can access the network through Polkadot JS Apps,
+You can interact with the network through Polkadot JS Apps,
 [click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/explorer).
 
 The Canvas parachain uses the Rococo relay chain's native token (ROC) instead of having its own token.
@@ -61,21 +58,14 @@ Due to this you'll need ROC in order to deploy contracts on Canvas.
 
 As a first step, you should create an account. See [here](https://wiki.polkadot.network/docs/learn-account-generation)
 for a detailed guide.
-If using the Polkadot JS Apps extension, set your network preferences to "Allow use on
-any network". This way your account will be usable under Rococo, as well as under Canvas.
 
 As a second step, you have to get ROC testnet tokens through the [Rococo Faucet](https://wiki.polkadot.network/docs/learn-DOT#getting-rococo-tokens).
-Once you have ROC tokens on Rococo, you'll need to teleport them from the
-relay chain into the Canvas parachain.
-
-Select "Accounts" > "Teleport" on [Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/explorer):
-
-![Teleport ROC to Canvas parachain](./.images/roc-to-can-0.png)
-
-Select your account, set the destination chain to Canvas and specify the amount of ROC
-you want to teleport:
-
-![Teleport ROC to Canvas parachain](./.images/roc-to-can-1.png)
+This is a chat room in which you need to write:
+```
+!drip YOUR_SS_58_ADDRESS:1002
+```
+The number `1002` is the parachain id of Canvas on Rococo, by supplying it the faucet will teleport ROC
+tokens directly to your account on the parachain.
 
 If everything worked out, the teleported ROC tokens will show up under 
 [the "Accounts" tab for Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/accounts).
