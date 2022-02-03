@@ -49,7 +49,8 @@ If you are looking for a quickstart, we can recommend
 
 ## Rococo Deployment
 
-We have a live deployment of the Canvas parachain on Rococo ‒ a testnet for Polkadot and Kusama parachains.
+We have a live deployment of the Canvas parachain on [Rococo](https://wiki.polkadot.network/docs/build-pdk#rococo-testnet) ‒
+a testnet for Polkadot and Kusama parachains.
 You can interact with the network through Polkadot JS Apps,
 [click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/explorer).
 
@@ -128,7 +129,7 @@ cargo build --release --locked
 ### Substrate Compatibility
 
 The latest confirmed working Substrate commit which will then be used is
-[0f070c8020fad552247fd4b43c1a6a4506e456b5](https://github.com/paritytech/substrate/commit/0f070c8020fad552247fd4b43c1a6a4506e456b5).
+[77491879cd5af1717c459e7b980b7e9a270617c6](https://github.com/paritytech/substrate/commit/77491879cd5af1717c459e7b980b7e9a270617c6).
 
 ### Unstable Features
 
