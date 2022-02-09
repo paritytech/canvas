@@ -75,7 +75,6 @@ Once you have ROC on Canvas you can deploy a contract as you would normally.
 If you're unsure about this, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/) 
 will clarify that for you in no time.
 
-As an endowment for our example contracts 1-2 ROC tokens should do.
 
 ## Run it Locally
 
