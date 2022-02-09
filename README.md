@@ -9,7 +9,7 @@
 [l1]: https://img.shields.io/discord/722223075629727774?style=flat-square&label=discord
 [l2]: https://discord.com/invite/wGUDt2p
 
-This is a node implementation for Canvas, a [Substrate](https://github.com/paritytech/substrate)
+This is a node implementation of Canvas, a [Substrate](https://github.com/paritytech/substrate)
 parachain for smart contracts.
 
 If you have any questions, feel free to talk to us on [Element][k2] or on [Discord][l2]
@@ -49,7 +49,8 @@ If you are looking for a quickstart, we can recommend
 
 ## Rococo Deployment
 
-We have a live deployment of the Canvas parachain on Rococo ‒ a testnet for Polkadot and Kusama parachains.
+We have a live deployment of the Canvas parachain on [Rococo](https://wiki.polkadot.network/docs/build-pdk#rococo-testnet) ‒
+a testnet for Polkadot and Kusama parachains.
 You can interact with the network through Polkadot JS Apps,
 [click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/explorer).
 
@@ -74,7 +75,6 @@ Once you have ROC on Canvas you can deploy a contract as you would normally.
 If you're unsure about this, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/) 
 will clarify that for you in no time.
 
-As an endowment for our examples contracts 1-2 ROC tokens should do.
 
 ## Run it Locally
 
@@ -128,7 +128,7 @@ cargo build --release --locked
 ### Substrate Compatibility
 
 The latest confirmed working Substrate commit which will then be used is
-[0f070c8020fad552247fd4b43c1a6a4506e456b5](https://github.com/paritytech/substrate/commit/0f070c8020fad552247fd4b43c1a6a4506e456b5).
+[77491879cd5af1717c459e7b980b7e9a270617c6](https://github.com/paritytech/substrate/commit/77491879cd5af1717c459e7b980b7e9a270617c6).
 
 ### Unstable Features
 
