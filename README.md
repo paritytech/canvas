@@ -1,13 +1,14 @@
 # Canvas ‒ A Smart Contracts Parachain
 
-[![linux][a1]][a2] [![matrix][k1]][k2] [![discord][l1]][l2]
+[![matrix][k1]][k2] [![discord][l1]][l2]
 
-[a1]: https://gitlab.parity.io/parity/canvas/badges/master/pipeline.svg
-[a2]: https://gitlab.parity.io/parity/canvas/pipelines?ref=master
 [k1]: https://img.shields.io/badge/matrix-chat-brightgreen.svg?style=flat
 [k2]: https://riot.im/app/#/room/#ink:matrix.parity.io
 [l1]: https://img.shields.io/discord/722223075629727774?style=flat-square&label=discord
 [l2]: https://discord.com/invite/wGUDt2p
+
+> :warning: **Note: Canvas was moved into the [Cumulus repo](https://github.com/paritytech/cumulus#canvas-).
+> Please check there for the current version.**
 
 This is a node implementation of Canvas, a [Substrate](https://github.com/paritytech/substrate)
 parachain for smart contracts.
