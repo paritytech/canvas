@@ -7,8 +7,8 @@
 [l1]: https://img.shields.io/discord/722223075629727774?style=flat-square&label=discord
 [l2]: https://discord.com/invite/wGUDt2p
 
-> :warning: **Note: Canvas was moved into the [Cumulus repo](https://github.com/paritytech/cumulus).
-> Please check there for the current version**
+> :warning: **Note: Canvas was moved into the [Cumulus repo](https://github.com/paritytech/cumulus#canvas-).
+> Please check there for the current version.**
 
 This is a node implementation of Canvas, a [Substrate](https://github.com/paritytech/substrate)
 parachain for smart contracts.
